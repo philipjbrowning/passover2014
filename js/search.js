@@ -46,6 +46,11 @@ function clearTimer() {
     runSearch = null;
 }
 
+function toTitleCase(str)
+{
+    return str.replace(/\w\S*/g, function(txt){return txt.charAt(0).toUpperCase() + txt.substr(1).toLowerCase();});
+}
+
 function searchMember( searchInput ) {
     runSearch = null;
     var task = null;
@@ -83,9 +88,10 @@ function registerMember(member_id, user_id) {
             }
         }).done(function( result ) {
             if (result == 'true') {
-                $('#register-result-'+member_id).addClass("search-registered");
+                $('#full-name-'+member_id).addClass("search-registered");
+                $('#register-result-'+member_id+' p').slideUp('slow');
                 console.log("Register Success");
-                updateNewsFeed('Registered [name]');
+                updateNewsFeed(toTitleCase($('#full-name-'+member_id).html())+' registered');
                 updateCounter();
             } else {
                 console.log("Register Result Failure");

@@ -192,10 +192,12 @@ function addOrRegisterMember(task) {
         console.log(data['result']);
         console.log(data['member_id']);
         $('#validationText').html(' (SUCCESS)');
-        updateNewsFeed(firstName.value+' '+lastName.value+' added');
+        updateNewsFeed(toTitleCase(firstName.value)+' '+toTitleCase(lastName.value)+' added');
+        updateCounter();
         if (task == 'add-register-member') {
             updateNewsFeed(firstName.value+' '+lastName.value+' registered');
         }
+        // #add-register-member
         // clear values after 1 second
         document.getElementById("add-member-form").reset();
 	})

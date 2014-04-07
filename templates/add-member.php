@@ -7,7 +7,7 @@ if (!$orderby) $orderby = "reg_time";
 if (!$asc_desc) $asc_desc = "DESC";	
 
 ?>
-                        <div class="loaded-section">
+                        <div id="add-register-member" class="loaded-section">
                             <h2>Add Member<span id="validationText"></span></h2>
                             <form id="add-member-form" name="add-member-form" action="" method="post">
                             	<fieldset class="noborder">

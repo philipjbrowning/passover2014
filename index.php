@@ -72,6 +72,7 @@ if(!$session->is_logged_in()) {
                     <div id="news-feed-wrap" class="count-feed">
                         <h2>Update Feed</h2>
                         <ul id="news-feed">
+                            <!-- SELECT * FROM `members` WHERE `register_time` != '0000-00-00 00:00:00' AND `registerer_id` = 3 -->
                             <li>D. Gilbert Rodriguez confirmed</li>
                             <li>M. Victor Lozada confirmed</li>
                             <li>D. Gabriel Marcelino confirmed</li>

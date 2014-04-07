@@ -251,6 +251,7 @@ ol, ul { margin: 0; padding: 0; }
 .count-feed li { padding: 0 0 10px 0; width: 195px; }
 .count-feed { margin: 20px 0 0 10px; padding: 0 20px 10px 20px; }
 #page { height: 100%; width: 1280px; }
+#search-form { width: 615px; }
 #search-member { padding: 5px; width: 600px; }
 #sidebar { height: 100% }
 #sidebar li { margin: 0; padding: 5px 10px; width: 184px; }
@@ -275,13 +276,13 @@ body { background-color: #E9EAED; }
 input[type="text"]:focus,
 select:focus,
 textarea:focus,
-button:focus {
-    outline: none;
-}
+button:focus { outline: none; }
 
 .count-feed li { background-color: #fff; }
 .count-feed { border: 1px solid #ccc; background: #fff url(../img/section-title.png) repeat-x left top; }
 .loaded-section { border: 1px solid #ccc; background: #fff url(../img/section-title.png) repeat-x left top; }
+.loaded-section-failure { background-image: url(../img/section-title-failure.png) repeat-x left top; }
+.loaded-section-success {  }
 .search-confirmed { color: #004DA6; }
 .search-registered { color: #008F0A; }
 .search-result { border-bottom: 1px solid #ccc; }
