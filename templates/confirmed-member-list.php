@@ -1,12 +1,12 @@
 <?php
 include("../includes/initialize.php");
 
-$orderby = @$_GET['orderby'];
-$asc_desc = @$_GET['asc_desc'];
-if (!$orderby) $orderby = "reg_time";
-if (!$asc_desc) $asc_desc = "DESC";	
+// $orderby = @$_GET['orderby'];
+// $asc_desc = @$_GET['asc_desc'];
+// if (!$orderby) $orderby = "reg_time";
+// if (!$asc_desc) $asc_desc = "DESC";
 
-$confirmed_members = Member::confirmed_members($_SESSION['user_id'], $orderby, $asc_desc);
+// $confirmed_members = Member::confirmed_members($_SESSION['user_id'], $orderby, $asc_desc);
 ?>
 						<div class="loaded-section">
                         	<h2>Confirmed Member List (<?php echo count($confirmed_members); ?>)</h2>

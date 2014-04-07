@@ -2,12 +2,13 @@
 
 */
 
+
 var currentPageTemplate;
 
 $( document ).ready(function() {
 	loadPageTemplate( "register-member" );
-	
-	
+	updateCounter();
+
 	// Sidebar menu navigation
 	$(".add-member").click(function(e) {
 		loadPageTemplate('add-member');
@@ -43,7 +44,7 @@ $( document ).ready(function() {
 function loadPageTemplate( pageTemplate ) {
 	if ( pageTemplate != currentPageTemplate) {
 		$("."+currentPageTemplate).removeClass("menu-selected");
-		var response = $.ajax({
+		$.ajax({
 			type: "GET",
 			url: "templates/" + pageTemplate + ".php"
 		})
@@ -71,8 +72,23 @@ function updateNewsFeed(message) {
     console.log(message);
 }
 
-
-
+function updateCounter() {
+    $.ajax({
+        type: "GET",
+        url: "includes/update-count.php",
+        data: {
+            'update-count' : true
+        }
+    }).done(function( htmlData ) {
+        console.log('done');
+        $("#your-count").html( htmlData );
+    }).fail(function() {
+        console.log('fail');
+        $("#your-count").html(
+            "<li>Updates will come shortly.</li>"
+        );
+    });
+}
 
 
 

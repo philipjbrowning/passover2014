@@ -28,7 +28,7 @@ class User {
 		$username = $database->escape_value($username);
 		$password = $database->escape_value($password);
 	
-		$sql  = "SELECT * FROM users ";
+		$sql  = "SELECT `id`, `username`, `first_name`, `last_name`, `title` FROM `users`";
 		$sql .= "WHERE username = '{$username}' ";
 		$sql .= "AND password = '{$password}' ";
 		$sql .= "LIMIT 1";

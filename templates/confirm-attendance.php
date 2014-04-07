@@ -3,7 +3,7 @@
                             <form id="search-form" action="">
                             	
                             <fieldset>
-                            	<input type="text" id="search-member" value="" name="search-member" class="text" placeholder="Confirm member by searching here" />
+                            	<input type="text" id="search-member" value="" name="search-member" class="text" placeholder="Search by birthday first" />
 
                             </fieldset>
 							</form>

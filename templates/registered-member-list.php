@@ -1,16 +1,16 @@
 <?php
 include("../includes/initialize.php");
 
-$orderby = @$_GET['orderby'];
-$asc_desc = @$_GET['asc_desc'];
-if (!$orderby) $orderby = "register_time";
-if (!$asc_desc) $asc_desc = "DESC";	
+// $orderby = @$_GET['orderby'];
+// $asc_desc = @$_GET['asc_desc'];
+// if (!$orderby) $orderby = "register_time";
+// if (!$asc_desc) $asc_desc = "DESC";
 
-$registered_members = Member::registered_members($_SESSION['user_id'], $orderby, $asc_desc);
-echo "<pre>";
-print_r($registered_members);
-echo "</pre>";
-exit();
+// $registered_members = Member::registered_members($_SESSION['user_id'], $orderby, $asc_desc);
+// echo "<pre>";
+// print_r($registered_members);
+// echo "</pre>";
+// exit();
 ?>
 						<div class="loaded-section">
                         	<h2>Registered Member List (<?php echo count($registered_members); ?>)</h2>

@@ -44,8 +44,10 @@ class Members {
         $database->open_connection();
         $search_string = $database->escape_value($search_string);
 
-        $sql  = "SELECT * FROM ".self::$table_name;
-        $sql .= " WHERE (`first_name` like '%{$search_string}%' ";
+        $sql  = "SELECT * FROM ".self::$table_name." ";
+        // $sql .= "INNER JOIN `zions` ";                                  // NEW
+        // $sql .= "ON `zions`.`id` = `".self::$table_name."`.`zion_id`";  // NEW
+        $sql .= "WHERE (`first_name` like '%{$search_string}%' ";
         $sql .= "OR `middle_name` like '%{$search_string}%' ";
         $sql .= "OR `last_name` like '%{$search_string}%' ";
         $sql .= "OR CONCAT(first_name, middle_name, last_name) like '%{$search_string}%' ";

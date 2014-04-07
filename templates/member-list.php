@@ -1,12 +1,12 @@
 <?php
 include("../includes/initialize.php");
 
-$orderby = @$_GET['orderby'];
-$asc_desc = @$_GET['asc_desc'];
-if (!$orderby) $orderby = "reg_time";
-if (!$asc_desc) $asc_desc = "DESC";	
+// $orderby = @$_GET['orderby'];
+// $asc_desc = @$_GET['asc_desc'];
+// if (!$orderby) $orderby = "reg_time";
+// if (!$asc_desc) $asc_desc = "DESC";
 
-$all_members = Member::all_members($orderby, $asc_desc);
+// $all_members = Member::all_members($orderby, $asc_desc);
 ?>
 						<div class="loaded-section">
                         	<h2>All Members List (<?php echo count($all_members); ?>)</h2>

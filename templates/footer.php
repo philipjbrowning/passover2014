@@ -1,15 +1,5 @@
 		</div> <!--! end of #page -->
     
-    <!-- JavaScript at the bottom for fast page loading -->
-    
-    <!-- Grab local jQuery -->
-    <script src="js/libs/jquery-1.10.2.min.js"></script>
-    
-    <!-- scripts concatenated and minified via ant build script-->
-    <script type="text/javascript" src="js/plugins.js"></script>
-    <script type="text/javascript" src="js/script.js"></script>
-    <!-- end scripts-->
-    
     <!-- Prompt IE 6 users to install Chrome Frame. Remove this if you want to support IE 6.
        chromium.org/developers/how-tos/chrome-frame-getting-started -->
     <!--[if lt IE 7 ]>

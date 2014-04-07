@@ -28,10 +28,12 @@
     
     <!-- More ideas for your <head> here: h5bp.com/d/head-Tips -->
     
-    <!-- All JavaScript at the bottom, except for Modernizr / Respond.
-       Modernizr enables HTML5 elements & feature detects; Respond is a polyfill for min/max-width CSS3 Media Queries
-       For optimal performance, use a custom Modernizr build: www.modernizr.com/download/ -->
+    <!-- All JavaScript  -->
 	<script src="js/libs/modernizr-2.0.6.min.js"></script>
+    <script src="js/libs/jquery-1.10.2.min.js"></script>
+    <script type="text/javascript" src="js/plugins.js"></script>
+    <script type="text/javascript" src="js/script.js"></script>
+    <!-- end scripts-->
 </head>
 
 <body>

@@ -6,21 +6,18 @@ var searchInput = $('#search-member');
 var runSearch = null;
 
 searchInput.keydown(function(e) { // FIX NUMERIC KEYPAD ZERO
-    var myRe = /[a-z,A-Z,0-9]$/g;
-    if (myRe.test(String.fromCharCode(e.which)) || (e.which == 189)) {
+    if (e.which == 13) { // Enter key pressed
+        if (runSearch) {
+            clearTimer();
+        }
+        searchMember(searchInput.val());
+    } else {
         if (runSearch) {
             clearTimer();
             startTimer();
         } else {
             startTimer();
         }
-    } else if ((e.which == 8) || (e.which == 32)) {
-        // Allow backspace = 8 and spacebar = 32
-    } else if (e.which == 13) {
-        clearTimer();
-        searchMember(searchInput.val());
-    } else {
-        e.preventDefault();
     }
 });
 
@@ -69,13 +66,14 @@ function searchMember( searchInput ) {
     }).done(function( htmlData ) {
         $('#search-results').html( htmlData );
     }).fail(function() {
-        console.log( "Fail" );
+        console.log( "AJAX Failure" );
     });
 }
 
 function registerMember(member_id, user_id) {
     if(confirm('Are you sure you want to register this member?')) {
-        console.log("register");
+        console.log("user #"+user_id+" is registering member #"+member_id);
+        console.log($('#full-name-'+member_id).val());
         $.ajax({
             type : "POST",
             url  : "includes/register-member.php",
@@ -84,36 +82,69 @@ function registerMember(member_id, user_id) {
                 'registerer_id' : user_id
             }
         }).done(function( result ) {
-            if (result) {
-                console.log("Success");
+            if (result == 'true') {
+                $('#register-result-'+member_id).addClass("search-registered");
+                console.log("Register Success");
                 updateNewsFeed('Registered [name]');
+                updateCounter();
             } else {
-                console.log("Failure");
+                console.log("Register Result Failure");
+                console.log(result);
             }
         }).fail(function() {
-            console.log("Register Fail");
+            console.log("AJAX Register Failure");
         });
     }
 }
 
 function confirmMember(member_id, user_id) {
     if(confirm('Are you sure you want to confirm this member?')) {
+        console.log("user #"+user_id+" is confirming member #"+member_id);
         $.ajax({
                 type : "POST",
                 url  : "includes/register-member.php",
                 data: {
                     'member_id'     : member_id,
-                    'registerer_id' : user_id
+                    'confirmed_id'  : user_id
                 }
         }).done(function( result ) {
-            if (result) {
-                console.log("Success");
+            if (result == 'true') {
+                console.log("Confirm Success");
                 updateNewsFeed('Confirmed [name]');
+                updateCounter();
             } else {
-                console.log("Failure");
+                console.log("Confirm Result Failure");
             }
         }).fail(function() {
-            console.log("Confirm Fail");
+            console.log("AJAX Confirm Failure");
         });
+    }
+}
+
+function unregisterMember(member_id) {
+    if(confirm('Are you sure you want to UNREGISTER this member?')) {
+        console.log("user #"+user_id+" is unregistering member #"+member_id);
+        /*
+        console.log($('#full-name-'+member_id).val());
+        $.ajax({
+            type : "POST",
+            url  : "includes/register-member.php",
+            data: {
+                'member_id'     : member_id,
+                'registerer_id' : 0
+            }
+        }).done(function( result ) {
+            if (result == 'true') {
+                $('#register-result-'+member_id).addClass("search-registered");
+                console.log("Register Success");
+                updateNewsFeed('Registered [name]');
+            } else {
+                console.log("Register Result Failure");
+                console.log(result);
+            }
+        }).fail(function() {
+            console.log("AJAX Register Failure");
+        });
+        */
     }
 }

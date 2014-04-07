@@ -1,9 +1,9 @@
                     	<div class="loaded-section">
-                            <h2>Add Member<span id="validationText"></span></h2>
+                            <h2>Register Member<span id="validationText"></span></h2>
                             <form id="search-form" action="">
                             	
                             <fieldset>
-                            	<input id="search-member" type="text" value="" name="search-member" class="text" placeholder="Register member by searching here" />
+                            	<input id="search-member" type="text" value="" name="search-member" class="text" placeholder="Search by birthday first" />
                             </fieldset>
 							</form>
 

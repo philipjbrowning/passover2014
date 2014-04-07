@@ -39,9 +39,9 @@ class Session {
 	public function logout() {
 		unset($_SESSION['user_id']);
 		unset($this->user_id);
-		unset($_SESSION['user_name']);
-		unset($this->user_name);        
-		unset($_SESSION['logged_in']);
+        unset($_SESSION['user_name']);
+        unset($this->user_name);
+        unset($_SESSION['logged_in']);
 		unset($this->logged_in);    
 		
 		$this->logged_in = false;
@@ -59,14 +59,14 @@ class Session {
 	}
 
 	private function check_login() {
-    if(isset($_SESSION['user_id'])) {
-      $this->user_id = $_SESSION['user_id'];
-      $this->logged_in = true;
-    } else {
-      unset($this->user_id);
-      $this->logged_in = false;
+        if(isset($_SESSION['user_id'])) {
+            $this->user_id = $_SESSION['user_id'];
+            $this->logged_in = true;
+        } else {
+            unset($this->user_id);
+            $this->logged_in = false;
+        }
     }
-  }
   
 	private function check_message() {
 		// Is there a message stored in the session?

@@ -22,6 +22,9 @@ if ($_POST['late_registration']) {
     $newMember->late_registration = 'F';
 }
 $newMember->life_number = $_POST['life_no_1'].'-'.$_POST['life_no_2'].'-'.$_POST['life_no_3'];
+if ($newMember->life_number == '--') {
+    $newMember->life_number = 'A00-000000-0'; // Default in database for unknown life number
+}
 $newMember->middle_name = $_POST['middle_name'];
 if ($_POST['task'] == 'add-register-member') {
     $newMember->registerer_id = $_POST['registerer_id'];
@@ -47,3 +50,4 @@ if ($newMemberId) {
         'result' => false
     );
 }
+?>

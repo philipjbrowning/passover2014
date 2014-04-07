@@ -13,7 +13,7 @@ if(!$session->is_logged_in()) {
 		<div id="sidebar" class="alignLeft sidebar">
         	<div id="current-user-wrap">
             	<div id="current-user" class="header-height">
-            		<span id="current-user"><img id="user-picture" class="picture" src="" /><span id="user-name">First Name, Last Name</span></span>
+            		<span id="current-user"><img id="user-picture" class="picture" src="" /><span id="user-name"><?php echo $session->user_name; ?></span></span>
                 </div> <!-- End of #current-user -->
             </div> <!-- End of #current-user-wrap -->
             <div id="menu-wrap">
@@ -61,15 +61,24 @@ if(!$session->is_logged_in()) {
                     	&nbsp; <!-- content loaded via AJAX -->
                     </div> <!-- End of #home-page -->
                 </div> <!-- End #loaded-page -->
-                <div id="news-feed-wrap" class="alignLeft">
-                    <h2>Update Feed</h2>
-                	<ul id="news-feed">
-                    	<li>D. Gilbert Rodriguez confirmed</li>
-                    	<li>M. Victor Lozada confirmed</li>
-                    	<li>D. Gabriel Marcelino confirmed</li>
-                    	<li>D. Gabriel Marcelino registered</li>
-                    </ul>
-                </div> <!-- End #news-feed -->
+                <div id="right-wrap" class="alignLeft">
+                    <div id="your-count-wrap" class="count-feed">
+                        <h2>Count</h2>
+                        <ul id="your-count">
+                            <li id="count-registered"><b>Registered:</b> <span class="your-number">0</span> / <span class="total-number">0</span></li>
+                            <li id="count-confirmed"><b>Confirmed:</b> <span class="your-number">0</span> / <span class="total-number">0</span></li>
+                        </ul> <!-- End #count -->
+                    </div> <!-- End #your-count-wrap -->
+                    <div id="news-feed-wrap" class="count-feed">
+                        <h2>Update Feed</h2>
+                        <ul id="news-feed">
+                            <li>D. Gilbert Rodriguez confirmed</li>
+                            <li>M. Victor Lozada confirmed</li>
+                            <li>D. Gabriel Marcelino confirmed</li>
+                            <li>D. Gabriel Marcelino registered</li>
+                        </ul>
+                    </div> <!-- End #news-feed -->
+                </div> <!-- End of #right-wrap -->
             </div> <!-- End of #main -->
 			<footer>
 				<div id="copyright">

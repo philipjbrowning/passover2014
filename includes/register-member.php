@@ -1,16 +1,26 @@
 <?php
 include("initialize.php");
 
-$theMember = new Member;
+// Save variables
+$member_id     = $_POST['member_id'];
+$register_time = date("Y-m-d H:i:s");
+$registerer_id = $_POST['registerer_id'];
+$late_registration = 'F'; // Add to our functionality
 
-// echo $_POST['user_id'];
+// Query
+$sql = "UPDATE `passover2014`.`members`
+        SET `register_time` = '".$register_time."',
+            `late_registration` = '".$late_registration."',
+            `registerer_id` = '".$registerer_id."'
+        WHERE `members`.`id` = ".$member_id.";";
+
+// Add update to database
+global $database;
 $database->open_connection();
-// UPDATE `passover2014`.`members` SET `register_time` = '2014-04-06 05:08:08', `registerer_id` = '3' WHERE `members`.`id` = 1;
-$database->close_connection();
-
-// echo $_POST['registerer_id'];
-if ($theMember->register($_POST['registerer_id'])) {
-    return true;
+if (!$database->query($sql)) {
+    echo $database->error;
 } else {
-    return false;
+    echo "true";
 }
+$database->close_connection();
+?>
