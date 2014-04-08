@@ -2,8 +2,14 @@
 
 */
 
-
+var allSort = 'ASC';
+var registerSort = 'ASC';
+var confirmedSort = 'ASC';
+var currentSort = 'ASC';
 var currentPageTemplate;
+var pageNumber = 0;
+var resultsPerPage = 25;
+var visitingSort = 'ASC';
 
 $( document ).ready(function() {
 	loadPageTemplate( "register-member" );
@@ -24,18 +30,22 @@ $( document ).ready(function() {
 		e.preventDefault();
 	});
 	$(".registered-member-list").click(function(e) {
+        currentSort = registerSort;
 		loadPageTemplate('registered-member-list');
 		e.preventDefault();
 	});
 	$(".confirmed-member-list").click(function(e) {
+        currentSort = confirmedSort;
 		loadPageTemplate('confirmed-member-list');
 		e.preventDefault();
 	});
 	$(".visiting-member-list").click(function(e) {
+        currentSort = visitingSort;
 		loadPageTemplate('visiting-member-list');
 		e.preventDefault();
 	});
 	$(".member-list").click(function(e) {
+        currentSort = allSort;
 		loadPageTemplate('member-list');
 		e.preventDefault();
 	});
@@ -47,7 +57,13 @@ function loadPageTemplate( pageTemplate ) {
 		$("."+currentPageTemplate).removeClass("menu-selected");
 		$.ajax({
 			type: "GET",
-			url: "templates/" + pageTemplate + ".php"
+			url: "templates/" + pageTemplate + ".php",
+            data : {
+                'offset'    : pageNumber,
+                'row_count' : resultsPerPage,
+                'order_by'   : 'first_name',
+                'asc_desc'  : currentSort
+            }
 		})
 		.done(function( htmlData ) {
 			$("#loaded-page").html( htmlData );

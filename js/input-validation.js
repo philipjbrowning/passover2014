@@ -197,7 +197,7 @@ function addOrRegisterMember(task) {
         updateNewsFeed(toTitleCase(firstName.value)+' '+toTitleCase(lastName.value)+' added');
         updateCounter();
         if (task == 'add-register-member') {
-            updateNewsFeed(firstName.value+' '+lastName.value+' registered');
+            updateNewsFeed(toTitleCase(firstName.value)+' '+toTitleCase(lastName.value)+' registered');
         }
         document.getElementById("add-member-form").reset();
 	})

@@ -9,24 +9,17 @@ include("../includes/initialize.php");
 
 
 if ($_GET['update_news_feed'] == 'true') {
-    // echo "<li>true</li>";
-
     // Query
-    $sql = "SELECT `first_name`, `middle_name`, `last_name` ".
+    $sql = "SELECT `first_name`, `last_name` ".
            "FROM `members` WHERE `register_time` != '0000-00-00 00:00:00' AND `registerer_id` = ".$_GET['registerer_id']." ".
            "ORDER BY `register_time` DESC ".
-           "LIMIT 0, 10";
+           "LIMIT 0, 15";
 
     global $database;
     $database->open_connection();
     if ($result_set = $database->query($sql)) {
         while ($row = mysqli_fetch_object($result_set)) {
-            $full_name = ucwords(strtolower($row->first_name))." ";
-            if($row->middle_name) {
-                $full_name .= ucwords(strtolower($row->middle_name));
-            }
-            $full_name .= " ".ucwords(strtolower($row->last_name));
-            echo "<li>".$full_name." is registered</li>\n";
+            echo "<li>".ucwords(strtolower($row->first_name))." ".ucwords(strtolower($row->last_name))." registered</li>\n";
         }
     } else {
         echo '<li>Loading information soon</li>';

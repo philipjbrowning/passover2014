@@ -13,7 +13,7 @@ if(!$session->is_logged_in()) {
 		<div id="sidebar" class="alignLeft sidebar">
         	<div id="current-user-wrap">
             	<div id="current-user" class="header-height">
-            		<span id="current-user"><img id="user-picture" class="picture" src="" /><span id="user-name">Name</span></span>
+            		<span id="current-user-img"><img id="user-picture" alt="User Picture" class="picture" src="" /><span id="user-name">Name</span></span>
                 </div> <!-- End of #current-user -->
             </div> <!-- End of #current-user-wrap -->
             <div id="menu-wrap">
@@ -65,12 +65,12 @@ if(!$session->is_logged_in()) {
                     <div id="your-count-wrap" class="count-feed">
                         <h2>Count</h2>
                         <ul id="your-count">
-                            <li id="count-registered"><b>Registered:</b> <span class="your-number">0</span> / <span class="total-number">0</span></li>
-                            <li id="count-confirmed"><b>Confirmed:</b> <span class="your-number">0</span> / <span class="total-number">0</span></li>
+                            <li id="count-registered"><b>Registered:</b></li>
+                            <li id="count-confirmed"><b>Confirmed:</b></li>
                         </ul> <!-- End #count -->
                     </div> <!-- End #your-count-wrap -->
                     <div id="news-feed-wrap" class="count-feed">
-                        <h2>Update Feed</h2>
+                        <h2>Your Activity</h2>
                         <ul id="news-feed-<?php echo $session->user_id; ?>" class="news-feed"></ul>
                     </div> <!-- End #news-feed -->
                 </div> <!-- End of #right-wrap -->

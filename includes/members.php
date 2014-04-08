@@ -22,31 +22,31 @@ class Members {
 	
     public $list; // array of MemberInList objects
 
-    public function list_all_members($user_id=0, $orderby="reg_time", $asc_desc="DESC") {
+    public function list_all_members($user_id=0, $order_by="reg_time", $asc_desc="DESC") {
 
     }
 
-    public function list_confirmed_members($user_id=0, $orderby="reg_time", $asc_desc="DESC") {
+    public function list_confirmed_members($user_id=0, $order_by="reg_time", $asc_desc="DESC") {
 
     }
 
-    public function list_registered_members($user_id=0, $orderby="reg_time", $asc_desc="DESC") {
+    public function list_registered_members($user_id=0, $order_by="reg_time", $asc_desc="DESC") {
 
     }
 
-    public function list_visiting_members($user_id=0, $orderby="reg_time", $asc_desc="DESC") {
+    public function list_visiting_members($user_id=0, $order_by="reg_time", $asc_desc="DESC") {
 
     }
 
 
-	public function searchForMembers($search_string="", $orderby="reg_time", $asc_desc="DESC") {
+	public function searchForMembers($search_string="", $order_by="first_name", $asc_desc="ASC") {
         global $database;
         $database->open_connection();
         $search_string = $database->escape_value($search_string);
 
-        $sql  = "SELECT * FROM ".self::$table_name." ";
-        // $sql .= "INNER JOIN `zions` ";                                  // NEW
-        // $sql .= "ON `zions`.`id` = `".self::$table_name."`.`zion_id`";  // NEW
+        $sql  = "SELECT `id`, `first_name`, `middle_name`, `last_name`, `life_number`, `gender`, `birth_date`, ".
+                "`baptism_date`, `zion_name`, `home_phone`, `branch1`, `register_time`, `confirmed` ".
+                "FROM `member_search`";
         $sql .= "WHERE (`first_name` like '%{$search_string}%' ";
         $sql .= "OR `middle_name` like '%{$search_string}%' ";
         $sql .= "OR `last_name` like '%{$search_string}%' ";
@@ -68,7 +68,7 @@ class Members {
         $sql .= "OR `baptism_date` like '%{$search_string}%' ";
         $sql .= "OR `home_phone` like '%{$search_string}%' ";
         $sql .= "OR `cell_phone` like '%{$search_string}%') ";
-        $sql .= "ORDER BY `first_name` ASC";
+        $sql .= "ORDER BY `".$order_by."` ".$asc_desc;
 
         $result_set = $database->query($sql);
         $database->close_connection();

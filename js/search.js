@@ -4,21 +4,13 @@
 
 var searchInput = $('#search-member');
 var runSearch = null;
+// var searchGroup = null;
 
-searchInput.keydown(function(e) { // FIX NUMERIC KEYPAD ZERO
-    if (e.which == 13) { // Enter key pressed
-        if (runSearch) {
-            clearTimer();
-        }
-        searchMember(searchInput.val());
-    } else {
-        if (runSearch) {
-            clearTimer();
-            startTimer();
-        } else {
-            startTimer();
-        }
-    }
+// SEARCH DETECTION ----------------------------------------------------------------------------------------------------
+
+searchInput.keyup(function(e) { // FIX NUMERIC KEYPAD ZERO
+    searchGroup = 'All';
+    handleSearchTimer(e.which, 'All');
 });
 
 $("#search-button").click(function(e) {
@@ -35,41 +27,65 @@ $('#search-form').submit(function(e) {
     e.preventDefault();
 })
 
-function startTimer() {
-    runSearch = setTimeout(function() {
-        searchMember(searchInput.val());
-    }, 200);
-}
+// SEARCH SPEED LIMITER ------------------------------------------------------------------------------------------------
 
 function clearTimer() {
     clearTimeout(runSearch);
     runSearch = null;
 }
 
+function handleSearchTimer(inputKeyCode, searchGroup) {
+    if (inputKeyCode == 13) { // Enter key pressed
+        if (runSearch) {
+            clearTimer();
+        }
+        console.log("EXECUTE - searchMember("+searchInput.val()+", "+searchGroup+")");
+        searchMember(searchInput.val(), searchGroup);
+    } else {
+        if (runSearch) {
+            clearTimer();
+            startTimer(searchInput.val(), searchGroup);
+        } else {
+            startTimer(searchInput.val(), searchGroup);
+        }
+    }
+}
+
+function startTimer(searchText, searchGroup) {
+    console.log("WAIT - searchMember("+searchText+", "+searchGroup+")");
+    runSearch = setTimeout(function() {
+        console.log("EXECUTE - searchMember("+searchText+", "+searchGroup+")");
+        searchMember(searchText, searchGroup);
+    }, 300); // 300 millisecond wait until user stops typing
+}
+
+// TEXT FORMATTING -----------------------------------------------------------------------------------------------------
+
 function toTitleCase(str)
 {
     return str.replace(/\w\S*/g, function(txt){return txt.charAt(0).toUpperCase() + txt.substr(1).toLowerCase();});
 }
 
-function searchMember( searchInput ) {
+// DATABASE QUERIES ----------------------------------------------------------------------------------------------------
+
+function searchMember( searchText, searchGroup ) {
     runSearch = null;
     var task = null;
-    if ($('#search-results').parent().attr('id') == 'confirm-list-wrap') {
+    if ($('.search-loaded-section').attr('id') == 'confirm-member-section') {
         task = 'confirm';
-    } else if ($('#search-results').parent().attr('id') == 'register-list-wrap') {
+    } else if ($('.search-loaded-section').attr('id') == 'register-member-section') {
         task = 'register';
     }
-    // console.log($('#search-results').parent().attr('id'));
-    // console.log( task );
     $.ajax({
         type : "POST",
         url  : "includes/search-member.php",
         data: {
-            'task'      : task,
-            'queryText' : searchInput
-        }
+            'task'        : task,
+            'queryText'   : searchText,
+            'searchGroup' : searchGroup
+}
     }).done(function( htmlData ) {
-        $('#search-results').html( htmlData );
+        $('.search-loaded-section').html( htmlData );
     }).fail(function() {
         console.log( "AJAX Failure" );
     });

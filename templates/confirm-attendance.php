@@ -9,12 +9,12 @@
 							</form>
                             <button id="search-button" name="search-button" value="Search">Search</button>
                         </div>
-                        <div class="loaded-section">
-                        	<h2>Search Results</h2>
-                            <div id="confirm-list-wrap">
+                        <div id="confirm-member-section" class="search-loaded-section loaded-section">
+                            <h2>Search Results (0)</h2>
+                            <div class="search-results-wrap">
                                 <ol id="search-results">
-                                    <li>No members found</li>
-                                </ol> <!-- End of #search-results -->
-                            </div> <!-- End of #member-list-wrap -->
+                                    <li>No search results.</li>
+                                </ol> <!-- End of .search-results-wrap -->
+                            </div> <!-- End of #member-list -->
                         </div> <!-- End of .loaded-section -->
                         <script type="text/javascript" src="js/search.js"></script>

@@ -12,7 +12,7 @@
        More info: h5bp.com/b/378 -->
     <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
     
-    <title></title>
+    <title>Passover 2014 Registration</title>
     <meta name="description" content="">
     <meta name="author" content="Church of God">
     
@@ -30,7 +30,7 @@
     
     <!-- All JavaScript  -->
 	<script src="js/libs/modernizr-2.0.6.min.js"></script>
-    <script src="js/libs/jquery-1.10.2.min.js"></script>
+    <script src="js/libs/jquery-1.11.0.min.js"></script>
     <script type="text/javascript" src="js/plugins.js"></script>
     <script type="text/javascript" src="js/script.js"></script>
     <!-- end scripts-->
