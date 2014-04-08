@@ -81,8 +81,7 @@ function searchMember( searchText, searchGroup ) {
         url  : "includes/search-member.php",
         data: {
             'task'        : task,
-            'queryText'   : searchText,
-            'searchGroup' : searchGroup
+            'queryText'   : searchText
 }
     }).done(function( htmlData ) {
         $('.search-loaded-section').html( htmlData );

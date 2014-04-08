@@ -22,20 +22,78 @@ class Members {
 	
     public $list; // array of MemberInList objects
 
-    public function list_all_members($user_id=0, $order_by="reg_time", $asc_desc="DESC") {
+    public function listMembers($user_id=0, $search_string="", $search_group="All", $order_by="first_name", $asc_desc="ASC", $offset=0, $row_count=25) {
+        global $database;
+        $database->open_connection();
+        $search_string = $database->escape_value($search_string);
+        $whereUsed = false;
 
-    }
+        $sql  = "SELECT `id`, `first_name`, `middle_name`, `last_name`, `life_number`, `gender`, `birth_date`, ".
+            "`baptism_date`, `zion_name`, `home_phone`, `branch1`, `register_time`, `confirmed` ".
+            "FROM `member_search` ";
+        if ($search_string != '') {
+            $sql .= "WHERE (`first_name` like '%{$search_string}%' ";
+            $sql .= "OR `middle_name` like '%{$search_string}%' ";
+            $sql .= "OR `last_name` like '%{$search_string}%' ";
+            $sql .= "OR CONCAT(first_name, middle_name, last_name) like '%{$search_string}%' ";
+            $sql .= "OR CONCAT(first_name, last_name) like '%{$search_string}%' ";
+            $sql .= "OR life_number like '%{$search_string}%' ";
+            // Determines if a date has been input in format 00-00-0000 or 0-0-00
+            if(preg_match("/^[0-9]{1,2}-[0-9]{1,2}-[0-9]{2,4}$/", $search_string, $datebit)) {
+                list ($month, $day, $year) = explode('-', $search_string);
+                if (($year >= 0) && ($year <= 14)) { // If the year is 00 to 14, it means 2000 to 2014
+                    $year = "20".$year;
+                } else if (($year >= 15) && ($year <= 99)) { // If the year is 15 to 99, it means 1915 to 1999
+                    $year = "19".$year;
+                }
+                $sql .= "OR `birth_date` like '%{$year}-{$month}-{$day}%' ";
+                $sql .= "OR `baptism_date` like '%{$year}-{$month}-{$day}%' ";
+            }
+            $sql .= "OR `birth_date` like '%{$search_string}%' ";
+            $sql .= "OR `baptism_date` like '%{$search_string}%' ";
+            $sql .= "OR `home_phone` like '%{$search_string}%' ";
+            $sql .= "OR `cell_phone` like '%{$search_string}%') ";
+            $whereUsed = true;
+        }
+        if ($search_group == "registered") {
+            if ($whereUsed == false) {
+                $sql .= "WHERE `register_time` != '0000-00-00 00:00:00' AND `local_zion` = 'T' ";
+                $whereUsed = true;
+            } else {
+                $sql .= "AND `register_time` != '0000-00-00 00:00:00' AND `local_zion` = 'T' ";
+            }
+            if ($user_id > 0) {
+                $sql .= "AND `registerer_id` = ".$user_id." ";
+            }
+        } elseif ($search_group == "confirmed") {
+            if ($whereUsed == false) {
+                $sql .= "WHERE `confirmed` = 'T' ";
+                $whereUsed = true;
+            } else {
+                $sql .= "AND `confirmed` = 'T' ";
+            }
+            if ($user_id > 0) {
+                $sql .= "AND `confirmed_id` = ".$user_id." ";
+            }
+        } elseif ($search_group == "visiting") {
+            if ($whereUsed == false) {
+                $sql .= "WHERE `local_zion` = 'F' ";
+                $whereUsed = true;
+            } else {
+                $sql .= "AND `local_zion` = 'F' ";
+            }
+            if ($user_id > 0) {
+                $sql .= "AND (`registerer_id` = ".$user_id." OR `confirmed_id` = ".$user_id.") ";
+            }
+        }
 
-    public function list_confirmed_members($user_id=0, $order_by="reg_time", $asc_desc="DESC") {
+        $sql .= "ORDER BY `".$order_by."` ".$asc_desc." ";
+        $sql .= "LIMIT ".$offset.",".$row_count.";";
 
-    }
+        $result_set = $database->query($sql);
+        $database->close_connection();
 
-    public function list_registered_members($user_id=0, $order_by="reg_time", $asc_desc="DESC") {
-
-    }
-
-    public function list_visiting_members($user_id=0, $order_by="reg_time", $asc_desc="DESC") {
-
+        return $result_set;
     }
 
 

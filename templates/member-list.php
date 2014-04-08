@@ -2,6 +2,7 @@
 include("../includes/initialize.php");
 
 if ($_GET) {
+    /*
     // Variables
     $asc_desc = @$_GET['asc_desc'];
     $offset   = @$_GET['offset'];
@@ -24,37 +25,26 @@ if ($_GET) {
         "LIMIT 0, 10";
 
     // $all_members = Member::all_members($orderby, $asc_desc);
-?>
-<div class="loaded-section">
-    <h2>All Members List (<?php echo count($all_members); ?>)</h2>
-    <ol>
-        <?php if (empty($all_members)) { ?>
-            <li>There are no members.</li>
-        <?php
-        } else {
-        $j = 0;
-        foreach($all_members as $individual_member) {
-            $j++;
-            ?>
-            <li>
-                                    <span id="member-name-<?php echo $j; ?>" class="member-name">
-                                        <?php echo $individual_member->full_name(); ?>
-                                    </span>
-                                    <span id="member-zion-<?php echo $j; ?>" class="member-zion">
-                                        <?php echo $individual_member->zion; ?>
-                                    </span>
-                                    <span id="member-DOBap-<?php echo $j; ?>" class="member-DOBap">
-                                        <?php echo $individual_member->DOBap; ?>
-                                    </span>
-                                    <span id="member-confirmed-<?php echo $j; ?>" class="member-confirmed">
-                                        <?php echo $individual_member->confirmed; ?>
-                                    </span>
-            </li>
-        <?php } ?>
-    </ol>
-    <?php } ?>
-</div> <!-- End of .loaded-section -->
-<?php
-} else {
-
+    */
 }
+?>
+                        <div class="loaded-section">
+                            <h2>View and Edit Register Members<span id="validationText"></span></h2>
+                            <form id="search-form" action="">
+
+                                <fieldset>
+                                    <input id="search-member-list" type="text" value="" name="search-member" class="text" placeholder="Search by birthday first" />
+                                </fieldset>
+                            </form>
+
+                            <button id="search-button" name="search-button" value="Search">Search</button>
+                        </div> <!-- End of .loaded-section -->
+                        <div id="all-list-section" class="search-loaded-section loaded-section">
+                            <h2>Search Results</h2>
+                            <div class="search-results-wrap">
+                                <ol id="search-results">
+                                    <li>No search results.</li>
+                                </ol> <!-- End of #search-results -->
+                            </div> <!-- End of #member-list -->
+                        </div> <!-- End of .loaded-section -->
+                        <script type="text/javascript" src="js/list-members.js"></script>
