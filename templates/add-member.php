@@ -7,7 +7,7 @@ if (!$orderby) $orderby = "reg_time";
 if (!$asc_desc) $asc_desc = "DESC";	
 
 ?>
-                        <div id="add-register-member" class="loaded-section">
+                        <div id="add-register-member-page" class="loaded-section">
                             <h2>Add Member<span id="validationText"></span></h2>
                             <form id="add-member-form" name="add-member-form" action="" method="post">
                             	<fieldset class="noborder">
@@ -77,7 +77,7 @@ foreach($zions as $zion) {
                                             <input type="text" id="church" name="church" value="" class="" maxlength="20" style="border-bottom:1px solid #333;" disabled="disabled" />
                                             </th>
                                             <th colspan="2" class="required">Comment</th>
-                                            <td colspan="4"><input type="text" id="comment" name="comment" value="" class=""  maxlength="100" /></td>
+                                            <td colspan="4"><input type="text" id="comment" name="comment" value="" class="validInput"  maxlength="100" /></td>
                                         </tr>
                                     </table>
                                     <p>* These fields are required.</p>

@@ -53,9 +53,11 @@ branch2.addEventListener('keyup', function() {
 church.addEventListener('keyup', function() {
     validateLength($(this), 3);
 });
+/*
 comment.addEventListener('keyup', function() {
     optionalValidateLength($(this), 3);
 });
+*/
 firstName.addEventListener('keyup', function() {
 	validateLength($(this), 2);
 });
@@ -197,8 +199,6 @@ function addOrRegisterMember(task) {
         if (task == 'add-register-member') {
             updateNewsFeed(firstName.value+' '+lastName.value+' registered');
         }
-        // #add-register-member
-        // clear values after 1 second
         document.getElementById("add-member-form").reset();
 	})
 	.fail(function() {

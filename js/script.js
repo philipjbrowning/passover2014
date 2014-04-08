@@ -7,6 +7,7 @@ var currentPageTemplate;
 
 $( document ).ready(function() {
 	loadPageTemplate( "register-member" );
+    loadNewsFeed();
 	updateCounter();
 
 	// Sidebar menu navigation
@@ -63,28 +64,32 @@ function loadPageTemplate( pageTemplate ) {
 	}
 }
 
-/*
 function loadNewsFeed() {
+    console.log('loadNewsFeed()');
+    var registerer_id = $('.news-feed').attr('id').split('news-feed-')[1];
     $.ajax({
-        type: "GET",
-        url: "includes/news-feed.php"
+        type : "GET",
+        url  : "includes/news-feed.php",
+        data : {
+            'registerer_id'    : registerer_id,
+            'update_news_feed' : 'true'
+        }
     }).done(function( htmlData ) {
-        console.log('done');
-        $("#your-count").html( htmlData );
+        if (htmlData != 'false') {
+            $('.news-feed').html(htmlData);
+        } else {
+            console.log("Failed to retrieve updates.");
+        }
     }).fail(function() {
         console.log('fail');
-        $("#your-count").html(
-            "<li>Updates will come shortly.</li>"
-        );
+        $("#your-count").html("<li>Updates will come shortly.</li>");
     });
 }
-*/
-
 function updateNewsFeed(message) {
-    $("<li>"+message+"</li>").hide().css('opacity', 0.0).prependTo('#news-feed').slideDown('slow').animate({opacity: 1.0});
+    $("<li>"+message+"</li>").hide().css('opacity', 0.0).prependTo('.news-feed').slideDown('slow').animate({opacity: 1.0});
     // $('#news-feed').prepend("<li>"+message+"</li>").slideDown('slow');
-    if ($('#news-feed li').size() > 15) {
-        $('#news-feed').last().slideUp.animate({opacity: 0.0}).hide();
+    if ($('.news-feed li').size() > 15) {
+        $('.news-feed').last().slideUp.animate({opacity: 0.0}).hide();
     }
     console.log(message);
 }
@@ -97,7 +102,6 @@ function updateCounter() {
             'update-count' : true
         }
     }).done(function( htmlData ) {
-        console.log('done');
         $("#your-count").html( htmlData );
     }).fail(function() {
         console.log('fail');

@@ -13,7 +13,7 @@ if(!$session->is_logged_in()) {
 		<div id="sidebar" class="alignLeft sidebar">
         	<div id="current-user-wrap">
             	<div id="current-user" class="header-height">
-            		<span id="current-user"><img id="user-picture" class="picture" src="" /><span id="user-name"><?php echo $session->user_name; ?></span></span>
+            		<span id="current-user"><img id="user-picture" class="picture" src="" /><span id="user-name">Name</span></span>
                 </div> <!-- End of #current-user -->
             </div> <!-- End of #current-user-wrap -->
             <div id="menu-wrap">
@@ -71,13 +71,7 @@ if(!$session->is_logged_in()) {
                     </div> <!-- End #your-count-wrap -->
                     <div id="news-feed-wrap" class="count-feed">
                         <h2>Update Feed</h2>
-                        <ul id="news-feed">
-                            <!-- SELECT * FROM `members` WHERE `register_time` != '0000-00-00 00:00:00' AND `registerer_id` = 3 -->
-                            <li>D. Gilbert Rodriguez confirmed</li>
-                            <li>M. Victor Lozada confirmed</li>
-                            <li>D. Gabriel Marcelino confirmed</li>
-                            <li>D. Gabriel Marcelino registered</li>
-                        </ul>
+                        <ul id="news-feed-<?php echo $session->user_id; ?>" class="news-feed"></ul>
                     </div> <!-- End #news-feed -->
                 </div> <!-- End of #right-wrap -->
             </div> <!-- End of #main -->
