@@ -3,7 +3,7 @@
 -- http://www.phpmyadmin.net
 --
 -- Host: localhost:8889
--- Generation Time: Apr 08, 2014 at 01:53 AM
+-- Generation Time: Apr 09, 2014 at 01:08 AM
 -- Server version: 5.5.34
 -- PHP Version: 5.5.10
 
@@ -170,7 +170,7 @@ CREATE TABLE `members` (
   `confirmed_id` int(2) unsigned NOT NULL DEFAULT '0',
   `comments` tinytext,
   PRIMARY KEY (`id`)
-) ENGINE=InnoDB  DEFAULT CHARSET=utf8 AUTO_INCREMENT=75 ;
+) ENGINE=InnoDB  DEFAULT CHARSET=utf8 AUTO_INCREMENT=77 ;
 
 --
 -- Dumping data for table `members`
@@ -181,24 +181,24 @@ INSERT INTO `members` (`id`, `first_name`, `middle_name`, `last_name`, `gender`,
 (4, 'CLAUDIA', 'MARIELLA', 'CASTILLO', 'F', '1990-05-20', '0000-00-00', 1, 'Q03-090413-2437', '973-955-5198', NULL, '', '', '', '', 'HARVEY FELIZ', '', NULL, '2014-04-07 16:28:52', 'F', 'F', 3, 0, ''),
 (5, 'MOON', ' WHAT', 'KANG', 'M', '1970-08-22', '0000-00-00', 1, 'A11-111111-111111', '201-290-8314', NULL, '', '', '', '', 'FATHER', 'MOTHER', NULL, '0000-00-00 00:00:00', 'T', 'F', 0, 0, ''),
 (6, 'LUCY', 'LOU', 'PEREZ', 'F', '2008-12-01', '0000-00-00', 1, 'Q01-070809-123', '201-555-5555', NULL, '', '', '', '', 'MARY SMITH', 'JANE DOE', NULL, '0000-00-00 00:00:00', 'T', 'F', 0, 0, 'DOES NOT REMEMBER LIFE #'),
-(10, 'PHILIP', '', 'BROWNING', 'M', '1983-03-17', '0000-00-00', 1, 'A00-000000-0', '415-609-8381', NULL, '', '', '', '', 'B', '', NULL, '2014-04-07 12:59:21', 'F', 'F', 0, 0, ''),
+(10, 'PHILIP', '', 'BROWNING', 'M', '1983-03-17', '0000-00-00', 1, 'A00-000000-0', '415-609-8381', NULL, '', '', '', '', 'B', '', NULL, '2014-04-07 12:59:21', 'F', 'F', 2, 0, ''),
 (11, 'MOON', '', 'ASDF', 'F', '1939-09-29', '0000-00-00', 7, 'A00-000000-0', '233-423-4233', NULL, '', '', '', '', 'A', '', NULL, '0000-00-00 00:00:00', 'T', 'F', 0, 0, ''),
 (12, 'JORDAN', 'MICAHEL', 'RICHARDSON', 'M', '0000-00-00', '0000-00-00', 133, 'Q02-140409-2321', '201-343-2312', NULL, '307 W 36TH ST', 'NEW YORK', 'NY', '10012', 'JOHN DOE', 'JANE SMITH', NULL, '2014-04-07 12:38:01', 'F', 'F', 3, 0, 'NONE'),
 (15, 'MOON2', '', 'KANGG', 'M', '1966-08-17', '0000-00-00', 1, 'A00-000000-0', '201-222-2222', NULL, '', '', '', '', 'JLK', '', NULL, '0000-00-00 00:00:00', 'T', 'F', 0, 0, ''),
 (16, 'OKJIN', '', 'SHIN', 'F', '1995-07-24', '0000-00-00', 1, 'A00-000000-0', '201-888-1456', NULL, '', '', '', '', '1', '', NULL, '0000-00-00 00:00:00', 'T', 'F', 0, 0, ''),
 (18, 'JOSHUA', '', 'KING', 'M', '2013-06-06', '0000-00-00', 12, 'A00-000000-0', '616-414-2452', NULL, '', '', '', '', 'KIMBERLY', 'BRIAN', NULL, '0000-00-00 00:00:00', 'T', 'F', 0, 0, ''),
 (19, 'CASSUNDRA', 'MEGAN', 'SANDERS', 'F', '2012-04-23', '0000-00-00', 1, 'A00-000000-0', '201-204-3516', NULL, '', '', '', '', 'MICHELLE SANDERS', '', NULL, '2014-04-06 20:21:25', 'T', 'F', 42, 0, ''),
-(20, 'ANGEL', '', 'JUNE', 'M', '1956-06-06', '0000-00-00', 6, 'A00-000000-0', '212-222-2222', NULL, '', '', '', '', 'EWIN WESTMAKER', '', NULL, '2014-04-07 12:22:57', 'F', 'F', 3, 0, ''),
+(20, 'ANGEL', '', 'JUNE', 'M', '1956-06-06', '0000-00-00', 6, 'A00-000000-0', '212-222-2222', NULL, '', '', '', '', 'EWIN WESTMAKER', '', NULL, '2014-04-07 12:22:57', 'F', 'T', 3, 3, ''),
 (21, 'JOCELYN', 'K.', 'KOREA', 'F', '2010-03-05', '0000-00-00', 11, 'L01-120113-2004', '201-299-8514', NULL, '', '', '', '', 'JULLY', '', NULL, '0000-00-00 00:00:00', 'T', 'F', 0, 0, ''),
 (22, 'ZION', 'JOSEPH', 'KIM', 'F', '1979-08-27', '0000-00-00', 8, 'A12-345678-9719', '201-987-6541', NULL, '', '', '', '', 'MELISSA RODRGUEZ', '', NULL, '2014-04-07 16:40:52', 'F', 'F', 3, 0, ''),
 (23, 'MARLEN', '', 'BARREN', 'F', '2014-01-07', '0000-00-00', 3, 'A00-000000-0', '201-447-2567', NULL, '', '', '', '', 'KERRY', '', NULL, '2014-04-06 20:21:59', 'T', 'F', 0, 0, ''),
 (24, 'NATASHA ', 'CARIDAD', 'BETANCOURT', 'F', '1980-07-14', '0000-00-00', 2, 'A00-000000-0', '221-506-7206', NULL, '', '', '', '', 'ROSSY TORIBIO', 'LUISA LOPEZ CASA', NULL, '0000-00-00 00:00:00', 'T', 'F', 0, 0, ''),
 (25, 'MEGAN', 'CHRISTINA', 'MOORE', 'F', '2000-01-01', '0000-00-00', 9, 'Q09-101201-21041', '401-341-5611', NULL, '', '', '', '', 'CHRISTIE MOORE', '', NULL, '0000-00-00 00:00:00', 'T', 'F', 0, 0, ''),
 (26, 'LESLIE', 'LIZ', 'MACANN', 'F', '1990-09-08', '0000-00-00', 2, 'C07-970808-2137', '347-743-7979', NULL, '', '', '', '', 'PETER HANSON', 'ZION KIM', NULL, '2014-04-07 16:32:59', 'F', 'F', 3, 0, ''),
-(27, 'SOFFIA', 'LOLO', 'CCUICUCHI', 'F', '1982-02-14', '0000-00-00', 7, 'L01-110104-1114', '201-772-0915', NULL, '', '', '', '', '1', '', NULL, '2014-04-06 20:22:11', 'T', 'F', 0, 0, ''),
+(27, 'SOFFIA', 'LOLO', 'CCUICUCHI', 'F', '1982-02-14', '0000-00-00', 7, 'L01-110104-1114', '201-772-0915', NULL, '', '', '', '', '1', '', NULL, '2014-04-06 20:22:11', 'T', 'T', 0, 1, ''),
 (28, 'MARIAH', 'JONES', 'CAREY', 'F', '2001-10-18', '0000-00-00', 11, 'Q03-091201-13450', '917-929-6127', NULL, '', '', '', '', 'JENNIFER RODGUI', 'SARAH ILLIANA CASTELLANOS', NULL, '0000-00-00 00:00:00', 'T', 'F', 0, 0, ''),
 (29, 'PETER', '', 'JOHN', 'M', '1992-04-03', '0000-00-00', 8, 'Q10-070602-', '111-111-1111', NULL, '', '', '', '', '1', '', NULL, '0000-00-00 00:00:00', 'T', 'F', 0, 0, ''),
-(30, 'JESSICA', '', 'GLASSER', 'F', '2014-10-18', '0000-00-00', 12, 'Q11-141018-1041', '201-445-1107', NULL, '', '', '', '', 'ENRIQUE BULLON', '', NULL, '0000-00-00 00:00:00', 'T', 'F', 0, 0, ''),
+(30, 'JESSICA', '', 'GLASSER', 'F', '2014-10-18', '0000-00-00', 12, 'Q11-141018-1041', '201-445-1107', NULL, '', '', '', '', 'ENRIQUE BULLON', '', NULL, '2014-04-08 12:11:12', 'F', 'F', 3, 0, ''),
 (31, 'SANDRA', 'MONG', 'SCHIERA', 'F', '1984-07-06', '0000-00-00', 3, 'Q03-111110-2124', '212-789-1234', NULL, '', '', '', '', 'X', '', NULL, '0000-00-00 00:00:00', 'T', 'F', 0, 0, ''),
 (32, 'BRI', '', 'HONG', 'M', '1976-01-01', '0000-00-00', 2, 'Q11-140128-11146', '973-594-6703', NULL, '', '', '', '', 'GEWARD HENRIQUEZ', '', NULL, '0000-00-00 00:00:00', 'T', 'F', 0, 0, ''),
 (33, 'SUE', '', 'BAEK', 'F', '1988-09-27', '0000-00-00', 4, 'A00-000000-0', '862-224-0915', NULL, '', '', '', '', 'LINDA', '', NULL, '0000-00-00 00:00:00', 'T', 'F', 0, 0, ''),
@@ -206,29 +206,29 @@ INSERT INTO `members` (`id`, `first_name`, `middle_name`, `last_name`, `gender`,
 (35, 'TASHAHA', '', 'SARKER', 'F', '1985-12-14', '0000-00-00', 7, 'Q12-111017-21083', '201-333-3333', NULL, '', '', '', '', 'RANIER HENRIQUEZ', '', NULL, '0000-00-00 00:00:00', 'T', 'F', 0, 0, ''),
 (36, 'LEE', '', 'DAY', 'F', '2003-01-02', '0000-00-00', 2, 'A00-000000-0', '973-955-5555', NULL, '', '', '', '', 'L', '', NULL, '0000-00-00 00:00:00', 'T', 'F', 0, 0, ''),
 (37, 'MICHELLE', 'RUTH', 'JONES', 'F', '1977-07-07', '0000-00-00', 14, 'A00-000000-0', '973-377-4040', NULL, '', '', '', '', 'RUTH RIVERA', 'JOSE RIVERA', NULL, '0000-00-00 00:00:00', 'T', 'F', 0, 0, ''),
-(38, 'GINGI', '', 'RODRIGUEZ', 'M', '1990-11-11', '0000-00-00', 3, 'Q03-101014-11146', '456-478-5898', NULL, '', '', '', '', '1', '', NULL, '0000-00-00 00:00:00', 'T', 'F', 0, 0, ''),
+(38, 'GINGI', '', 'RODRIGUEZ', 'M', '1990-11-11', '0000-00-00', 3, 'Q03-101014-11146', '456-478-5898', NULL, '', '', '', '', '1', '', NULL, '2014-04-08 18:37:45', 'F', 'F', 3, 0, ''),
 (39, 'CRYSTALINA', 'MICHAEL', 'CERREA', 'F', '1981-06-09', '0000-00-00', 8, 'Q03-050601-2104', '201-451-6070', NULL, '', '', '', '', 'NANCY WILLIAMS', '', NULL, '0000-00-00 00:00:00', 'T', 'F', 0, 0, ''),
 (40, 'NKIRU', 'VIVIAN', 'AZIKIWE', 'F', '1984-02-26', '0000-00-00', 11, 'Q03-080603-2333', '212-992-7127', NULL, '', '', '', '', 'AELYSE WALKER', '', NULL, '0000-00-00 00:00:00', 'T', 'F', 0, 0, ''),
 (41, 'GUKJIN', '', 'KIM', 'F', '1989-12-30', '0000-00-00', 8, 'A03-060121-2100', '201-268-4186', NULL, '', '', '', '', 'JUNGSUK', '', NULL, '0000-00-00 00:00:00', 'T', 'F', 0, 0, ''),
-(42, 'JOHAH', '', 'HENRIQUEZ', 'M', '1919-02-11', '0000-00-00', 7, 'Q10-111501-1131', '862-823-1114', NULL, '', '', '', '', 'RICHARD ', '', NULL, '2014-04-06 20:38:57', 'T', 'F', 0, 0, ''),
-(43, 'DAVID', 'SAMUEL', 'PETERS', 'M', '1980-04-01', '0000-00-00', 10, 'B97-401-6767', '973-401-6767', NULL, '', '', '', '', 'MICHAEL CHANG', 'ELIZABETH MURAN', NULL, '0000-00-00 00:00:00', 'T', 'F', 0, 0, ''),
+(42, 'JOHAH', '', 'HENRIQUEZ', 'M', '1919-02-11', '0000-00-00', 7, 'Q10-111501-1131', '862-823-1114', NULL, '', '', '', '', 'RICHARD ', '', NULL, '2014-04-06 20:38:57', 'T', 'F', 3, 0, ''),
+(43, 'DAVID', 'SAMUEL', 'PETERS', 'M', '1980-04-01', '0000-00-00', 10, 'B97-401-6767', '973-401-6767', NULL, '', '', '', '', 'MICHAEL CHANG', 'ELIZABETH MURAN', NULL, '2014-04-08 13:15:58', 'F', 'F', 3, 0, ''),
 (44, 'SENA', '', 'KIM', 'F', '1988-11-30', '0000-00-00', 6, 'B03-060121-2100', '200-132-8884', NULL, '', '', '', '', 'WHITE', '', NULL, '0000-00-00 00:00:00', 'T', 'F', 0, 0, ''),
 (45, 'JANE', '', 'DOE', 'F', '1989-12-30', '0000-00-00', 4, 'A00-000000-0', '212-998-5316', NULL, '', '', '', '', 'AELYSE WALKER', '', NULL, '2014-04-07 16:30:37', 'F', 'F', 3, 0, ''),
 (46, 'CHRISTIE', 'LISA', 'FLOWERS', 'F', '1919-09-18', '0000-00-00', 8, 'Q03-091018-21083', '201-341-5671', NULL, '', '', '', '', 'CHRISTIN A MANDEL', '', NULL, '2014-04-06 20:40:19', 'T', 'F', 46, 0, ''),
-(47, 'ANGEL', '', 'JANUARY', 'M', '2011-11-11', '0000-00-00', 2, 'A00-000000-0', '212-222-2222', NULL, '', '', '', '', 'BILL JEAN', '', NULL, '2014-04-07 11:39:20', 'F', 'F', 3, 0, 'NEEDS A WHEEL CHAIR'),
-(48, 'SARA', 'ANGELA', 'KIM', 'F', '1987-08-01', '0000-00-00', 1, 'A00-000000-0', '829-740-2981', NULL, '', '', '', '', 'CHRISTINA GARCIA', '', NULL, '2014-04-06 20:40:47', 'T', 'F', 0, 0, ''),
-(49, 'RICHARD', '', 'HAHN JOE', 'M', '1980-04-12', '0000-00-00', 6, 'A00-000000-0', '201-341-2267', NULL, '', '', '', '', 'MICHAEL RIVERA', '', NULL, '2014-04-06 20:42:59', 'T', 'F', 0, 0, ''),
+(47, 'ANGEL', '', 'JANUARY', 'M', '2011-11-11', '0000-00-00', 2, 'A00-000000-0', '212-222-2222', NULL, '', '', '', '', 'BILL JEAN', '', NULL, '2014-04-07 11:39:20', 'F', 'T', 3, 3, 'NEEDS A WHEEL CHAIR'),
+(48, 'SARA', 'ANGELA', 'KIM', 'F', '1987-08-01', '0000-00-00', 1, 'A00-000000-0', '829-740-2981', NULL, '', '', '', '', 'CHRISTINA GARCIA', '', NULL, '2014-04-06 20:40:47', 'T', 'F', 46, 0, ''),
+(49, 'RICHARD', '', 'HAHN JOE', 'M', '1980-04-12', '0000-00-00', 6, 'A00-000000-0', '201-341-2267', NULL, '', '', '', '', 'MICHAEL RIVERA', '', NULL, '2014-04-06 20:42:59', 'T', 'F', 42, 0, ''),
 (50, 'JOHNATHAN ', '', 'KIMILA', 'M', '2014-10-10', '0000-00-00', 12, 'A00-000000-0', '212-646-8888', NULL, '', '', '', '', 'N/A', '', NULL, '2014-04-07 16:32:08', 'F', 'F', 3, 0, ''),
-(51, 'GLORIA', 'ALEXA', 'BOLANOS', 'F', '1985-03-05', '0000-00-00', 8, 'A00-000000-0', '347-804-8725', NULL, '', '', '', '', 'MAYRA YOUNG', '', NULL, '2014-04-07 16:17:06', 'F', 'F', 3, 0, ''),
-(52, 'ANGEL', '', 'MARCH', 'M', '2012-12-12', '0000-00-00', 9, 'A00-000000-0', '333-333-3333', NULL, '', '', '', '', 'MICHAEL JACKSON', '', NULL, '2014-04-07 12:25:31', 'F', 'F', 3, 0, 'KEEP AN EYE FOR '),
+(51, 'GLORIA', 'ALEXA', 'BOLANOS', 'F', '1985-03-05', '0000-00-00', 8, 'A00-000000-0', '347-804-8725', NULL, '', '', '', '', 'MAYRA YOUNG', '', NULL, '2014-04-07 16:17:06', 'F', 'T', 3, 3, ''),
+(52, 'ANGEL', '', 'MARCH', 'M', '2012-12-12', '0000-00-00', 9, 'A00-000000-0', '333-333-3333', NULL, '', '', '', '', 'MICHAEL JACKSON', '', NULL, '2014-04-07 12:25:31', 'F', 'T', 3, 3, 'KEEP AN EYE FOR '),
 (53, 'VIANA', '', 'VASQUEZ', 'F', '1988-01-22', '0000-00-00', 14, 'A00-000000-0', '202-882-1129', NULL, '', '', '', '', 'MIGUEL VASQUEZ', '', NULL, '0000-00-00 00:00:00', 'T', 'F', 0, 0, ''),
-(54, 'ANGEL', '', 'DECEMBER', 'M', '2012-12-12', '0000-00-00', 12, 'Y13-110903-333', '347-621-0911', NULL, '', '', '', '', 'DAVID TWOLEFTFEET', '', NULL, '2014-04-07 13:01:32', 'F', 'F', 3, 0, ''),
+(54, 'ANGEL', '', 'DECEMBER', 'M', '2012-12-12', '0000-00-00', 12, 'Y13-110903-333', '347-621-0911', NULL, '', '', '', '', 'DAVID TWOLEFTFEET', '', NULL, '2014-04-07 13:01:32', 'F', 'T', 3, 3, ''),
 (55, 'JAMIE', 'FOXX', 'WOLFGANG', 'M', '1919-06-18', '0000-00-00', 13, 'G44-668888-9384', '347-564-5478', NULL, '', '', '', '', 'DANNY DAVIDO', 'WHITNEY HOUSTON', NULL, '2014-04-07 16:30:15', 'F', 'F', 3, 0, ''),
 (56, 'ANGEL', '', 'PAGAN', 'M', '2011-11-11', '0000-00-00', 13, 'C03-876655-98322', '201-123-8888', NULL, '', '', '', '', 'CONGO', '', NULL, '2014-04-07 13:03:32', 'F', 'F', 3, 0, ''),
-(57, 'CONIME', 'DEEDD', 'PARARA', 'M', '1995-01-03', '0000-00-00', 1, 'D03-908877-12345', '786-333-4455', NULL, '', '', '', '', 'FATHER ASH', '', NULL, '0000-00-00 00:00:00', 'T', 'F', 0, 0, ''),
-(58, 'ALEXANDER', 'THE', 'GREAT', 'M', '1986-11-30', '0000-00-00', 12, 'Q76-343988-876393', '212-875-2545', NULL, '', '', '', '', 'ISSAC NEWTON', 'ATLAS THE GIANT', NULL, '2014-04-07 12:24:13', 'F', 'F', 3, 0, ''),
+(57, 'CONIME', 'DEEDD', 'PARARA', 'M', '1995-01-03', '0000-00-00', 1, 'D03-908877-12345', '786-333-4455', NULL, '', '', '', '', 'FATHER ASH', '', NULL, '2014-04-08 11:56:45', 'F', 'F', 3, 0, ''),
+(58, 'ALEXANDER', 'THE', 'GREAT', 'M', '1986-11-30', '0000-00-00', 12, 'Q76-343988-876393', '212-875-2545', NULL, '', '', '', '', 'ISSAC NEWTON', 'ATLAS THE GIANT', NULL, '2014-04-07 20:27:52', 'F', 'T', 1, 3, ''),
 (59, 'MONKEY', '', 'SEE', 'M', '2007-07-07', '0000-00-00', 13, 'A00-000000-0', '567-567-5679', NULL, '', '', '', '', 'MONKEY DO', '', NULL, '0000-00-00 00:00:00', 'T', 'F', 0, 0, ''),
-(60, 'BACON', 'PORK', 'EATER', 'F', '2014-07-21', '0000-00-00', 6, 'B85-756445-7845412', '212-856-6458', NULL, '', '', '', '', 'HELLO GOODBYE', 'BUENAS NOCHES', NULL, '0000-00-00 00:00:00', 'T', 'F', 0, 0, ''),
+(60, 'BACON', 'PORK', 'EATER', 'F', '2014-07-21', '0000-00-00', 6, 'B85-756445-7845412', '212-856-6458', NULL, '', '', '', '', 'HELLO GOODBYE', 'BUENAS NOCHES', NULL, '2014-04-08 00:27:41', 'F', 'F', 3, 0, ''),
 (62, 'MONKEY', '', 'DOO', 'F', '2001-01-01', '0000-00-00', 139, 'A00-000000-0', '111-111-1111', NULL, '', '', '', '', 'MONKEY ', '', NULL, '0000-00-00 00:00:00', 'T', 'F', 0, 0, ''),
 (63, 'PLEASE ', 'HAVE ', 'FAITH AND BELIEVE', 'F', '1918-04-16', '0000-00-00', 3, 'K78-756242-6645422', '646-853-6542', NULL, '', '', '', '', 'MR. KEEPER', 'MRS. DOUBLE', NULL, '2014-04-07 16:29:46', 'F', 'F', 3, 0, ''),
 (64, 'DAVID', 'MACCINT', 'KIM', 'F', '1988-06-23', '0000-00-00', 2, 'Q03-123440-87766', '877-234-1234', NULL, '', '', '', '', 'NATASHA', '', NULL, '0000-00-00 00:00:00', 'T', 'F', 0, 0, ''),
@@ -237,10 +237,37 @@ INSERT INTO `members` (`id`, `first_name`, `middle_name`, `last_name`, `gender`,
 (67, 'MICHAEL', 'BILL', 'SMITH', 'M', '1945-11-11', '0000-00-00', 4, 'A00-000000-0', '121-221-2121', NULL, '', '', '', '', '', '', NULL, '0000-00-00 00:00:00', 'T', 'F', 0, 0, ''),
 (68, 'LUIS', 'MARTIN', 'FIGUEORA', 'M', '1999-12-02', '0000-00-00', 1, 'A34-112932-232', '415-454-4342', NULL, '', '', '', '', 'GABRIEL GUZMAN', '', NULL, '2014-04-06 22:48:45', 'T', 'F', 3, 0, ''),
 (69, 'BRAND', 'NEW', 'MEMBER', 'M', '1994-03-23', '0000-00-00', 14, 'A00-000000-0', '646-485-4832', NULL, '', '', '', '', 'BRANCH', '', NULL, '2014-04-07 11:32:42', 'F', 'F', 3, 0, 'DOES NOT KNOW LIFE #'),
-(72, 'JOHNNY', '', 'BRAVO', 'M', '1965-03-05', '0000-00-00', 108, 'J00-000000-0000', '323-393-4023', NULL, '', '', '', '', 'MARCY BRAVO', '', NULL, '2014-04-07 15:01:59', 'T', 'F', 3, 0, ''),
+(72, 'JOHNNY', '', 'BRAVO', 'M', '1965-03-05', '0000-00-00', 108, 'J00-000000-0000', '323-393-4023', NULL, '', '', '', '', 'MARCY BRAVO', '', NULL, '2014-04-07 15:01:59', 'T', 'T', 3, 3, ''),
 (73, 'CHEEZ', '', 'DOODLES', 'M', '2009-09-09', '0000-00-00', 3, 'C83-333333-333', '646-494-4943', NULL, '', '', '', '', 'WISE', '', NULL, '2014-04-07 16:07:05', 'T', 'F', 3, 0, ''),
-(74, 'JOHN', 'THE', 'BAPTIST', 'M', '1983-03-31', '0000-00-00', 140, 'B33-390239-39293', '777-392-1930', NULL, '', '', '', '', 'JESUS CHRIST', '', NULL, '0000-00-00 00:00:00', 'T', 'F', 0, 0, '27 A.D.');
+(74, 'JOHN', 'THE', 'BAPTIST', 'M', '1983-03-31', '0000-00-00', 140, 'B33-390239-39293', '777-392-1930', NULL, '', '', '', '', 'JESUS CHRIST', '', NULL, '2014-04-08 16:15:54', 'F', 'F', 1, 0, '27 A.D.'),
+(75, 'LUIS', 'GREGORIO', 'FIGUEROA', 'M', '1999-04-30', '0000-00-00', 1, 'B39-293939-2939', '394-939-9293', NULL, '', '', '', '', 'GILBERT RODRIGUEZ', '', NULL, '0000-00-00 00:00:00', 'T', 'F', 0, 0, 'ASDF'),
+(76, 'DANIEL', '', 'LIZA', 'M', '1984-03-23', '0000-00-00', 1, 'M39-393029-29392', '413-509-3929', NULL, '', '', '', '', 'BRANCH NAME', '', NULL, '2014-04-07 21:09:04', 'F', 'T', 3, 3, 'ASDF');
 
+-- --------------------------------------------------------
+
+--
+-- Stand-in structure for view `member_search`
+--
+CREATE TABLE `member_search` (
+`id` int(11) unsigned
+,`first_name` varchar(30)
+,`middle_name` varchar(30)
+,`last_name` varchar(30)
+,`gender` varchar(1)
+,`birth_date` date
+,`baptism_date` date
+,`zion_name` varchar(50)
+,`local_zion` enum('T','F')
+,`life_number` varchar(20)
+,`home_phone` varchar(20)
+,`cell_phone` varchar(20)
+,`branch1` varchar(70)
+,`register_time` datetime
+,`confirmed` enum('T','F')
+,`registerer_id` int(2) unsigned
+,`confirmed_id` int(2) unsigned
+,`comments` tinytext
+);
 -- --------------------------------------------------------
 
 --
@@ -315,6 +342,39 @@ INSERT INTO `users` (`id`, `username`, `password`, `first_name`, `last_name`, `t
 -- --------------------------------------------------------
 
 --
+-- Table structure for table `visitors`
+--
+
+CREATE TABLE `visitors` (
+  `id` int(11) unsigned NOT NULL DEFAULT '0',
+  `first_name` varchar(30) CHARACTER SET utf8 NOT NULL,
+  `middle_name` varchar(30) CHARACTER SET utf8 DEFAULT NULL,
+  `last_name` varchar(30) CHARACTER SET utf8 NOT NULL,
+  `gender` varchar(1) CHARACTER SET utf8 NOT NULL,
+  `birth_date` date NOT NULL COMMENT 'Birthday',
+  `baptism_date` date NOT NULL COMMENT 'Baptism Date',
+  `zion_id` int(2) unsigned NOT NULL DEFAULT '0' COMMENT 'Branch Zion id',
+  `life_number` varchar(20) CHARACTER SET utf8 NOT NULL DEFAULT 'A00-000000-0',
+  `home_phone` varchar(20) CHARACTER SET utf8 NOT NULL,
+  `cell_phone` varchar(20) CHARACTER SET utf8 DEFAULT NULL,
+  `address` varchar(100) CHARACTER SET utf8 NOT NULL,
+  `city` varchar(30) CHARACTER SET utf8 NOT NULL,
+  `state` varchar(2) CHARACTER SET utf8 NOT NULL,
+  `zip_code` varchar(5) CHARACTER SET utf8 NOT NULL,
+  `branch1` varchar(70) CHARACTER SET utf8 NOT NULL,
+  `branch2` varchar(70) CHARACTER SET utf8 DEFAULT NULL,
+  `branch3` varchar(70) CHARACTER SET utf8 DEFAULT NULL,
+  `register_time` datetime DEFAULT '0000-00-00 00:00:00' COMMENT 'Null value means not registered',
+  `late_registration` enum('T','F') CHARACTER SET utf8 NOT NULL DEFAULT 'F',
+  `confirmed` enum('T','F') CHARACTER SET utf8 NOT NULL DEFAULT 'F',
+  `registerer_id` int(2) unsigned NOT NULL DEFAULT '0',
+  `confirmed_id` int(2) unsigned NOT NULL DEFAULT '0',
+  `comments` tinytext CHARACTER SET utf8
+) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+
+-- --------------------------------------------------------
+
+--
 -- Table structure for table `zions`
 --
 
@@ -344,12 +404,12 @@ INSERT INTO `zions` (`id`, `name`, `local`) VALUES
 (12, 'QUEENS, NY', 'T'),
 (13, 'WHITE PLAINS, NY', 'T'),
 (14, 'BROOKLYN, NY', 'T'),
-(100, 'BALTIMORE, MD', 'F'),
-(101, 'PHILADELPHIA, PA', 'F'),
-(102, 'PITTSBURGH, PA', 'F'),
-(103, 'BURKE, VA', 'F'),
-(104, 'WASHINGTON, DC', 'F'),
-(105, 'VIRGINIA BEACH, VA', 'F'),
+(15, 'TAMPA, FL', 'T'),
+(16, 'BOSTON, MA', 'F'),
+(17, 'PUERTO RICO', 'F'),
+(18, 'NEW HAMPSHIRE', 'F'),
+(19, 'DOMINICAN REPUBLIC', 'F'),
+(20, 'VIRGINIA BEACH, VA', 'F'),
 (106, 'ORLANDO, FL', 'F'),
 (108, 'LOS ANGELES, CA', 'F'),
 (119, 'SAN FRANCISCO, CA', 'F'),
@@ -369,6 +429,15 @@ INSERT INTO `zions` (`id`, `name`, `local`) VALUES
 (138, 'HONOLULU, HI', 'F'),
 (139, 'SOUTH AMERICA', 'F'),
 (140, 'JERUSALEM', 'F');
+
+-- --------------------------------------------------------
+
+--
+-- Structure for view `member_search`
+--
+DROP TABLE IF EXISTS `member_search`;
+
+CREATE ALGORITHM=UNDEFINED DEFINER=`root`@`localhost` SQL SECURITY DEFINER VIEW `member_search` AS select `members`.`id` AS `id`,`members`.`first_name` AS `first_name`,`members`.`middle_name` AS `middle_name`,`members`.`last_name` AS `last_name`,`members`.`gender` AS `gender`,`members`.`birth_date` AS `birth_date`,`members`.`baptism_date` AS `baptism_date`,`zions`.`name` AS `zion_name`,`zions`.`local` AS `local_zion`,`members`.`life_number` AS `life_number`,`members`.`home_phone` AS `home_phone`,`members`.`cell_phone` AS `cell_phone`,`members`.`branch1` AS `branch1`,`members`.`register_time` AS `register_time`,`members`.`confirmed` AS `confirmed`,`members`.`registerer_id` AS `registerer_id`,`members`.`confirmed_id` AS `confirmed_id`,`members`.`comments` AS `comments` from (`members` join `zions` on((`zions`.`id` = `members`.`zion_id`)));
 
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;
 /*!40101 SET CHARACTER_SET_RESULTS=@OLD_CHARACTER_SET_RESULTS */;
