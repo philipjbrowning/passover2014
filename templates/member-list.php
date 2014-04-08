@@ -37,7 +37,7 @@ if ($_GET) {
                                 </fieldset>
                             </form>
 
-                            <button id="search-button" name="search-button" value="Search">Search</button>
+                            <button id="search-list-button" name="search-list-button" value="Search">Search</button>
                         </div> <!-- End of .loaded-section -->
                         <div id="all-list-section" class="search-loaded-section loaded-section">
                             <h2>Search Results</h2>
