@@ -59,8 +59,8 @@ function searchMember( searchInput ) {
     } else if ($('#search-results').parent().attr('id') == 'register-list-wrap') {
         task = 'register';
     }
-    console.log($('#search-results').parent().attr('id'));
-    console.log( task );
+    // console.log($('#search-results').parent().attr('id'));
+    // console.log( task );
     $.ajax({
         type : "POST",
         url  : "includes/search-member.php",
@@ -76,7 +76,7 @@ function searchMember( searchInput ) {
 }
 
 function registerMember(member_id, user_id) {
-    if(confirm('Are you sure you want to register this member?')) {
+    if(confirm('Are you sure you want to REGISTER this member?')) {
         console.log("user #"+user_id+" is registering member #"+member_id);
         console.log($('#full-name-'+member_id).val());
         $.ajax({
@@ -104,22 +104,26 @@ function registerMember(member_id, user_id) {
 }
 
 function confirmMember(member_id, user_id) {
-    if(confirm('Are you sure you want to confirm this member?')) {
+    if(confirm('Are you sure you want to CONFIRM this member?')) {
         console.log("user #"+user_id+" is confirming member #"+member_id);
         $.ajax({
                 type : "POST",
-                url  : "includes/register-member.php",
+                url  : "includes/confirm-member.php",
                 data: {
                     'member_id'     : member_id,
                     'confirmed_id'  : user_id
                 }
         }).done(function( result ) {
             if (result == 'true') {
+                $('#full-name-'+member_id).addClass("search-confirmed");
+                $('#full-name-'+member_id).removeClass("search-registered");
+                $('#confirm-result-'+member_id+' p').slideUp('slow');
                 console.log("Confirm Success");
                 updateNewsFeed('Confirmed [name]');
                 updateCounter();
             } else {
                 console.log("Confirm Result Failure");
+                console.log( result );
             }
         }).fail(function() {
             console.log("AJAX Confirm Failure");

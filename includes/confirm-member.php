@@ -11,6 +11,7 @@ $sql = "UPDATE `passover2014`.`members`
             `confirmed_id` = '".$confirmed_id."'
         WHERE `members`.`id` = ".$member_id.";";
 
+
 // Add update to database
 global $database;
 $database->open_connection();

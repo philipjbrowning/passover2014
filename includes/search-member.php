@@ -22,8 +22,6 @@ if (($_POST['task'] == 'register') || ($_POST['task'] == 'confirm')) {
             <p><b>NOT REGISTERED YET</b></p>
 <?php               } elseif ($row->confirmed == "F") { ?>
             <p><button id="confirm-<?php echo $row->id; ?>" class="confirm" onclick="confirmMember(<?php echo $row->id; ?>, <?php echo $_SESSION['user_id']; ?>)">Confirm</button></p>
-<?php           } else { // if ($row->confirmed == "T") { ?>
-            <p><b>CONFIRMED</b></p>
 <?php           }
             } else { // if ($_POST['task'] == 'register') {
                 if ($row->register_time == "0000-00-00 00:00:00") {

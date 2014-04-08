@@ -63,6 +63,23 @@ function loadPageTemplate( pageTemplate ) {
 	}
 }
 
+/*
+function loadNewsFeed() {
+    $.ajax({
+        type: "GET",
+        url: "includes/news-feed.php"
+    }).done(function( htmlData ) {
+        console.log('done');
+        $("#your-count").html( htmlData );
+    }).fail(function() {
+        console.log('fail');
+        $("#your-count").html(
+            "<li>Updates will come shortly.</li>"
+        );
+    });
+}
+*/
+
 function updateNewsFeed(message) {
     $("<li>"+message+"</li>").hide().css('opacity', 0.0).prependTo('#news-feed').slideDown('slow').animate({opacity: 1.0});
     // $('#news-feed').prepend("<li>"+message+"</li>").slideDown('slow');
