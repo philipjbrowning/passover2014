@@ -119,7 +119,7 @@ function confirmMember(member_id, user_id) {
                 $('#full-name-'+member_id).removeClass("search-registered");
                 $('#confirm-result-'+member_id+' p').slideUp('slow');
                 console.log("Confirm Success");
-                updateNewsFeed('Confirmed [name]');
+                updateNewsFeed(toTitleCase($('#full-name-'+member_id).html())+' confirmed');
                 updateCounter();
             } else {
                 console.log("Confirm Result Failure");
