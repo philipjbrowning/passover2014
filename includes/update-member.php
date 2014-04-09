@@ -1,9 +1,16 @@
 <?php
-include("initialize.php");
+/**
+ * Created by PhpStorm.
+ * User: philipjbrowning
+ * Date: 4/9/14
+ * Time: 5:17 PM
+ */
+require_once("initialize.php");
 
 $newMember = new Member;
 
 // Add data
+$newMember->id = $_POST['id'];
 if (($_POST['BIRyy'] >= 0) && ($_POST['BIRyy'] <= 14)) { // From year 2000 - 2014
     $newMember->birth_date = "20".$_POST['BIRyy'].'-'.$_POST['BIRmm'].'-'.$_POST['BIRdd'];
 } elseif (($_POST['BIRyy'] >= 15) && ($_POST['BIRyy'] <= 99)) { // From year 1915 - 1999
@@ -36,18 +43,9 @@ if ($_POST['zion_id'] == 'other') {
     $newMember->zion_id = $_POST['zion_id'];
 }
 
-// echo '<p>late_registration = '.$newMember->late_registration.'</p>\n';
-
 // Save data
-$newMemberId = $newMember->save();
-if ($newMemberId) {
-    return array(
-        'result'    => true,
-        'member_id' => $newMemberId
-    );
+if ($newMember->save()) {
+    echo "true";
 } else {
-    return array(
-        'result' => false
-    );
+    echo "false";
 }
-?>

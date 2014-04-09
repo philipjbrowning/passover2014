@@ -69,6 +69,14 @@ class Member {
         return $this->register_time;
     }
 
+    public function is_confirmed() {
+        return ($this->confirmed == 'T') ? true : false;
+    }
+
+    public function is_registered() {
+        return ($this->register_time == "0000-00-00 00:00:00") ? false : true;
+    }
+
     public function register($user_id) {
         $this->set_register_time();
         $sql = 'UPDATE `passover2014`.`members`
@@ -195,7 +203,7 @@ class Member {
                      `middle_name` = "'.$this->middle_name.'",
                      `last_name` = "'.$this->last_name.'",
                      `gender` = "'.$this->gender.'",
-                     `birth_date` = '.$this->birth_date.',
+                     `birth_date` = "'.$this->birth_date.'",
                      `zion_id` = "'.$this->zion_id.'",
                      `life_number` = "'.$this->life_number.'",
                      `cell_phone` = "'.$this->cell_phone.'",

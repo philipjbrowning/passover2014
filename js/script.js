@@ -163,6 +163,204 @@ function updateCounter() {
     });
 }
 
+// MYSQL DATABASE ------------------------------------------------------------------------------------------------------
 
+function confirmMember(member_id, user_id, page_name) {
+    if(confirm('Are you sure you want to CONFIRM this member?')) {
+        console.log("user #"+user_id+" is confirming member #"+member_id);
+        $.ajax({
+            type : "POST",
+            url  : "includes/confirm-member.php",
+            data: {
+                'member_id'     : member_id,
+                'confirmed_id'  : user_id
+            }
+        }).done(function( result ) {
+            console.log('AJAX done');
+            ajax_result = result;
+            if (result == 'true') {
+                updateCounter();
+                if (page_name == 'search') {
+                    $('#full-name-'+member_id).addClass("search-confirmed");
+                    $('#full-name-'+member_id).removeClass("search-registered");
+                    $('#confirm-result-'+member_id+' p').slideUp('slow');
+                    updateNewsFeed(toTitleCase($('#full-name-'+member_id).html())+' confirmed');
+                } else if (page_name == 'edit') {
+                    console.log('confirmMember() page_name = edit');
+                    // Handle buttons
+                    $('.un-register-member-btn').prop( "disabled", "disabled");
+                    $('.confirm-member-btn').prop( "disabled", "disabled" );
+                    $('.un-confirm-member-btn').prop( "disabled", null );
 
+                    // News Feed Message
+                    console.log($('#first_name').val());
+                    console.log($('#middle_name').val());
+                    console.log($('#last_name').val());
+                    var full_name = toTitleCase($('#last_name').val());
+                    if ($("#middle_name").val().length > 0) {
+                        full_name += " " + toTitleCase($('#middle_name').val());
+                    }
+                    full_name += " " + toTitleCase($('#last_name').val());
+                    updateNewsFeed(full_name+' confirmed');
+                } else if (page_name == 'confirm') {
+                    console.log('confirmMember() page_name = confirm');
+                } else {
+                    console.log('confirmMember() page_name out of scope');
+                }
+            } else {
+                console.log('confirmMember() - failure')
+            }
+        }).fail(function() {
+            console.log('confirmMember() - AJAX fail');
+        });
+    }
+}
 
+function registerMember(member_id, user_id, page_name) {
+    if(confirm('Are you sure you want to REGISTER this member?')) {
+        console.log("user #"+user_id+" is registering member #"+member_id);
+        console.log($('#full-name-'+member_id).val());
+        $.ajax({
+            type : "POST",
+            url  : "includes/register-member.php",
+            data: {
+                'member_id'     : member_id,
+                'registerer_id' : user_id
+            }
+        }).done(function( result ) {
+            if (result == 'true') {
+                updateCounter();
+                if (page_name == 'search') {
+                    $('#full-name-'+member_id).addClass("search-registered");
+                    $('#register-result-'+member_id+' p').slideUp('slow');
+                    console.log("Register Success");
+                    updateNewsFeed(toTitleCase($('#full-name-'+member_id).html())+' registered');
+                } else if (page_name == 'edit') {
+                    console.log('registerMember() page_name = edit');
+                    // Handle buttons
+                    $('.register-member-btn').prop( "disabled", "disabled");
+                    $('.un-register-member-btn').prop( "disabled", null );
+                    $('.confirm-member-btn').prop( "disabled", null );
+
+                    // News Feed Message
+                    console.log($('#first_name').val());
+                    console.log($('#middle_name').val());
+                    console.log($('#last_name').val());
+                    var full_name = toTitleCase($('#last_name').val());
+                    if ($("#middle_name").val().length > 0) {
+                        full_name += " " + toTitleCase($('#middle_name').val());
+                    }
+                    full_name += " " + toTitleCase($('#last_name').val());
+                    updateNewsFeed(full_name+' registered');
+                } else if (page_name == 'confirm') {
+                    console.log('registerMember() page_name = confirm');
+                } else {
+                    console.log('registerMember() page_name out of scope');
+                }
+            } else {
+                console.log("Register Result Failure");
+                console.log(result);
+            }
+        }).fail(function() {
+            console.log("AJAX Register Failure");
+        });
+    }
+}
+
+function unConfirmMember(member_id, user_id) {
+    if(confirm('Are you sure you want to UN-CONFIRM this member?')) {
+        console.log("user #"+user_id+" is un-confirming member #"+member_id);
+        $.ajax({
+            type : "POST",
+            url  : "includes/un-confirm-member.php",
+            data: {
+                'member_id'     : member_id,
+                'confirmed_id'  : user_id
+            }
+        }).done(function( result ) {
+            if (result == 'true') {
+                updateCounter();
+
+            } else {
+                console.log("Un-Confirm Result Failure");
+                console.log(result);
+            }
+        }).fail(function() {
+            console.log("AJAX Un-Confirm Failure");
+        });
+    }
+}
+
+function unRegisterMember(member_id, user_id) {
+    if(confirm('Are you sure you want to UN-REGISTER this member?')) {
+        console.log("user #"+user_id+" is un-registering member #"+member_id);
+        $.ajax({
+            type : "POST",
+            url  : "includes/un-register-member.php",
+            data: {
+                'member_id'     : member_id,
+                'registerer_id' : user_id
+            }
+        }).done(function( result ) {
+            if (result == 'true') {
+                updateCounter();
+
+            } else {
+                console.log("Un-Register Result Failure");
+                console.log(result);
+            }
+        }).fail(function() {
+            console.log("AJAX Un-Register Failure");
+        });
+    }
+}
+
+function updateMember(member_id, user_id) {
+    if(confirm('Are you sure you want to UPDATE this member?')) {
+        console.log("user #"+user_id+" is update member #"+member_id);
+        console.log("Month: "+$('#BIRmm').val());
+        console.log("Day: "+$('#BIRdd').val());
+        console.log("Year: "+$('#BIRyy').val());
+        $.ajax({
+            type : "POST",
+            url  : "includes/update-member.php",
+            data: {
+                "BIRmm"             : $('#BIRmm').val(),
+                "BIRdd"             : $('#BIRdd').val(),
+                "BIRyy"             : $('#BIRyy').val(),
+                "branch1"           : $('#branch1').val(),
+                "branch2"           : $('#branch2').val(),
+                "comments"          : $('#comments').val(),
+                "first_name"        : $('#first_name').val(),
+                "gender"            : $('.gender:checked').val(),
+                "id"                : member_id,
+                "middle_name"       : $('#middle_name').val(),
+                "last_name"         : $('#last_name').val(),
+                "late_registration" : $('#late_registration').is(':checked'),
+                "life_no_1"         : $('#life_no_1').val(),
+                "life_no_2"         : $('#life_no_2').val(),
+                "life_no_3"         : $('#life_no_3').val(),
+                "phone1"            : $('#phone_1').val(),
+                "phone2"            : $('#phone_2').val(),
+                "phone3"            : $('#phone_3').val(),
+                "registerer_id"     : $('#registerer_id').val(),
+                "user_id"           : user_id,
+                "zion_id"           : $('.zion:checked').val(),
+                "zion_name"         : $('#church').val()
+            }
+        }).done(function( result ) {
+            console.log(result);
+            if (result == 'true') {
+                console.log("Update Success");
+                // CHANGE TITLE BACKGROUND TO GREEN FOR 3 SECONDS
+            } else {
+                console.log("Update Result Failure");
+                console.log(result);
+            }
+        }).fail(function() {
+            console.log("AJAX Update Failure");
+        });
+    }
+}
+
+// Add 3 php pages with functions

@@ -91,10 +91,10 @@ function listMembers( searchText ) {
         }).fail(function() {
             console.log( "AJAX Failure" );
         });
-    } else {
-        console.log("Search text empty");
     }
 }
+
+// UPDATE, CONFIRM, UN-CONFIRM, REGISTER, UN-REGISTER ------------------------------------------------------------------
 
 // Get initial list of members
 listMembers("");

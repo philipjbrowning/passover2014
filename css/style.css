@@ -216,6 +216,7 @@ table { border-collapse: collapse; border-spacing: 0; }
  */
 a { text-decoration: none; }
 body { height: 100%; margin: 0; width: 100%; }
+button { height: 30px; line-height: 26px; width: 140px; }
 h2 { line-height: 37px; margin: 0 0 20px 0; padding: 0; }
 h3 { margin: 10px 0 0 0; padding: 0; }
 html { height: 100%; overflow-x: hidden; width: 100%; }
@@ -261,7 +262,7 @@ ol, ul { margin: 0; padding: 0; }
 /*
  * FONTS
  */
-h3 { font-size: 18px; }
+button, h3 { font-size: 18px; }
 
 .menu-title { font-weight: bold }
 
@@ -277,6 +278,7 @@ input[type="text"]:focus,
 select:focus,
 textarea:focus,
 button:focus { outline: none; }
+button:disabled { color: #E9EAED; cursor: default; }
 
 .count-feed li { background-color: #fff; }
 .count-feed { border: 1px solid #ccc; background: #fff url(../img/section-title.png) repeat-x left top; }
