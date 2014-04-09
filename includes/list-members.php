@@ -44,7 +44,7 @@ if ($_POST) {
                     <h3><span id="full-name-<?php echo $row->id; ?>" class="<?php if (($row->register_time != "0000-00-00 00:00:00") && ($row->confirmed == 'F')) { echo "search-registered "; } ?><?php if ($row->confirmed == 'T') { echo "search-confirmed "; } ?>"><?php echo $full_name; ?></span> (<?php echo $row->life_number; ?>)</h3>
                     <ul>
                         <li><b>Gender:</b> <?php if($row->gender == 'F') { echo "Female"; } else { echo "Male"; } ?> | <b>Birthday:</b> <?php echo $row->birth_date; ?> | <b>Baptism:</b> <?php echo $row->baptism_date; ?></li>
-                        <li><b>Zion:</b> <?php echo $row->zion_name; ?> | <b>Phone:</b> <?php echo $row->home_phone; ?> | <b>Branch:</b> <?php echo $row->branch1; ?></li>
+                        <li><b>Zion:</b> <?php echo $row->zion_name; ?> | <b>Phone:</b> <?php echo $row->cell_phone; // Previously home_phone ?> | <b>Branch:</b> <?php echo $row->branch1; ?></li>
                     </ul>
                     <p>
                         <button id="edit-member-<?php echo $row->id; ?>" name="edit-member-<?php echo $row->id; ?>" class="edit-member-button" value="<?php echo $row->id; ?>" onclick="editMember(<?php echo $row->id; ?>)">Edit</button>
@@ -52,15 +52,12 @@ if ($_POST) {
                 </li>
             <?php
             }
-            ?>
+            if ($results->num_rows == 0) { ?>
+                <li>No members found</li>
+            <?php } ?>
         </ol> <!-- End of .search-results-wrap -->
     </div> <!-- End of #member-list -->
     <?php
-    if ($results->num_rows == 0) {
-        ?>
-        <li>No members found</li>
-    <?php
-    }
 } else {
 ?>
                             <h2>Search Results (0)</h2>

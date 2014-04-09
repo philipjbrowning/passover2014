@@ -6,7 +6,7 @@ require_once('database.php');
 class Member {
 	
 	protected static $table_name="members";
-	protected static $db_fields = array('id','first_name','middle_name','last_name','gender','birth_date','zion_name','life_number','home_phone','address','city','state','zip_code','branch1','branch2','register_time','late_registration','confirmed','comments');
+	protected static $db_fields = array('id','first_name','middle_name','last_name','gender','birth_date','zion_name','life_number','cell_phone','address','city','state','zip_code','branch1','branch2','register_time','late_registration','confirmed','comments'); // home_phone previously used
 	
 	public $id;
 	public $first_name;
@@ -19,8 +19,8 @@ class Member {
 	public $zion_name;
     public $late_registration = 'F';
 	public $life_number;
-	public $home_phone;
-	// public $cell_phone; (NOT USED NOW)
+	// public $home_phone; (NOT USED NOW)
+	public $cell_phone;
 	public $address;
 	public $city;
 	public $state;
@@ -111,7 +111,7 @@ class Member {
     public function select_member($new_id) {
         $sql  = 'SELECT `members`.`id`, `members`.`first_name`, `members`.`middle_name`, `members`.`last_name`,
 				 `members`.`gender`, `members`.`birth_date`, `members`.`zion_id`, `zions`.`name` AS `zion_name`,
-				 `members`.`life_number`, `members`.`home_phone`, `members`.`address`, `members`.`city`,
+				 `members`.`life_number`, `members`.`cell_phone`, `members`.`address`, `members`.`city`,
 				 `members`.`state`, `members`.`zip_code`, `members`.`branch1`, `members`.`branch2`,
 				 `members`.`register_time`, `members`.`late_registration`, `members`.`confirmed`, `members`.`comments`
 				 FROM `members`
@@ -122,7 +122,6 @@ class Member {
         foreach($result_set as $attribute => $value) {
             if ($this->has_attribute($attribute)) {
                 $this->$attribute = $value;
-                echo "<p>$attribute = ".$value."</p>";
             }
         }
     }
@@ -144,11 +143,11 @@ class Member {
 
 		// create member
         $sql = 'INSERT INTO `passover2014`.`members` (`id`, `first_name`, `middle_name`, `last_name`, `gender`,
-                    `birth_date`, `zion_id`, `life_number`, `home_phone`, `branch1`, `branch2`, `register_time`,
+                    `birth_date`, `zion_id`, `life_number`, `cell_phone`, `branch1`, `branch2`, `register_time`,
                     `registerer_id`, `late_registration`, `confirmed`, `comments`
                 ) VALUES (
                     NULL, "'.$this->first_name.'", "'.$this->middle_name.'", "'.$this->last_name.'", "'.$this->gender.'",
-                    "'.$this->birth_date.'", '.$this->zion_id.', "'.$this->life_number.'", "'.$this->home_phone.'",
+                    "'.$this->birth_date.'", '.$this->zion_id.', "'.$this->life_number.'", "'.$this->cell_phone.'",
                     "'.$this->branch1.'", "'.$this->branch2.'", "'.$this->register_time.'", "'.$this->registerer_id.'",
                     "'.$this->late_registration.'", "'.$this->confirmed.'", "'.$this->comments.'"
                 )';
@@ -199,7 +198,7 @@ class Member {
                      `birth_date` = '.$this->birth_date.',
                      `zion_id` = "'.$this->zion_id.'",
                      `life_number` = "'.$this->life_number.'",
-                     `home_phone` = "'.$this->home_phone.'",
+                     `cell_phone` = "'.$this->cell_phone.'",
                      `address` = "'.$this->address.'",
                      `city` = "'.$this->city.'",
                      `state` = "'.$this->state.'",

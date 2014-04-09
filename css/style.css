@@ -272,7 +272,7 @@ h3 { font-size: 18px; }
  * COLORS AND IMAGES
  */
 
-body { background-color: #E9EAED; }
+body { background: #E9EAED url(../img/bg.png) repeat-y left top; }
 input[type="text"]:focus,
 select:focus,
 textarea:focus,

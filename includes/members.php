@@ -18,7 +18,7 @@ class MemberInList {
 class Members {
 	
 	protected static $table_name="members";
-    protected static $db_fields = array('id','first_name','middle_name','last_name','gender','birth_date','zion_name','life_number','home_phone');
+    protected static $db_fields = array('id','first_name','middle_name','last_name','gender','birth_date','zion_name','life_number','cell_phone');
 	
     public $list; // array of MemberInList objects
 
@@ -29,7 +29,7 @@ class Members {
         $whereUsed = false;
 
         $sql  = "SELECT `id`, `first_name`, `middle_name`, `last_name`, `life_number`, `gender`, `birth_date`, ".
-            "`baptism_date`, `zion_name`, `home_phone`, `branch1`, `register_time`, `confirmed` ".
+            "`baptism_date`, `zion_name`, `cell_phone`, `branch1`, `register_time`, `confirmed` ".
             "FROM `member_search` ";
         if ($search_string != '') {
             $sql .= "WHERE (`first_name` like '%{$search_string}%' ";
@@ -107,7 +107,7 @@ class Members {
         $search_string = $database->escape_value($search_string);
 
         $sql  = "SELECT `id`, `first_name`, `middle_name`, `last_name`, `life_number`, `gender`, `birth_date`, ".
-                "`baptism_date`, `zion_name`, `home_phone`, `branch1`, `register_time`, `confirmed` ".
+                "`baptism_date`, `zion_name`, `cell_phone`, `branch1`, `register_time`, `confirmed` ".
                 "FROM `member_search`";
         $sql .= "WHERE (`first_name` like '%{$search_string}%' ";
         $sql .= "OR `middle_name` like '%{$search_string}%' ";

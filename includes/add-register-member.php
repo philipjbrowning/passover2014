@@ -13,7 +13,7 @@ $newMember->branch1 = $_POST['branch1'];
 $newMember->branch2 = $_POST['branch2'];
 $newMember->comments = $_POST['comments'];
 $newMember->gender = $_POST['gender'];
-$newMember->home_phone = $_POST['phone1'].'-'.$_POST['phone2'].'-'.$_POST['phone3'];
+$newMember->cell_phone = $_POST['phone1'].'-'.$_POST['phone2'].'-'.$_POST['phone3']; // Previously home_phone
 $newMember->first_name = $_POST['first_name'];
 $newMember->last_name = $_POST['last_name'];
 if ($_POST['late_registration']) {

@@ -7,8 +7,8 @@ var runListSearch = null;
 
 // SEARCH DETECTION ----------------------------------------------------------------------------------------------------
 
-searchListInput.keyup(function(e) { // FIX NUMERIC KEYPAD ZERO
-    handleSearchListTimer(e.which, searchGroup);
+searchListInput.keyup(function(e) {
+    handleSearchListTimer(e.which);
 });
 
 $("#search-list-button").click(function(e) {
@@ -32,28 +32,28 @@ function clearListTimer() {
     runSearch = null;
 }
 
-function handleSearchListTimer(inputKeyCode, searchGroup) {
+function handleSearchListTimer(inputKeyCode) {
     if (inputKeyCode == 13) { // Enter key pressed
         if (runSearch) {
             clearListTimer();
         }
-        console.log("EXECUTE - searchMember("+searchInput.val()+", "+searchGroup+")");
-        listMembers(searchListInput.val(), searchGroup);
+        console.log("EXECUTE - searchMember("+searchInput.val()+")");
+        listMembers(searchListInput.val());
     } else {
         if (runSearch) {
             clearListTimer();
-            startListTimer(searchListInput.val(), searchGroup);
+            startListTimer(searchListInput.val());
         } else {
-            startListTimer(searchListInput.val(), searchGroup);
+            startListTimer(searchListInput.val());
         }
     }
 }
 
-function startListTimer(searchText, searchGroup) {
-    console.log("WAIT - searchMember("+searchText+", "+searchGroup+")");
+function startListTimer(searchText) {
+    console.log("WAIT - searchMember("+searchText+")");
     runSearch = setTimeout(function() {
-        console.log("EXECUTE - searchMember("+searchText+", "+searchGroup+")");
-        listMembers(searchText, searchGroup);
+        console.log("EXECUTE - searchMember("+searchText+")");
+        listMembers(searchText);
     }, 300); // 300 millisecond wait until user stops typing
 }
 

@@ -12,7 +12,7 @@ $theMember->select_member($_GET['member_id']);
 
 list ($birth_year, $birth_month, $birth_day) = explode('-', $theMember->birth_date);
 list ($life_no_1, $life_no_2, $life_no_3) = explode('-', $theMember->life_number);
-list ($phone_1, $phone_2, $phone_3) = explode('-', $theMember->home_phone);
+list ($phone_1, $phone_2, $phone_3) = explode('-', $theMember->cell_phone);
 
 $birth_year = substr($birth_year, 2, 2);
 ?>
@@ -34,7 +34,7 @@ $birth_year = substr($birth_year, 2, 2);
                                                     $zions = ZionList::find_local();
                                                     foreach($zions as $zion) {
                                                         ?>
-                                                        <input type="radio" class="zion" name="zion" value="<?php echo $zion->id; ?>"<?php if($zion->id == $theMember->zion_id) { echo ' selected="selected"'; } ?> /> <?php echo $zion->name; ?><br />
+                                                        <input type="radio" class="zion" name="zion" value="<?php echo $zion->id; ?>"<?php if($zion->name == $theMember->zion_name) { echo ' checked="checked"'; } ?> /> <?php echo $zion->name; ?><br />
                                                     <?php } ?>
                                                     <input type="radio" class="zion" name="zion" value="other" /> Other Zion
                                                 </td>
@@ -52,8 +52,8 @@ $birth_year = substr($birth_year, 2, 2);
                                                 </td>
                                                 <th class="required">Gender*</th>
                                                 <td colspan="2">
-                                                    <input type="radio" value="F" name="gender" class="gender" />Female<br />
-                                                    <input type="radio" value="M" name="gender" class="gender" />Male
+                                                    <input type="radio" value="F" name="gender" class="gender"<?php if($theMember->gender == "F") { echo ' checked="checked"'; } ?> />Female<br />
+                                                    <input type="radio" value="M" name="gender" class="gender"<?php if($theMember->gender == "M") { echo ' checked="checked"'; } ?> />Male
                                                 </td>
                                             </tr>
                                             <tr>
@@ -71,7 +71,7 @@ $birth_year = substr($birth_year, 2, 2);
                                                     <input type="text" id="phone_3" name="phone_3" value="<?php echo $phone_3; ?>" class="ex-short validInput" size="4" maxlength="4" placeholder="0000" />
                                                 </td>
                                                 <th class="required">Arrival Time</th>
-                                                <td>LATE<br /><input type="checkbox" id="late_registration" name="late_registration" value="1" /></td>
+                                                <td>LATE<br /><input type="checkbox" id="late_registration" name="late_registration" value="1"<?php if($theMember->late_registration == "T") { echo ' checked="checked"'; } ?> /></td>
                                             </tr>
                                             <tr>
                                                 <th colspan="2" class="required">Branch #1</th>
