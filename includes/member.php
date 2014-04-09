@@ -110,10 +110,10 @@ class Member {
 
     public function select_member($new_id) {
         $sql  = 'SELECT `members`.`id`, `members`.`first_name`, `members`.`middle_name`, `members`.`last_name`,
-				 `members`.`gender`, `members`.`birth_date`, `zions`.`name` AS `zion_name`, `members`.`life_number`,
-				 `members`.`home_phone`, `members`.`address`, `members`.`city`, `members`.`state`, `members`.`zip_code`,
-				 `members`.`branch1`, `members`.`branch2`, `members`.`register_time`, `members`.`late_registration`,
-				 `members`.`confirmed`, `members`.`comments`
+				 `members`.`gender`, `members`.`birth_date`, `members`.`zion_id`, `zions`.`name` AS `zion_name`,
+				 `members`.`life_number`, `members`.`home_phone`, `members`.`address`, `members`.`city`,
+				 `members`.`state`, `members`.`zip_code`, `members`.`branch1`, `members`.`branch2`,
+				 `members`.`register_time`, `members`.`late_registration`, `members`.`confirmed`, `members`.`comments`
 				 FROM `members`
 				 INNER JOIN `zions`
 				 ON `members`.`zion_id` = `zions`.`id`
@@ -122,6 +122,7 @@ class Member {
         foreach($result_set as $attribute => $value) {
             if ($this->has_attribute($attribute)) {
                 $this->$attribute = $value;
+                echo "<p>$attribute = ".$value."</p>";
             }
         }
     }

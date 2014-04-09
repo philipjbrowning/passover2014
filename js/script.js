@@ -12,7 +12,7 @@ var currentPageTemplate;
 var pageNumber = 0;
 var registerOrderBy = 'first_name';
 var registerSort = 'ASC';
-var resultsPerPage = 25;
+var resultsPerPage = 10;
 var visitingOrderBy = 'first_name';
 var visitingSort = 'ASC';
 
@@ -118,7 +118,7 @@ function loadPageTemplate( pageTemplate ) {
 }
 
 function loadNewsFeed() {
-    var registerer_id = $('.news-feed').attr('id').split('news-feed-')[1];
+    var registerer_id = $('.news-feed').attr('id').split('-')[2];
     $.ajax({
         type : "GET",
         url  : "includes/news-feed.php",

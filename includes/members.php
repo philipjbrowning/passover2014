@@ -22,7 +22,7 @@ class Members {
 	
     public $list; // array of MemberInList objects
 
-    public function listMembers($user_id=0, $search_string="", $search_group="All", $order_by="first_name", $asc_desc="ASC", $offset=0, $row_count=25) {
+    public function listMembers($user_id=0, $search_string="", $search_group="All", $order_by="first_name", $asc_desc="ASC", $offset=0, $row_count=10) {
         global $database;
         $database->open_connection();
         $search_string = $database->escape_value($search_string);
@@ -36,6 +36,7 @@ class Members {
             $sql .= "OR `middle_name` like '%{$search_string}%' ";
             $sql .= "OR `last_name` like '%{$search_string}%' ";
             $sql .= "OR CONCAT(first_name, middle_name, last_name) like '%{$search_string}%' ";
+            $sql .= "OR CONCAT(first_name, middle_name) like '%{$search_string}%' ";
             $sql .= "OR CONCAT(first_name, last_name) like '%{$search_string}%' ";
             $sql .= "OR life_number like '%{$search_string}%' ";
             // Determines if a date has been input in format 00-00-0000 or 0-0-00
@@ -52,7 +53,10 @@ class Members {
             $sql .= "OR `birth_date` like '%{$search_string}%' ";
             $sql .= "OR `baptism_date` like '%{$search_string}%' ";
             $sql .= "OR `home_phone` like '%{$search_string}%' ";
-            $sql .= "OR `cell_phone` like '%{$search_string}%') ";
+            $sql .= "OR `cell_phone` like '%{$search_string}%' ";
+            $sql .= "OR `branch1` like '%{$search_string}%' ";
+            $sql .= "OR `branch2` like '%{$search_string}%' ";
+            $sql .= "OR `branch3` like '%{$search_string}%') ";
             $whereUsed = true;
         }
         if ($search_group == "registered") {
@@ -109,6 +113,7 @@ class Members {
         $sql .= "OR `middle_name` like '%{$search_string}%' ";
         $sql .= "OR `last_name` like '%{$search_string}%' ";
         $sql .= "OR CONCAT(first_name, middle_name, last_name) like '%{$search_string}%' ";
+        $sql .= "OR CONCAT(first_name, middle_name) like '%{$search_string}%' ";
         $sql .= "OR CONCAT(first_name, last_name) like '%{$search_string}%' ";
         $sql .= "OR life_number like '%{$search_string}%' ";
         // Determines if a date has been input in format 00-00-0000 or 0-0-00
@@ -125,8 +130,12 @@ class Members {
         $sql .= "OR `birth_date` like '%{$search_string}%' ";
         $sql .= "OR `baptism_date` like '%{$search_string}%' ";
         $sql .= "OR `home_phone` like '%{$search_string}%' ";
-        $sql .= "OR `cell_phone` like '%{$search_string}%') ";
-        $sql .= "ORDER BY `".$order_by."` ".$asc_desc;
+        $sql .= "OR `cell_phone` like '%{$search_string}%' ";
+        $sql .= "OR `branch1` like '%{$search_string}%' ";
+        $sql .= "OR `branch2` like '%{$search_string}%' ";
+        $sql .= "OR `branch3` like '%{$search_string}%') ";
+        $sql .= "ORDER BY `".$order_by."` ".$asc_desc." ";
+        $sql .= "LIMIT 0, 10";
 
         $result_set = $database->query($sql);
         $database->close_connection();

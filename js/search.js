@@ -69,25 +69,29 @@ function toTitleCase(str)
 // DATABASE QUERIES ----------------------------------------------------------------------------------------------------
 
 function searchMember( searchText, searchGroup ) {
-    runSearch = null;
-    var task = null;
-    if ($('.search-loaded-section').attr('id') == 'confirm-member-section') {
-        task = 'confirm';
-    } else if ($('.search-loaded-section').attr('id') == 'register-member-section') {
-        task = 'register';
+    if (searchText.length > 0) {
+        runSearch = null;
+        var task = null;
+        if ($('.search-loaded-section').attr('id') == 'confirm-member-section') {
+            task = 'confirm';
+        } else if ($('.search-loaded-section').attr('id') == 'register-member-section') {
+            task = 'register';
+        }
+        $.ajax({
+            type : "POST",
+            url  : "includes/search-member.php",
+            data: {
+                'task'        : task,
+                'queryText'   : searchText
+            }
+        }).done(function( htmlData ) {
+            $('.search-loaded-section').html( htmlData );
+        }).fail(function() {
+            console.log( "AJAX Failure" );
+        });
+    } else {
+        console.log("No search text");
     }
-    $.ajax({
-        type : "POST",
-        url  : "includes/search-member.php",
-        data: {
-            'task'        : task,
-            'queryText'   : searchText
-}
-    }).done(function( htmlData ) {
-        $('.search-loaded-section').html( htmlData );
-    }).fail(function() {
-        console.log( "AJAX Failure" );
-    });
 }
 
 function registerMember(member_id, user_id) {

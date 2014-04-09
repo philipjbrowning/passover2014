@@ -11,6 +11,9 @@ $theMember = new Member();
 $theMember->select_member($_GET['member_id']);
 
 list ($birth_year, $birth_month, $birth_day) = explode('-', $theMember->birth_date);
+list ($life_no_1, $life_no_2, $life_no_3) = explode('-', $theMember->life_number);
+list ($phone_1, $phone_2, $phone_3) = explode('-', $theMember->home_phone);
+
 $birth_year = substr($birth_year, 2, 2);
 ?>
                         <div id="add-register-member-page" class="loaded-section">
@@ -31,7 +34,7 @@ $birth_year = substr($birth_year, 2, 2);
                                                     $zions = ZionList::find_local();
                                                     foreach($zions as $zion) {
                                                         ?>
-                                                        <input type="radio" class="zion" name="zion" value="<?php echo $zion->id; ?>" /> <?php echo $zion->name; ?><br />
+                                                        <input type="radio" class="zion" name="zion" value="<?php echo $zion->id; ?>"<?php if($zion->id == $theMember->zion_id) { echo ' selected="selected"'; } ?> /> <?php echo $zion->name; ?><br />
                                                     <?php } ?>
                                                     <input type="radio" class="zion" name="zion" value="other" /> Other Zion
                                                 </td>
@@ -56,16 +59,16 @@ $birth_year = substr($birth_year, 2, 2);
                                             <tr>
                                                 <th colspan="2" class="required">Life Number</th>
                                                 <td colspan="4">
-                                                    <input type="text" id="life_no_1" name="life_no_1" value="" class="ex-short validInput" size="2" maxlength="3" placeholder="A00" />-
-                                                    <input type="text" id="life_no_2" name="life_no_2" value="" class="ex-short validInput" size="6" maxlength="6" placeholder="YYMMDD" />-
-                                                    <input type="text" id="life_no_3" name="life_no_3" value="" class="ex-short validInput" size="10" maxlength="10" placeholder="00000" /></td>
+                                                    <input type="text" id="life_no_1" name="life_no_1" value="<?php echo $life_no_1; ?>" class="ex-short validInput" size="2" maxlength="3" placeholder="A00" />-
+                                                    <input type="text" id="life_no_2" name="life_no_2" value="<?php echo $life_no_2; ?>" class="ex-short validInput" size="6" maxlength="6" placeholder="YYMMDD" />-
+                                                    <input type="text" id="life_no_3" name="life_no_3" value="<?php echo $life_no_3; ?>" class="ex-short validInput" size="10" maxlength="10" placeholder="00000" /></td>
                                             </tr>
                                             <tr>
                                                 <th colspan="2" class="required">Phone Number*</th>
                                                 <td colspan="2">&nbsp;
-                                                    (<input type="text" id="phone_1" name="phone_1" value="" class="ex-short phone validInput" size="3" maxlength="3" placeholder="000" />
-                                                    )<input type="text" id="phone_2" name="phone_2" value="" class="ex-short phone validInput" size="3" maxlength="3" placeholder="000" />-
-                                                    <input type="text" id="phone_3" name="phone_3" value="" class="ex-short" size="4" maxlength="4" placeholder="0000" />
+                                                    (<input type="text" id="phone_1" name="phone_1" value="<?php echo $phone_1; ?>" class="ex-short phone validInput" size="3" maxlength="3" placeholder="000" />
+                                                    )<input type="text" id="phone_2" name="phone_2" value="<?php echo $phone_2; ?>" class="ex-short phone validInput" size="3" maxlength="3" placeholder="000" />-
+                                                    <input type="text" id="phone_3" name="phone_3" value="<?php echo $phone_3; ?>" class="ex-short validInput" size="4" maxlength="4" placeholder="0000" />
                                                 </td>
                                                 <th class="required">Arrival Time</th>
                                                 <td>LATE<br /><input type="checkbox" id="late_registration" name="late_registration" value="1" /></td>
@@ -87,6 +90,7 @@ $birth_year = substr($birth_year, 2, 2);
                                             </tr>
                                         </table>
                                         <p>* These fields are required.</p>
+                                        <p><?php echo $theMember->zion_id; ?></p>
                                     </div> <!-- End of #card -->
                                 </fieldset>
                                 <input type="hidden" id="registerer_id" name="registerer_id" value="<?php echo $_SESSION['user_id']; ?>" />
