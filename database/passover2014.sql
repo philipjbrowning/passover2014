@@ -3,7 +3,7 @@
 -- http://www.phpmyadmin.net
 --
 -- Host: localhost:8889
--- Generation Time: Apr 09, 2014 at 01:08 AM
+-- Generation Time: Apr 09, 2014 at 03:36 AM
 -- Server version: 5.5.34
 -- PHP Version: 5.5.10
 
@@ -169,7 +169,8 @@ CREATE TABLE `members` (
   `registerer_id` int(2) unsigned NOT NULL DEFAULT '0',
   `confirmed_id` int(2) unsigned NOT NULL DEFAULT '0',
   `comments` tinytext,
-  PRIMARY KEY (`id`)
+  PRIMARY KEY (`id`),
+  UNIQUE KEY `IDENTITY` (`first_name`,`middle_name`,`last_name`,`home_phone`)
 ) ENGINE=InnoDB  DEFAULT CHARSET=utf8 AUTO_INCREMENT=77 ;
 
 --
