@@ -142,19 +142,26 @@ function updateNewsFeed(message) {
     $("<li>"+message+"</li>").hide().css('opacity', 0.0).prependTo('.news-feed').slideDown('slow').animate({opacity: 1.0});
     // $('#news-feed').prepend("<li>"+message+"</li>").slideDown('slow');
     if ($('.news-feed li').size() > 15) {
-        // $('.news-feed').last().slideUp('slow').animate({opacity: 0.0}).hide();
+        $('.news-feed').last().slideUp('slow').animate({opacity: 0.0}).hide();
     }
 }
 
 function updateCounter() {
+    console.log($('.user-name').attr('id'));
+    console.log($('.user-name').attr('id').split('user-name-')[1]);
     $.ajax({
         type: "GET",
         url: "includes/update-count.php",
         data: {
-            'update-count' : true
+            'update-count' : true,
+            'user_id'      : parseInt($('.user-name').attr('id').split('user-name-')[1])
         }
     }).done(function( htmlData ) {
-        $("#your-count").html( htmlData );
+        if (htmlData != 'false') {
+            $("#your-count-wrap").html( htmlData );
+        } else {
+            $("#your-count").html( "<li>Updates will come shortly.</li>" );
+        }
     }).fail(function() {
         console.log('fail');
         $("#your-count").html(

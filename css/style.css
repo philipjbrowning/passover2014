@@ -231,7 +231,10 @@ ol, ul { margin: 0; padding: 0; }
 .li-link { cursor: pointer; }
 .loaded-section { margin-bottom: 20px; padding: 0 20px 20px 20px; }
 .menu-selected { cursor: default; }
-.search-result ul { margin-bottom: 10px; }
+.search-result { width: 580px; }
+.search-un-register { margin: 0; padding: 0; width: 140px; }
+.search-un-register p { vertical-align: top; }
+.search-result-divider { width: 728px; }
 .sidebar { width: 205px; }
 .text-center { text-align: center; }
 
@@ -254,6 +257,7 @@ ol, ul { margin: 0; padding: 0; }
 #page { height: 100%; width: 1280px; }
 #search-form { width: 615px; }
 #search-member, #search-member-list { padding: 5px; width: 600px; }
+#search-results li { display: inline-block; }
 #sidebar { height: 100% }
 #sidebar li { margin: 0; padding: 5px 10px; width: 184px; }
 #user-list li { padding-left: 25px; }
@@ -287,7 +291,7 @@ button:disabled { color: #E9EAED; cursor: default; }
 .loaded-section-success { background: url(../img/section-title-success.png) repeat-x left top; }
 .search-confirmed { color: #004DA6; }
 .search-registered { color: #008F0A; }
-.search-result { border-bottom: 1px solid #ccc; }
+.search-result-divider { border-bottom: 1px solid #ccc; }
 
 #container { background-color: #E9EAED; }
 #card input[type="text"] { color: #FF2116; }

@@ -18,3 +18,6 @@
                             </div> <!-- End of #member-list -->
                         </div> <!-- End of .loaded-section -->
                         <script type="text/javascript" src="js/search.js"></script>
+                        <script type="text/javascript">
+                            $("#search-member").focus();
+                        </script>

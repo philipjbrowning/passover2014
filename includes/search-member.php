@@ -11,6 +11,7 @@ if (($_POST['task'] == 'register') || ($_POST['task'] == 'confirm')) {
     <div class="search-results-wrap">
         <ol id="search-results">
 <?php
+    $count = 1;
     while ($row = mysqli_fetch_object($results)) {
         $full_name = $row->first_name;
         if ($row->middle_name) {
@@ -31,17 +32,28 @@ if (($_POST['task'] == 'register') || ($_POST['task'] == 'confirm')) {
 ?>
                 <p><b>NOT REGISTERED YET</b></p>
 <?php               } elseif ($row->confirmed == "F") { ?>
-                <p><button id="confirm-<?php echo $row->id; ?>" class="confirm" onclick="confirmMember(<?php echo $row->id; ?>, <?php echo $_SESSION['user_id']; ?>, 'search')">Confirm</button></p>
+                <p><button id="confirm-<?php echo $row->id; ?>" class="confirm" onclick="confirmMember(<?php echo $row->id; ?>, <?php echo @$_SESSION['user_id']; ?>, 'search')">Confirm</button></p>
 <?php           }
             } else { // if ($_POST['task'] == 'register') {
                 if ($row->register_time == "0000-00-00 00:00:00") {
 ?>
-                <p><button id="register-<?php echo $row->id; ?>" class="register" onclick="registerMember(<?php echo $row->id; ?>, <?php echo $_SESSION['user_id']; ?>, 'search')">Register</button></p>
+                <p><button id="register-<?php echo $row->id; ?>" class="register" onclick="registerMember(<?php echo $row->id; ?>, <?php echo @$_SESSION['user_id']; ?>, 'search')">Register</button></p>
 <?php           }
             }
             ?>
             </li>
-    <?php
+        <?php if ($row->register_time != "0000-00-00 00:00:00") { ?>
+            <li id="<?php echo $_POST['task']; ?>-un-register-<?php echo $row->id; ?>" class="<?php echo $_POST['task']; ?>-un-register search-un-register">
+                <button id="register-<?php echo $row->id; ?>" class="register" onclick="unRegisterMember(<?php echo $row->id; ?>, <?php echo $_SESSION['user_id']; ?>, 'search')">Un-Register</button>
+            </li>
+        <?php
+        }
+        if ($count != $results->num_rows) {
+        ?>
+            <li class="search-result-divider"></li>
+<?php
+        }
+        $count++;
     }
 ?>
         </ol> <!-- End of .search-results-wrap -->

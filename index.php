@@ -13,7 +13,7 @@ if(!$session->is_logged_in()) {
 		<div id="sidebar" class="alignLeft sidebar">
         	<div id="current-user-wrap">
             	<div id="current-user" class="header-height">
-            		<span id="user-name-<?php echo @$_SESSION['user_id']; ?>"><?php echo @$_SESSION['user_name'];?></span>
+            		<span id="user-name-<?php echo @$_SESSION['user_id']; ?>" class="user-name"><?php echo @$_SESSION['user_name'];?></span>
                 </div> <!-- End of #current-user -->
             </div> <!-- End of #current-user-wrap -->
             <div id="menu-wrap">
@@ -55,7 +55,7 @@ if(!$session->is_logged_in()) {
                     <li><a href="logout.php">Logout</a></li>
                 </ul> <!-- End of #header-menu -->
             </header> <!-- End of #header -->
-			<div id="main" role="main">
+			<div id="main">
 				<div id="loaded-page-wrap" class="alignLeft">
                 	<div id="loaded-page">
                     	&nbsp; <!-- content loaded via AJAX -->
@@ -71,7 +71,7 @@ if(!$session->is_logged_in()) {
                     </div> <!-- End #your-count-wrap -->
                     <div id="news-feed-wrap" class="count-feed">
                         <h2>Your Activity</h2>
-                        <ul id="news-feed-<?php echo $session->user_id; ?>" class="news-feed"></ul>
+                        <ul id="news-feed-<?php echo @$_SESSION['user_id']; ?>" class="news-feed"></ul>
                     </div> <!-- End #news-feed -->
                 </div> <!-- End of #right-wrap -->
             </div> <!-- End of #main -->

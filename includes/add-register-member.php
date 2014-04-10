@@ -41,13 +41,8 @@ if ($_POST['zion_id'] == 'other') {
 // Save data
 $newMemberId = $newMember->save();
 if ($newMemberId) {
-    return array(
-        'result'    => true,
-        'member_id' => $newMemberId
-    );
+    echo $newMemberId;
 } else {
-    return array(
-        'result' => false
-    );
+    echo 'false';
 }
 ?>

@@ -93,3 +93,6 @@ foreach($zions as $zion) {
                             <!-- /add member form-->
                         </div> <!-- End of .loaded-section -->
                         <script type="text/javascript" src="js/input-validation.js"></script>
+                        <script type="text/javascript">
+                            $("#zion-1").focus();
+                        </script>

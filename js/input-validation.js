@@ -191,18 +191,21 @@ function addOrRegisterMember(task) {
 		url: "includes/add-register-member.php"
 	})
 	.done(function(data) {
-        console.log(data['result']);
-        console.log(data['member_id']);
-        $('#validationText').html(' (SUCCESS)');
-        updateNewsFeed(toTitleCase(firstName.value)+' '+toTitleCase(lastName.value)+' added');
-        updateCounter();
-        if (task == 'add-register-member') {
-            updateNewsFeed(toTitleCase(firstName.value)+' '+toTitleCase(lastName.value)+' registered');
-            loadPageTemplate('register-member');
-        }
-        if (task == 'add-member') {
-            document.getElementById("add-member-form").reset();
-            $('#zion-1').focus();
+        console.log(data);
+        if (data != 'false') {
+            updateNewsFeed(toTitleCase(firstName.value)+' '+toTitleCase(lastName.value)+' added');
+            updateCounter();
+            if (task == 'add-register-member') {
+                updateNewsFeed(toTitleCase(firstName.value)+' '+toTitleCase(lastName.value)+' registered');
+                loadPageTemplate('register-member');
+            }
+            if (task == 'add-member') {
+                $('#validationText').html(' (SUCCESS)');
+                document.getElementById("add-member-form").reset();
+                $('#zion-1').focus();
+            }
+        } else {
+            $('#validationText').html(' (FAILED: Try again!)');
         }
 	})
 	.fail(function() {
@@ -300,7 +303,7 @@ function validateMonth(input) {
 
 function validatePhone(input, lengthRequired) {
     var digits = parseInt(input.val());
-    if ((digits > 0) && (digits <= Math.pow(10,lengthRequired)-1)) {
+    if ((digits >= 0) && (digits <= Math.pow(10,lengthRequired)-1)) {
         validateLength(input, lengthRequired);
     } else {
         input.removeClass("validInput");
