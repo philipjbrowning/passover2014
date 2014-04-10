@@ -3,15 +3,12 @@ include("initialize.php");
 
 // Save variables
 $member_id     = $_POST['member_id'];
-$register_time = date("Y-m-d H:i:s");
-$registerer_id = $_POST['registerer_id'];
-$late_registration = 'F'; // Add to our functionality
 
 // Query
 $sql = "UPDATE `passover2014`.`members`
-        SET `register_time` = '".$register_time."',
-            `late_registration` = '".$late_registration."',
-            `registerer_id` = '".$registerer_id."'
+        SET `register_time` = '0000-00-00 00:00:00',
+            `late_registration` = 'F',
+            `registerer_id` = '0'
         WHERE `members`.`id` = ".$member_id.";";
 
 // Add update to database

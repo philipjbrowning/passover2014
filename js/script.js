@@ -142,7 +142,7 @@ function updateNewsFeed(message) {
     $("<li>"+message+"</li>").hide().css('opacity', 0.0).prependTo('.news-feed').slideDown('slow').animate({opacity: 1.0});
     // $('#news-feed').prepend("<li>"+message+"</li>").slideDown('slow');
     if ($('.news-feed li').size() > 15) {
-        $('.news-feed').last().slideUp.animate({opacity: 0.0}).hide();
+        // $('.news-feed').last().slideUp('slow').animate({opacity: 0.0}).hide();
     }
 }
 
@@ -280,7 +280,22 @@ function unConfirmMember(member_id, user_id) {
         }).done(function( result ) {
             if (result == 'true') {
                 updateCounter();
+                console.log('unConfirmMember() page_name = edit');
+                // Handle buttons
+                 $('.un-register-member-btn').prop( "disabled", null);
+                 $('.confirm-member-btn').prop( "disabled", null );
+                 $('.un-confirm-member-btn').prop( "disabled", "disabled" );
 
+                // News Feed Message
+                console.log($('#first_name').val());
+                console.log($('#middle_name').val());
+                console.log($('#last_name').val());
+                var full_name = toTitleCase($('#last_name').val());
+                if ($("#middle_name").val().length > 0) {
+                    full_name += " " + toTitleCase($('#middle_name').val());
+                }
+                full_name += " " + toTitleCase($('#last_name').val());
+                updateNewsFeed(full_name+' unconfirmed');
             } else {
                 console.log("Un-Confirm Result Failure");
                 console.log(result);
@@ -304,7 +319,22 @@ function unRegisterMember(member_id, user_id) {
         }).done(function( result ) {
             if (result == 'true') {
                 updateCounter();
+                console.log('unRegisterMember() page_name = edit');
+                // Handle buttons
+                $('.register-member-btn').prop( "disabled", null);
+                $('.un-register-member-btn').prop( "disabled", "disabled" );
+                $('.confirm-member-btn').prop( "disabled", "disabled" );
 
+                // News Feed Message
+                console.log($('#first_name').val());
+                console.log($('#middle_name').val());
+                console.log($('#last_name').val());
+                var full_name = toTitleCase($('#last_name').val());
+                if ($("#middle_name").val().length > 0) {
+                    full_name += " " + toTitleCase($('#middle_name').val());
+                }
+                full_name += " " + toTitleCase($('#last_name').val());
+                updateNewsFeed(full_name+' un-registered');
             } else {
                 console.log("Un-Register Result Failure");
                 console.log(result);
@@ -317,10 +347,7 @@ function unRegisterMember(member_id, user_id) {
 
 function updateMember(member_id, user_id) {
     if(confirm('Are you sure you want to UPDATE this member?')) {
-        console.log("user #"+user_id+" is update member #"+member_id);
-        console.log("Month: "+$('#BIRmm').val());
-        console.log("Day: "+$('#BIRdd').val());
-        console.log("Year: "+$('#BIRyy').val());
+        console.log("user #"+user_id+" is updating member #"+member_id);
         $.ajax({
             type : "POST",
             url  : "includes/update-member.php",

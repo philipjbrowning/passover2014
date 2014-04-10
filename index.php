@@ -13,7 +13,7 @@ if(!$session->is_logged_in()) {
 		<div id="sidebar" class="alignLeft sidebar">
         	<div id="current-user-wrap">
             	<div id="current-user" class="header-height">
-            		<span id="current-user-img"><img id="user-picture" alt="User Picture" class="picture" src="" /><span id="user-name">Name</span></span>
+            		<span id="current-user-img"><img id="user-picture" alt="User Picture" class="picture" src="" /><span id="user-name">&nbsp;</span></span>
                 </div> <!-- End of #current-user -->
             </div> <!-- End of #current-user-wrap -->
             <div id="menu-wrap">
@@ -51,7 +51,7 @@ if(!$session->is_logged_in()) {
 			<header id="header">
             	<ul id="header-menu" class="header-height">
                 	<li><span id="title">Passover 2014</span></li>
-                    <li><span id="confirmed-count">2,000</span> confirmed</li>
+                    <li><span id="confirmed-count">&nbsp;</span>&nbsp;</li>
                     <li><a href="logout.php">Logout</a></li>
                 </ul> <!-- End of #header-menu -->
             </header> <!-- End of #header -->
