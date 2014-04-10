@@ -247,7 +247,12 @@ function registerMember(member_id, user_id, page_name) {
                     updateNewsFeed(toTitleCase(new_registered_member.html())+' registered');
 
                     // Move mouse back to search field
-                    $("#search-member").focus().val('');
+                    clearSearch = setTimeout(function() {
+                        $('html, body').animate({scrollTop:0}, 'slow', function() {
+                            $("#search-member").focus().val('');
+                            $('#search-results').html('<li>No members found</li>');
+                        });
+                    }, 1000);
                 } else if (page_name == 'edit') {
                     console.log('registerMember() page_name = edit');
                     // Handle buttons

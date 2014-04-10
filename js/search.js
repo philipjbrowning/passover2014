@@ -4,11 +4,13 @@
 
 var searchInput = $('#search-member');
 var runSearch = null;
+var clearSearch = null;
 // var searchGroup = null;
 
 // SEARCH DETECTION ----------------------------------------------------------------------------------------------------
 
 searchInput.keyup(function(e) {
+    clearSearch = null;
     if (searchInput.val().length > 2) {
         searchGroup = 'All';
         handleSearchTimer(e.which, 'All');
