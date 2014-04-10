@@ -26,9 +26,9 @@ $( document ).ready(function() {
 		loadPageTemplate('add-member');
 		e.preventDefault();
 	});
-	$(".confirm-attendance").click(function(e) {
-		loadPageTemplate('confirm-attendance');
-		e.preventDefault();
+	$(".confirm-attendance").click(function(e) { // TEMPORARILY DISABLED
+		// loadPageTemplate('confirm-attendance');
+		// e.preventDefault();
 	});
 	$(".register-member").click(function(e) {
 		loadPageTemplate('register-member');
@@ -40,10 +40,10 @@ $( document ).ready(function() {
 		loadPageTemplate('registered-member-list');
 		e.preventDefault();
 	});
-	$(".confirmed-member-list").click(function(e) {
-        currentSort = confirmedSort;
-        currentOrderBy = confirmedOrderBy;
-		loadPageTemplate('confirmed-member-list');
+	$(".confirmed-member-list").click(function(e) { // TEMPORARILY DISABLED
+        // currentSort = confirmedSort;
+        // currentOrderBy = confirmedOrderBy;
+		// loadPageTemplate('confirmed-member-list');
 		e.preventDefault();
 	});
 	$(".visiting-member-list").click(function(e) {
