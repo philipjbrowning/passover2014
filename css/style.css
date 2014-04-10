@@ -253,7 +253,7 @@ ol, ul { margin: 0; padding: 0; }
 #header { width: 1075px; }
 #page { height: 100%; width: 1280px; }
 #search-form { width: 615px; }
-#search-member { padding: 5px; width: 600px; }
+#search-member, #search-member-list { padding: 5px; width: 600px; }
 #sidebar { height: 100% }
 #sidebar li { margin: 0; padding: 5px 10px; width: 184px; }
 #user-list li { padding-left: 25px; }

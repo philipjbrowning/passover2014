@@ -146,11 +146,11 @@ $("#add-register-member").click(function(e) {
         // Display error message
     }
 });
-
+/*
 $("#reset").click(function(e) {
     document.getElementById("add-member-form").reset();
 });
-
+*/
 $(".zion").change(function () {
     if ($('.zion:checked').val() == 'other') {
         $('#church').prop('disabled',false);
@@ -198,8 +198,12 @@ function addOrRegisterMember(task) {
         updateCounter();
         if (task == 'add-register-member') {
             updateNewsFeed(toTitleCase(firstName.value)+' '+toTitleCase(lastName.value)+' registered');
+            loadPageTemplate('register-member');
         }
-        document.getElementById("add-member-form").reset();
+        if (task == 'add-member') {
+            document.getElementById("add-member-form").reset();
+            $('#zion-1').focus();
+        }
 	})
 	.fail(function() {
 		console.log("Failed");

@@ -13,7 +13,7 @@ if(!$session->is_logged_in()) {
 		<div id="sidebar" class="alignLeft sidebar">
         	<div id="current-user-wrap">
             	<div id="current-user" class="header-height">
-            		<span id="current-user-img"><img id="user-picture" alt="User Picture" class="picture" src="" /><span id="user-name">&nbsp;</span></span>
+            		<span id="user-name-<?php echo @$_SESSION['user_id']; ?>"><?php echo @$_SESSION['user_name'];?></span>
                 </div> <!-- End of #current-user -->
             </div> <!-- End of #current-user-wrap -->
             <div id="menu-wrap">

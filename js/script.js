@@ -235,6 +235,10 @@ function registerMember(member_id, user_id, page_name) {
                     $('#register-result-'+member_id+' p').slideUp('slow');
                     console.log("Register Success");
                     updateNewsFeed(toTitleCase($('#full-name-'+member_id).html())+' registered');
+
+                    // Move mouse back to search field
+                    $("#search-member").focus();
+                    $("#search-member").val('');
                 } else if (page_name == 'edit') {
                     console.log('registerMember() page_name = edit');
                     // Handle buttons

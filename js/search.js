@@ -8,14 +8,23 @@ var runSearch = null;
 
 // SEARCH DETECTION ----------------------------------------------------------------------------------------------------
 
-searchInput.keyup(function(e) { // FIX NUMERIC KEYPAD ZERO
-    searchGroup = 'All';
-    handleSearchTimer(e.which, 'All');
+searchInput.keyup(function(e) {
+    if (searchInput.val().length >= 2) {
+        searchGroup = 'All';
+        handleSearchTimer(e.which, 'All');
+    } else {
+        console.log("DELAY - length less than 2");
+        if (runSearch) {
+            clearTimer();
+            runSearch = null;
+        }
+        $("#search-results").html('<li>No members found</li>');
+    }
 });
 
 $("#search-button").click(function(e) {
     e.preventDefault();
-    if (searchInput.val().length > 0) {
+    if (searchInput.val().length >= 2) {
         if (runSearch) {
             clearTimer();
         }
@@ -56,7 +65,7 @@ function startTimer(searchText, searchGroup) {
     runSearch = setTimeout(function() {
         console.log("EXECUTE - searchMember("+searchText+", "+searchGroup+")");
         searchMember(searchText, searchGroup);
-    }, 300); // 300 millisecond wait until user stops typing
+    }, 200); // 200 millisecond wait until user stops typing
 }
 
 // TEXT FORMATTING -----------------------------------------------------------------------------------------------------

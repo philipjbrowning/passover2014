@@ -112,9 +112,10 @@ class Members {
         $sql .= "WHERE (`first_name` like '%{$search_string}%' ";
         $sql .= "OR `middle_name` like '%{$search_string}%' ";
         $sql .= "OR `last_name` like '%{$search_string}%' ";
-        $sql .= "OR CONCAT(first_name, middle_name, last_name) like '%{$search_string}%' ";
-        $sql .= "OR CONCAT(first_name, middle_name) like '%{$search_string}%' ";
-        $sql .= "OR CONCAT(first_name, last_name) like '%{$search_string}%' ";
+        $sql .= "OR CONCAT(first_name,' ',middle_name,' ',last_name) like '%{$search_string}%' ";
+        $sql .= "OR CONCAT(first_name,' ',middle_name) like '%{$search_string}%' ";
+        $sql .= "OR CONCAT(first_name,' ',last_name) like '%{$search_string}%' ";
+        $sql .= "OR CONCAT(last_name) like '%{$search_string}%' ";
         $sql .= "OR life_number like '%{$search_string}%' ";
         // Determines if a date has been input in format 00-00-0000 or 0-0-00
         if(preg_match("/^[0-9]{1,2}-[0-9]{1,2}-[0-9]{2,4}$/", $search_string, $datebit)) {

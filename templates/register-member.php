@@ -10,7 +10,7 @@
                             <button id="search-button" name="search-button" value="Search">Search</button>
                         </div> <!-- End of .loaded-section -->
                         <div id="register-member-section" class="search-loaded-section loaded-section">
-                            <h2>Search Results (0)</h2>
+                            <h2>Search Results</h2>
                             <div class="search-results-wrap">
                                 <ol id="search-results">
                                     <li>No search results.</li>

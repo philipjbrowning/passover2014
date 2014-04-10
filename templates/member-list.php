@@ -29,7 +29,7 @@ if ($_GET) {
 }
 ?>
                         <div class="loaded-section">
-                            <h2>View and Edit Register Members<span id="validationText"></span></h2>
+                            <h2>View and Edit Members<span id="validationText"></span></h2>
                             <form id="search-form" action="">
 
                                 <fieldset>

@@ -25,9 +25,9 @@ if (!$asc_desc) $asc_desc = "DESC";
 $zions = ZionList::find_local();
 foreach($zions as $zion) {
 ?>
-												<input type="radio" class="zion" name="zion" value="<?php echo $zion->id; ?>" /> <?php echo $zion->name; ?><br />
+												<input type="radio" id="zion-<?php echo $zion->id; ?>" class="zion" name="zion" value="<?php echo $zion->id; ?>"<?php if($zion->id == 1) { echo ' checked="checked"'; } ?>/> <?php echo $zion->name; ?><br />
 <?php } ?>
-												<input type="radio" class="zion" name="zion" value="other" /> Other Zion
+												<input type="radio" id="zion-other" class="zion" name="zion" value="other" /> Other Zion
                                             </td>
                                             <td colspan="2"><input type="text" id="first_name" name="first_name" value="" maxlength="30" /></td>
                                             <td><input type="text" id="middle_name" class="validInput" name="middle_name" value="" maxlength="30" /></td>
@@ -86,7 +86,7 @@ foreach($zions as $zion) {
                             <input type="hidden" id="registerer_id" name="registerer_id" value="<?php echo $_SESSION['user_id']; ?>" />
                             </form>
                             <div>
-                                <button id="reset" name="reset" value="Reset">Reset</button>
+                                <!-- <button id="reset" name="reset" value="Reset">Reset</button> -->
                                 <button id="add-member" name="add-member" value="Add">Add</button>
                                 <button id="add-register-member" name="add-register-member" value="Add & Register">Add & Register</button>
                             </div>
