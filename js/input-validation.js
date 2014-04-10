@@ -43,6 +43,11 @@ BIRdd.addEventListener('keyup', function() {
 });
 BIRyy.addEventListener('keyup', function() {
     validateYear($(this));
+    console.log("here");
+    if (this.value.length == this.maxLength) {
+        console.log("really here");
+        $('#female-gender').focus();
+    }
 });
 branch1.addEventListener('keyup', function() {
 	validateLength($(this), 1);
@@ -64,8 +69,9 @@ firstName.addEventListener('keyup', function() {
 lastName.addEventListener('keyup', function() {
 	validateLength($(this), 2);
 });
-/*
+
 life_no_1.addEventListener('keyup', function() {
+    /*
     var myRe = /[a-z,A-Z]{1}[0-9]{2}$/g;
     if (myRe.test($(this).val())) {
         $(this).addClass("validInput");
@@ -74,16 +80,18 @@ life_no_1.addEventListener('keyup', function() {
         $(this).removeClass("validInput");
         console.log("invalidInput");
     }
+    */
     if (this.value.length == this.maxLength) {
         $(this).next('#card input').focus();
     }
 });
 life_no_2.addEventListener('keyup', function() {
-    validatePhone($(this), 6);
+    // validatePhone($(this), 6);
     if (this.value.length == this.maxLength) {
         $(this).next('#card input').focus();
     }
 });
+/*
 life_no_3.addEventListener('keyup', function() {
     console.log("life_no_3");
     var number = parseInt($(this).val());
@@ -122,26 +130,26 @@ phone3.addEventListener('keyup', function() {
 // FORM INPUT TO MYSQL DATABASE ----------------------------------------------------------------------------------------
 
 $("#add-member").click(function(e) {
-    validationText.html(" (Processing...)");
+    validationText.html("Processing...");
     e.preventDefault();
     var validation = formIsValid();
     if (validation['result']) {
         addOrRegisterMember("add-member");
     } else {
-        validationText.html(" ("+validation['message']+")");
+        validationText.addClass("redText").removeClass("greenText").html(validation['message']);
         console.log("invalidForm - "+validation['message']);
         // Display error message
     }
 });
 
 $("#add-register-member").click(function(e) {
-    validationText.html(" (Processing...)");
+    validationText.html("Processing...");
 	e.preventDefault();
     var validation = formIsValid();
     if (validation['result']) {
         addOrRegisterMember("add-register-member");
     } else {
-        validationText.html(" ("+validation['message']+")");
+        validationText.addClass("redText").removeClass("greenText").html(validation['message']);
         console.log("invalidForm - "+validation['message']);
         // Display error message
     }
@@ -200,16 +208,17 @@ function addOrRegisterMember(task) {
                 loadPageTemplate('register-member');
             }
             if (task == 'add-member') {
-                $('#validationText').html(' (SUCCESS)');
+                $('#validationText').html('SUCCESS!');
                 document.getElementById("add-member-form").reset();
                 $('#zion-1').focus();
             }
         } else {
-            $('#validationText').html(' (FAILED: Try again!)');
+            $('#validationText').addClass("redText").removeClass("greenText").html('FAILED: Try again!');
             console.log('addOrRegisterMember('+task+') - FAILED');
         }
 	})
 	.fail(function() {
+        $('#validationText').addClass("redText").removeClass("greenText").html('AJAX Failure');
 		console.log("addOrRegisterMember('+task+') - AJAX FAILURE");
         console.log(data['result']);
 	});
@@ -219,6 +228,7 @@ function addOrRegisterMember(task) {
 // INDIVIDUAL FIELD VALIDATION -----------------------------------------------------------------------------------------
 
 function formIsValid() {
+    validationText.removeClass("redText").addClass("greenText");
     if (!$('.zion').is(':checked')) {
         return { 'result':false, 'message':'Select zion.' };
     } else {
@@ -229,20 +239,20 @@ function formIsValid() {
             return { 'result':false, 'message':'Enter valid other zion name.' };
         }
     }
-    if (!$('#first_name').hasClass('validInput')) { return { 'result':false, 'message':'Enter valid first name.' }; }
-    if (!$('#middle_name').hasClass('validInput')) { return { 'result':false, 'message':'Enter valid middle name.' }; }
-    if (!$('#last_name').hasClass('validInput')) { return { 'result':false, 'message':'Enter valid last name.' }; }
-    if (!$('#BIRmm').hasClass('validInput')) { return { 'result':false, 'message':'Enter valid birth month.' }; }
-    if (!$('#BIRdd').hasClass('validInput')) { return { 'result':false, 'message':'Enter valid birth day.' }; }
-    if (!$('#BIRyy').hasClass('validInput')) { return { 'result':false, 'message':'Enter valid birth year.' }; }
+    if (!$('#first_name').hasClass('validInput')) { return { 'result':false, 'message':'Enter valid first name' }; }
+    if (!$('#middle_name').hasClass('validInput')) { return { 'result':false, 'message':'Enter valid middle name' }; }
+    if (!$('#last_name').hasClass('validInput')) { return { 'result':false, 'message':'Enter valid last name' }; }
+    if (!$('#BIRmm').hasClass('validInput')) { return { 'result':false, 'message':'Enter valid birth month' }; }
+    if (!$('#BIRdd').hasClass('validInput')) { return { 'result':false, 'message':'Enter valid birth day' }; }
+    if (!$('#BIRyy').hasClass('validInput')) { return { 'result':false, 'message':'Enter valid birth year' }; }
     if (!$('.gender').is(':checked')) { return { 'result':false, 'message':'Select gender.' }; }
-    if (!$('#life_no_1').hasClass('validInput')) { return { 'result':false, 'message':'Enter valid life number.' }; }
-    if (!$('#life_no_2').hasClass('validInput')) { return { 'result':false, 'message':'Enter valid life number.' }; }
-    if (!$('#life_no_3').hasClass('validInput')) { return { 'result':false, 'message':'Enter valid life number.' }; }
-    if (!$('#phone_1').hasClass('validInput')) { return { 'result':false, 'message':'Enter valid phone number.' }; }
-    if (!$('#phone_2').hasClass('validInput')) { return { 'result':false, 'message':'Enter valid phone number.' }; }
-    if (!$('#phone_3').hasClass('validInput')) { return { 'result':false, 'message':'Enter valid phone number.' }; }
-    if (!$('#branch1').hasClass('validInput')) { return { 'result':false, 'message':'Enter valid branch name.' }; }
+    if (!$('#life_no_1').hasClass('validInput')) { return { 'result':false, 'message':'Enter valid life number' }; }
+    if (!$('#life_no_2').hasClass('validInput')) { return { 'result':false, 'message':'Enter valid life number' }; }
+    if (!$('#life_no_3').hasClass('validInput')) { return { 'result':false, 'message':'Enter valid life number' }; }
+    if (!$('#phone_1').hasClass('validInput')) { return { 'result':false, 'message':'Enter valid phone number' }; }
+    if (!$('#phone_2').hasClass('validInput')) { return { 'result':false, 'message':'Enter valid phone number' }; }
+    if (!$('#phone_3').hasClass('validInput')) { return { 'result':false, 'message':'Enter valid phone number' }; }
+    if (!$('#branch1').hasClass('validInput')) { return { 'result':false, 'message':'Enter valid branch name' }; }
     // Gender (radio button) just needs to have a value
     // zion (radio button) just needs to have a value, if "other" selected, input church must have value >= 3
     return { 'result':true };

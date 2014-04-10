@@ -8,7 +8,10 @@ if (!$asc_desc) $asc_desc = "DESC";
 
 ?>
                         <div id="add-register-member-page" class="loaded-section">
-                            <h2>Add Member<span id="validationText"></span></h2>
+                            <h2>Add Member</h2>
+                            <div id="validation-wrap">
+                                <p><span id="validationText" class="greenText">Ready</span></p>
+                            </div>
                             <form id="add-member-form" name="add-member-form" action="" method="post">
                             	<fieldset class="noborder">
                                 <div id="card" name="card">
@@ -45,8 +48,8 @@ foreach($zions as $zion) {
                                             </td>
                                             <th class="required">Gender*</th>
                                             <td colspan="2">
-                                                <input type="radio" value="F" name="gender" class="gender" />Female<br />
-                                                <input type="radio" value="M" name="gender" class="gender" />Male
+                                                <input type="radio" value="F" id="female-gender" name="gender" class="gender" />Female<br />
+                                                <input type="radio" value="M" id="male-gender" name="gender" class="gender" />Male
                                             </td>
                                         </tr> 
                                         <tr>

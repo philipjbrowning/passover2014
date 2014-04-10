@@ -247,7 +247,7 @@ ol, ul { margin: 0; padding: 0; }
 #card table, #card th, #card td { border: 1px solid #BCBCBC; text-transform:uppercase; }
 #card th { height: 28px; }
 #card input[type="radio"] { margin: 1px 5px; }
-#card input[type="text"] { border: 0 none; height: 32px; padding-left:5px; width: 95%; }
+#card input[type="text"] { border: 0 none; height: 36px; padding-left:5px; width: 95%; }
 #card input.ex-short { width: auto }
 #header-menu { margin: 0 10px }
 #header-menu li { display: inline; line-height: 50px; list-style-type: none; }
@@ -265,6 +265,8 @@ ol, ul { margin: 0; padding: 0; }
 #sidebar li { margin: 0; padding: 5px 10px; width: 184px; }
 #user-list li { padding-left: 25px; }
 #user-list li.menu-title { padding-left: 10px; }
+#validation-wrap { position: absolute;  width:725px; top: 70px; }
+#validation-wrap p { margin: 10px 0; text-align: right; }
 
 /*
  * FONTS
@@ -273,8 +275,10 @@ button, h3 { font-size: 18px; }
 
 .menu-title { font-weight: bold }
 
+
 #card input[type="text"] { font-size: 16px; text-transform: uppercase; }
 #header li { font-weight: bold; font-size: 22px; }
+#validation-wrap p { font-weight: bold; font-style: italic; font-size: 16px;text-align: right; }
 
 /*
  * COLORS AND IMAGES
@@ -289,12 +293,14 @@ button:disabled { color: #E9EAED; cursor: default; }
 
 .count-feed li { background-color: #fff; }
 .count-feed { border: 1px solid #ccc; background: #fff url(../img/section-title.png) repeat-x left top; }
+.greenText { color: #008F0A }
 .loaded-section { border: 1px solid #ccc; background: #fff url(../img/section-title.png) repeat-x left top; }
 .loaded-section-failure { background: url(../img/section-title-failure.png) repeat-x left top; }
 .loaded-section-success { background: url(../img/section-title-success.png) repeat-x left top; }
 .search-confirmed { color: #004DA6; }
 .search-registered { color: #008F0A; }
 .search-result-divider { border-bottom: 1px solid #ccc; }
+.redText { color: #CC0000; }
 
 #container { background-color: #E9EAED; }
 #card input[type="text"] { color: #FF2116; }
