@@ -18,7 +18,7 @@ class ZionList {
 	}
 	*/
 	public static function find_local() {
-        $sql = 'SELECT `id`, `name` FROM `'.self::$table_name.'` WHERE `local` = "T" ORDER BY `id` ASC';
+        $sql = 'SELECT `id`, `name` FROM `'.self::$table_name.'` WHERE (`local` = "T" AND `id` < 15 AND `id` != 4) ORDER BY `id` ASC';
         return self::select($sql);
 	}
 

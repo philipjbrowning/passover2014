@@ -21,6 +21,8 @@ if (!$asc_desc) $asc_desc = "DESC";
                                         </tr>
                                         <tr>
                                             <td rowspan="6">
+                                                <input id="zion-4" class="zion" type="radio" value="4" name="zion"> BELLEVILLE, NJ<br />
+                                                <span class="zion-divider">----------------------------</span><br />
 <?php
 $zions = ZionList::find_local();
 foreach($zions as $zion) {

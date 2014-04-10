@@ -13,7 +13,7 @@
                             <h2>Search Results</h2>
                             <div class="search-results-wrap">
                                 <ol id="search-results">
-                                    <li>No search results.</li>
+                                    <li>No members found</li>
                                 </ol> <!-- End of .search-results-wrap -->
                             </div> <!-- End of #member-list -->
                         </div> <!-- End of .loaded-section -->

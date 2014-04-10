@@ -243,7 +243,6 @@ function registerMember(member_id, user_id, page_name) {
                     $('#register-result-'+member_id+' p').slideUp('slow');
                     console.log("#register-un-register-'+member_id).removeClass('hidden').slideDown('slow')");
                     $('#register-un-register-'+member_id).removeClass("hidden");
-                    console.log("Register Success");
                     updateNewsFeed(toTitleCase(new_registered_member.html())+' registered');
 
                     // Move mouse back to search field
@@ -254,7 +253,6 @@ function registerMember(member_id, user_id, page_name) {
                         });
                     }, 1000);
                 } else if (page_name == 'edit') {
-                    console.log('registerMember() page_name = edit');
                     // Handle buttons
                     $('.register-member-btn').prop( "disabled", "disabled");
                     $('.un-register-member-btn').prop( "disabled", null );

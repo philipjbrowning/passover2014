@@ -22,11 +22,16 @@ if(!$session->is_logged_in()) {
                     <li class="add-member li-link"><a href="#add-member">Add Member</a></li>
                 	<li class="register-member li-link"><a href="#registered-member-list">Register Member</a></li>
                     <li class="confirm-attendance li-link"><a href="#registered-member-list">Confirm Attendance</a></li>
-                	<li class="menu-title">Reports</li>
+                	<li class="menu-title">Member Lists</li>
                     <li class="registered-member-list li-link"><a href="#registered-member-list">Registered Members</a></li>
                     <li class="confirmed-member-list li-link"><a href="#confirmed-member-list">Confirmed Members</a></li>
                     <li class="visiting-member-list li-link"><a href="#visiting-member-list">Visiting Members</a></li>
                     <li class="member-list li-link"><a href="#member-list">All Members</a></li>
+                    <li class="menu-title">Reports</li>
+                    <li class="li-link"><a href="reports/index.php" target="_blank">All Zions</a></li>
+                    <li class="li-link"><a href="reports/index.php?report_name=belleville" target="_blank">Belleville, NJ</a></li>
+                    <li class="li-link"><a href="reports/index.php?report_name=ny" target="_blank">New York Zion</a></li>
+                    <li class="li-link"><a href="reports/index.php?report_name=visiting" target="_blank">Visiting Zions</a></li>
                 </ul> <!-- End of #menu -->
             </div> <!-- End of #menu-wrap -->
             <div id="user-list-wrap">

@@ -237,6 +237,7 @@ ol, ul { margin: 0; padding: 0; }
 .search-result-divider { width: 728px; }
 .sidebar { width: 205px; }
 .text-center { text-align: center; }
+.zion-divider { padding-left: 27px; }
 
 /*
 #card input[type=text]{ border: 0; margin:0; padding:0; line-height:40px; height: 40px; text-transform: uppercase; width:100%; }

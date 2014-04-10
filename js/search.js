@@ -15,10 +15,8 @@ searchInput.keyup(function(e) {
         searchGroup = 'All';
         handleSearchTimer(e.which, 'All');
     } else {
-        // console.log("DELAY - length less than 3");
         if (runSearch) {
             clearTimer();
-            runSearch = null;
         }
         $("#search-results").html('<li>No members found</li>');
     }
@@ -41,8 +39,11 @@ $('#search-form').submit(function(e) {
 // SEARCH SPEED LIMITER ------------------------------------------------------------------------------------------------
 
 function clearTimer() {
+    console.log('clearTimer()');
     clearTimeout(runSearch);
+    console.log('clearTimeout(runSearch)');
     runSearch = null;
+    console.log('runSearch = null');
 }
 
 function handleSearchTimer(inputKeyCode, searchGroup) {
@@ -50,7 +51,7 @@ function handleSearchTimer(inputKeyCode, searchGroup) {
         if (runSearch) {
             clearTimer();
         }
-        // console.log("EXECUTE - searchMember("+searchInput.val()+", "+searchGroup+")");
+        console.log("EXECUTE - searchMember("+searchInput.val()+", "+searchGroup+")");
         searchMember(searchInput.val(), searchGroup);
     } else {
         if (runSearch) {
@@ -63,9 +64,9 @@ function handleSearchTimer(inputKeyCode, searchGroup) {
 }
 
 function startTimer(searchText, searchGroup) {
-    // console.log("WAIT - searchMember("+searchText+", "+searchGroup+")");
+    console.log("WAIT - searchMember("+searchText+", "+searchGroup+")");
     runSearch = setTimeout(function() {
-        // console.log("EXECUTE - searchMember("+searchText+", "+searchGroup+")");
+        console.log("EXECUTE - searchMember("+searchText+", "+searchGroup+")");
         searchMember(searchText, searchGroup);
     }, 200); // 200 millisecond wait until user stops typing
 }
