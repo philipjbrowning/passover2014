@@ -42,12 +42,11 @@ if (($_POST['task'] == 'register') || ($_POST['task'] == 'confirm')) {
             }
             ?>
             </li>
-        <?php if ($row->register_time != "0000-00-00 00:00:00") { ?>
-            <li id="<?php echo $_POST['task']; ?>-un-register-<?php echo $row->id; ?>" class="<?php echo $_POST['task']; ?>-un-register search-un-register">
+        <?php if ($row->confirmed == 'F') { ?>
+            <li id="<?php echo $_POST['task']; ?>-un-register-<?php echo $row->id; ?>" class="<?php echo $_POST['task']; ?>-un-register search-un-register<?php if ($row->register_time == "0000-00-00 00:00:00") { echo " hidden"; }?>">
                 <button id="register-<?php echo $row->id; ?>" class="register" onclick="unRegisterMember(<?php echo $row->id; ?>, <?php echo $_SESSION['user_id']; ?>, 'search')">Un-Register</button>
             </li>
-        <?php
-        }
+        <?php }
         if ($count != $results->num_rows) {
         ?>
             <li class="search-result-divider"></li>

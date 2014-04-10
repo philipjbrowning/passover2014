@@ -255,9 +255,11 @@ ol, ul { margin: 0; padding: 0; }
 #container { height: 100%; width:1075px; }
 #header { width: 1075px; }
 #page { height: 100%; width: 1280px; }
+#register-member-section h2 { margin-bottom: 5px; }
 #search-form { width: 615px; }
 #search-member, #search-member-list { padding: 5px; width: 600px; }
 #search-results li { display: inline-block; }
+#search-results li p { margin: 5px 0 0 0; }
 #sidebar { height: 100% }
 #sidebar li { margin: 0; padding: 5px 10px; width: 184px; }
 #user-list li { padding-left: 25px; }

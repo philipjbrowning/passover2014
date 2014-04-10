@@ -206,12 +206,12 @@ function addOrRegisterMember(task) {
             }
         } else {
             $('#validationText').html(' (FAILED: Try again!)');
+            console.log('addOrRegisterMember('+task+') - FAILED');
         }
 	})
 	.fail(function() {
-		console.log("Failed");
+		console.log("addOrRegisterMember('+task+') - AJAX FAILURE");
         console.log(data['result']);
-        updateNewsFeed('Database connection failed');
 	});
 }
 

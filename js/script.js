@@ -238,14 +238,16 @@ function registerMember(member_id, user_id, page_name) {
             if (result == 'true') {
                 updateCounter();
                 if (page_name == 'search') {
-                    $('#full-name-'+member_id).addClass("search-registered");
+                    var new_registered_member = $('#full-name-'+member_id);
+                    new_registered_member.addClass("search-registered");
                     $('#register-result-'+member_id+' p').slideUp('slow');
+                    console.log("#register-un-register-'+member_id).removeClass('hidden').slideDown('slow')");
+                    $('#register-un-register-'+member_id).removeClass("hidden");
                     console.log("Register Success");
-                    updateNewsFeed(toTitleCase($('#full-name-'+member_id).html())+' registered');
+                    updateNewsFeed(toTitleCase(new_registered_member.html())+' registered');
 
                     // Move mouse back to search field
-                    $("#search-member").focus();
-                    $("#search-member").val('');
+                    $("#search-member").focus().val('');
                 } else if (page_name == 'edit') {
                     console.log('registerMember() page_name = edit');
                     // Handle buttons
@@ -254,10 +256,7 @@ function registerMember(member_id, user_id, page_name) {
                     $('.confirm-member-btn').prop( "disabled", null );
 
                     // News Feed Message
-                    console.log($('#first_name').val());
-                    console.log($('#middle_name').val());
-                    console.log($('#last_name').val());
-                    var full_name = toTitleCase($('#last_name').val());
+                    var full_name = toTitleCase($('#first_name').val());
                     if ($("#middle_name").val().length > 0) {
                         full_name += " " + toTitleCase($('#middle_name').val());
                     }
@@ -278,7 +277,7 @@ function registerMember(member_id, user_id, page_name) {
     }
 }
 
-function unConfirmMember(member_id, user_id) {
+function unConfirmMember(member_id, user_id, page_name) {
     if(confirm('Are you sure you want to UN-CONFIRM this member?')) {
         console.log("user #"+user_id+" is un-confirming member #"+member_id);
         $.ajax({
@@ -317,7 +316,7 @@ function unConfirmMember(member_id, user_id) {
     }
 }
 
-function unRegisterMember(member_id, user_id) {
+function unRegisterMember(member_id, user_id, page_name) {
     if(confirm('Are you sure you want to UN-REGISTER this member?')) {
         console.log("user #"+user_id+" is un-registering member #"+member_id);
         $.ajax({
@@ -329,23 +328,37 @@ function unRegisterMember(member_id, user_id) {
             }
         }).done(function( result ) {
             if (result == 'true') {
+
                 updateCounter();
                 console.log('unRegisterMember() page_name = edit');
-                // Handle buttons
-                $('.register-member-btn').prop( "disabled", null);
-                $('.un-register-member-btn').prop( "disabled", "disabled" );
-                $('.confirm-member-btn').prop( "disabled", "disabled" );
 
-                // News Feed Message
-                console.log($('#first_name').val());
-                console.log($('#middle_name').val());
-                console.log($('#last_name').val());
-                var full_name = toTitleCase($('#last_name').val());
-                if ($("#middle_name").val().length > 0) {
-                    full_name += " " + toTitleCase($('#middle_name').val());
+                if (page_name == 'search') {
+                    var new_registered_member = $('#full-name-'+member_id);
+                    new_registered_member.removeClass("search-registered");
+                    $('#register-result-'+member_id+' p').slideDown('slow');
+                    // console.log("#register-un-register-'+member_id).removeClass('hidden').slideDown('slow')");
+                    $('#register-un-register-'+member_id).addClass("hidden");
+                    // console.log("Un-Register Success");
+                    updateNewsFeed(toTitleCase(new_registered_member.html())+' un-registered');
+                } else if (page_name == 'edit') {
+                    // Handle buttons
+                    $('.register-member-btn').prop( "disabled", null);
+                    $('.un-register-member-btn').prop( "disabled", "disabled" );
+                    $('.confirm-member-btn').prop( "disabled", "disabled" );
+
+                    // News Feed Message
+                    console.log($('#first_name').val());
+                    console.log($('#middle_name').val());
+                    console.log($('#last_name').val());
+                    var full_name = toTitleCase($('#last_name').val());
+                    if ($("#middle_name").val().length > 0) {
+                        full_name += " " + toTitleCase($('#middle_name').val());
+                    }
+                    full_name += " " + toTitleCase($('#last_name').val());
+                    updateNewsFeed(full_name+' un-registered');
+                } else {
+                    console.log('unRegisterMember() - SUCCESS from page '+page_name);
                 }
-                full_name += " " + toTitleCase($('#last_name').val());
-                updateNewsFeed(full_name+' un-registered');
             } else {
                 console.log("Un-Register Result Failure");
                 console.log(result);

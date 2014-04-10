@@ -63,10 +63,10 @@ if(!$session->is_logged_in()) {
                 </div> <!-- End #loaded-page -->
                 <div id="right-wrap" class="alignLeft">
                     <div id="your-count-wrap" class="count-feed">
-                        <h2>Your Count</h2>
+                        <h2>Count</h2>
                         <ul id="your-count">
-                            <li id="count-registered"><b>Registered:</b></li>
-                            <li id="count-confirmed"><b>Confirmed:</b></li>
+                            <li id="count-registered"><b>Registered (You/All):</b></li>
+                            <li id="count-confirmed"><b>Confirmed (You/All):</b></li>
                         </ul> <!-- End #count -->
                     </div> <!-- End #your-count-wrap -->
                     <div id="news-feed-wrap" class="count-feed">

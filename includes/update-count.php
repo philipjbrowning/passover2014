@@ -26,11 +26,11 @@ if ($_GET['update-count'] == 'true') {
     $database->open_connection();
     if ($result_set = $database->query($sql)) {
         $result = mysqli_fetch_object($result_set);
-        echo '<h2>Your Count ('.$result->total.')</h2>'.
+        echo '<h2>Count ('.$result->total.')</h2>'.
              '<ul id="your-count">'.
-             '<li id="count-registered"><b>Registered:</b> <span class="your-number">'.$result->your_registered.
+             '<li id="count-registered"><b>Registered (You/All):</b> <span class="your-number">'.$result->your_registered.
              '</span> / <span class="total-number">'.$result->total_registered.'</span></li>'.
-             '<li id="count-confirmed"><b>Confirmed:</b> <span class="your-number">'.$result->your_confirmed.
+             '<li id="count-confirmed"><b>Confirmed (You/All):</b> <span class="your-number">'.$result->your_confirmed.
              '</span> / <span class="total-number">'.$result->total_confirmed.'</span></li>'.
              '</ul> <!-- End #count -->';
     } else {

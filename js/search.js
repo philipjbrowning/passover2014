@@ -9,11 +9,11 @@ var runSearch = null;
 // SEARCH DETECTION ----------------------------------------------------------------------------------------------------
 
 searchInput.keyup(function(e) {
-    if (searchInput.val().length >= 2) {
+    if (searchInput.val().length > 2) {
         searchGroup = 'All';
         handleSearchTimer(e.which, 'All');
     } else {
-        console.log("DELAY - length less than 2");
+        // console.log("DELAY - length less than 3");
         if (runSearch) {
             clearTimer();
             runSearch = null;
@@ -24,7 +24,7 @@ searchInput.keyup(function(e) {
 
 $("#search-button").click(function(e) {
     e.preventDefault();
-    if (searchInput.val().length >= 2) {
+    if (searchInput.val().length > 2) {
         if (runSearch) {
             clearTimer();
         }
@@ -48,7 +48,7 @@ function handleSearchTimer(inputKeyCode, searchGroup) {
         if (runSearch) {
             clearTimer();
         }
-        console.log("EXECUTE - searchMember("+searchInput.val()+", "+searchGroup+")");
+        // console.log("EXECUTE - searchMember("+searchInput.val()+", "+searchGroup+")");
         searchMember(searchInput.val(), searchGroup);
     } else {
         if (runSearch) {
@@ -61,9 +61,9 @@ function handleSearchTimer(inputKeyCode, searchGroup) {
 }
 
 function startTimer(searchText, searchGroup) {
-    console.log("WAIT - searchMember("+searchText+", "+searchGroup+")");
+    // console.log("WAIT - searchMember("+searchText+", "+searchGroup+")");
     runSearch = setTimeout(function() {
-        console.log("EXECUTE - searchMember("+searchText+", "+searchGroup+")");
+        // console.log("EXECUTE - searchMember("+searchText+", "+searchGroup+")");
         searchMember(searchText, searchGroup);
     }, 200); // 200 millisecond wait until user stops typing
 }
@@ -94,9 +94,9 @@ function searchMember( searchText, searchGroup ) {
                 'queryText'   : searchText
             }
         }).done(function( htmlData ) {
-            $('.search-loaded-section').html( htmlData );
+            $('.search-loaded-section').html( htmlData ); // CHECK HERE
         }).fail(function() {
-            console.log( "AJAX Failure" );
+            console.log( "searchMember( searchText, searchGroup ) - AJAX Failure" );
         });
     }
 }
