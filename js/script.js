@@ -131,6 +131,7 @@ function loadNewsFeed() {
         if (htmlData != 'false') {
             $('.news-feed').html(htmlData);
             registerCount = $(".news-feed li").length;
+            console.log(registerCount);
         } else {
             console.log("Failed to retrieve updates.");
         }
@@ -144,7 +145,7 @@ function updateNewsFeed(message) {
     $("<li>"+message+"</li>").hide().css('opacity', 0.0).prependTo('.news-feed').slideDown('fast').animate({opacity: 1.0});
     // $('#news-feed').prepend("<li>"+message+"</li>").slideDown('fast');
     if ($('.news-feed li').size() > 15) {
-        $('.news-feed').last().slideUp('fast').animate({opacity: 0.0}).hide();
+        $('.news-feed li').last().slideUp('fast').animate({opacity: 0.0}).hide();
     }
 }
 
@@ -248,7 +249,7 @@ function registerMember(member_id, user_id, page_name) {
 
                     registerCount++;
                     console.log('registerCount = '+registerCount);
-                    updateNewsFeed(toTitleCase(registerCount+". "+new_registered_member.html())+' registered');
+                    updateNewsFeed(registerCount+". "+toTitleCase(new_registered_member.html())+' registered');
 
                     // Move mouse back to search field
                     console.log("Success Register");

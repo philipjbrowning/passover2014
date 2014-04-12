@@ -36,7 +36,6 @@ BIRmm.addEventListener('keyup', function() {
     /*
     validateMonth($(this));
     validateDay(this);
-    console.log("validateMonth - "+$(this));
     if (this.value.length == this.maxLength) {
         $(this).next('#card input').focus();
     }
@@ -49,8 +48,6 @@ BIRdd.addEventListener('keyup', function() {
     }
     /*
     validateDay($(this));
-    console.log("validateDay - "+$(this));
-    console.log("validateDay - "+$('#BIRdd').val());
     if (this.value.length == this.maxLength) {
         $(this).next('#card input').focus();
     }
@@ -63,10 +60,7 @@ BIRyy.addEventListener('keyup', function() {
     }
     /*
     validateYear($(this));
-    console.log("validateYear - "+$(this));
-    console.log("here");
     if (this.value.length == this.maxLength) {
-        console.log("really here");
         $('#female-gender').focus();
     }
     */
@@ -97,10 +91,8 @@ life_no_1.addEventListener('keyup', function() {
     var myRe = /[a-z,A-Z]{1}[0-9]{2}$/g;
     if (myRe.test($(this).val())) {
         $(this).addClass("validInput");
-        console.log("validInput");
     } else {
         $(this).removeClass("validInput");
-        console.log("invalidInput");
     }
     */
     if (this.value.length == this.maxLength) {
@@ -115,15 +107,11 @@ life_no_2.addEventListener('keyup', function() {
 });
 /*
 life_no_3.addEventListener('keyup', function() {
-    console.log("life_no_3");
     var number = parseInt($(this).val());
-    console.log(number);
     if ((number > 0) && ($(this).val().length > 0)) {
         $(this).addClass("validInput");
-        console.log("validInput");
     } else {
         $(this).removeClass("validInput");
-        console.log("invalidInput");
     }
 });
 middleName.addEventListener('keyup', function() {
@@ -156,11 +144,10 @@ $("#add-member").click(function(e) {
     e.preventDefault();
     var validation = formIsValid();
     if (validation['result']) {
-        addOrRegisterMember("add-member");
+        // addOrRegisterMember("add-member");
+        duplicateMemberExists("add-member");
     } else {
         validationText.addClass("redText").removeClass("greenText").html(validation['message']);
-        console.log("invalidForm - "+validation['message']);
-        // Display error message
     }
 });
 
@@ -169,11 +156,10 @@ $("#add-register-member").click(function(e) {
 	e.preventDefault();
     var validation = formIsValid();
     if (validation['result']) {
-        addOrRegisterMember("add-register-member");
+        // addOrRegisterMember("add-register-member");
+        duplicateMemberExists("add-register-member");
     } else {
         validationText.addClass("redText").removeClass("greenText").html(validation['message']);
-        console.log("invalidForm - "+validation['message']);
-        // Display error message
     }
 });
 /*
@@ -191,100 +177,94 @@ $(".zion").change(function () {
 });
 
 function addOrRegisterMember(task) {
-    if (!duplicateMemberExists()) {
-        console.log(task);
-        console.log('late_registration = '+$('#late_registration').is(':checked'));
-        var late_registration = "false";
-        if ($('#late_registration').is(':checked')) {
-            late_registration = "true";
-        }
-        var response = $.ajax({
-            type: "POST",
-            data: {
-                "BIRmm"             : BIRmm.value,
-                "BIRdd"             : BIRdd.value,
-                "BIRyy"             : BIRyy.value,
-                "branch1"           : branch1.value,
-                "branch2"           : branch2.value,
-                "comments"          : comment.value,
-                "first_name"        : firstName.value,
-                "gender"            : $('.gender:checked').val(),
-                "middle_name"       : middleName.value,
-                "last_name"         : lastName.value,
-                "late_registration" : late_registration,
-                "life_no_1"         : life_no_1.value,
-                "life_no_2"         : life_no_2.value,
-                "life_no_3"         : life_no_3.value,
-                "phone1"            : phone1.value,
-                "phone2"            : phone2.value,
-                "phone3"            : phone3.value,
-                "task"              : task,
-                "registerer_id"     : $('#registerer_id').val(),
-                "zion_id"           : $('.zion:checked').val(),
-                "zion_name"         : church.value
-            },
-            url: "includes/add-register-member.php"
-        }).done(function(data) {
-                console.log(data);
-                if (data != 'false') {
-                    updateNewsFeed(toTitleCase(firstName.value)+' '+toTitleCase(lastName.value)+' added');
-                    updateCounter();
-                    if (task == 'add-register-member') {
-                        updateNewsFeed(toTitleCase(firstName.value)+' '+toTitleCase(lastName.value)+' registered');
-                        loadPageTemplate('register-member');
-                    }
-                    if (task == 'add-member') {
-                        $('#validationText').html('SUCCESS!');
-                        document.getElementById("add-member-form").reset();
-                        $('#zion-1').focus();
-                    }
-                } else {
-                    $('#validationText').addClass("redText").removeClass("greenText").html('FAILED: Try again!');
-                    console.log('addOrRegisterMember('+task+') - FAILED to add in MySQL');
-                }
-        }).fail(function() {
-                $('#validationText').addClass("redText").removeClass("greenText").html('AJAX Failure');
-                console.log("addOrRegisterMember('+task+') - AJAX FAILURE");
-                console.log(data['result']);
-        });
-    } else {
-        $('#validationText').addClass("redText").removeClass("greenText").html('FAILED: This member exists');
-        console.log('addOrRegisterMember('+task+') - FAILED. Duplicate member.');
+    var late_registration = "false";
+    if ($('#late_registration').is(':checked')) {
+        late_registration = "true";
     }
-
-}
-
-
-// INDIVIDUAL FIELD VALIDATION -----------------------------------------------------------------------------------------
-
-function duplicateMemberExists() {
-    /*
     var response = $.ajax({
         type: "POST",
         data: {
             "BIRmm"             : BIRmm.value,
             "BIRdd"             : BIRdd.value,
             "BIRyy"             : BIRyy.value,
+            "branch1"           : branch1.value,
+            "branch2"           : branch2.value,
+            "comments"          : comment.value,
             "first_name"        : firstName.value,
+            "gender"            : $('.gender:checked').val(),
             "middle_name"       : middleName.value,
             "last_name"         : lastName.value,
+            "late_registration" : late_registration,
             "life_no_1"         : life_no_1.value,
             "life_no_2"         : life_no_2.value,
-            "life_no_3"         : life_no_3.value
+            "life_no_3"         : life_no_3.value,
+            "phone1"            : phone1.value,
+            "phone2"            : phone2.value,
+            "phone3"            : phone3.value,
+            "task"              : task,
+            "registerer_id"     : $('#registerer_id').val(),
+            "zion_id"           : $('.zion:checked').val(),
+            "zion_name"         : church.value
+        },
+        url: "includes/add-register-member.php"
+    }).done(function(data) {
+            if (data != 'false') {
+                updateNewsFeed(toTitleCase(firstName.value)+' '+toTitleCase(lastName.value)+' added');
+                updateCounter();
+                if (task == 'add-register-member') {
+                    registerCount++;
+                    console.log('registerCount = '+registerCount);
+                    updateNewsFeed(registerCount+". "+toTitleCase(firstName.value)+' '+toTitleCase(lastName.value)+' registered');
+
+                    loadPageTemplate('register-member');
+                }
+                if (task == 'add-member') {
+                    $('#validationText').html('SUCCESS!');
+                    document.getElementById("add-member-form").reset();
+                    $('#zion-1').focus();
+                }
+            } else {
+                $('#validationText').addClass("redText").removeClass("greenText").html('FAILED: Try again!');
+                console.log('addOrRegisterMember('+task+') - FAILED to add in MySQL');
+            }
+    }).fail(function() {
+            $('#validationText').addClass("redText").removeClass("greenText").html('AJAX Failure');
+            console.log("addOrRegisterMember('+task+') - AJAX FAILURE");
+    });
+}
+
+
+// INDIVIDUAL FIELD VALIDATION -----------------------------------------------------------------------------------------
+
+function duplicateMemberExists(task) {
+    var response = $.ajax({
+        type: "POST",
+        data: {
+            "BIRmm"       : BIRmm.value,
+            "BIRdd"       : BIRdd.value,
+            "BIRyy"       : BIRyy.value,
+            "first_name"  : firstName.value,
+            "middle_name" : middleName.value,
+            "last_name"   : lastName.value,
+            "phone1"      : phone1.value,
+            "phone2"      : phone2.value,
+            "phone3"      : phone3.value
         },
         url: "includes/duplicate-member-check.php"
-    }).done(function(data) {
-        if (result == 'true') {
-            return true;
+    }).done(function(result) {
+        if (result == 'false') {
+            addOrRegisterMember(task);
         } else {
-            return false;
+            console.log('duplicateMemberExists() - Already in the system. ID(s) = '+result);
+            if(confirm('This member is probably in the system already. Do you want to continue?')) {
+                addOrRegisterMember(task);
+            } else {
+                $('#validationText').html('Ready');
+            }
         }
     }).fail(function() {
         console.log("duplicateMemberExists() - AJAX FAILURE");
-        return false;
     });
-    */
-    return false;
 }
 
 function formIsValid() {
@@ -293,9 +273,6 @@ function formIsValid() {
         return { 'result':false, 'message':'Select zion.' };
     } else {
         if (($('.zion:checked').val() == 'other') && ($("#church").val().length < 3)) {
-            console.log($('#church').val());
-            console.log($('#church').val().length);
-
             return { 'result':false, 'message':'Enter valid other zion name.' };
         }
     }
@@ -317,75 +294,64 @@ function formIsValid() {
     // zion (radio button) just needs to have a value, if "other" selected, input church must have value >= 3
     return { 'result':true };
 }
-
+/*
 function validateDay(input) {
     var month = parseInt(BIRmm.value);
-    console.log("month = "+month);
-    console.log("daysInMonth = "+daysInMonth[month-1]);
     if ((month > 0) && (month <= 12)) {
         var day = parseInt(input.val());
         if ((day > 0) && (day <= parseInt(daysInMonth[month-1]))) {
-            console.log ("0 < "+day+" < "+daysInMonth[month-1]);
             validateLength(input, 2);
         } else {
             input.removeClass("validInput");
         }
     } else {
         input.removeClass("validInput");
-        console.log("invalidInput");
     }
 }
-
+*/
 function validateLength(input, lengthRequired) {
     if ((input.val().length >= lengthRequired) && !input.hasClass("validInput")) {
         input.addClass("validInput");
-        console.log("validInput");
     } else if ((input.val().length < lengthRequired) && input.hasClass("validInput")) {
         input.removeClass("validInput");
-        console.log("invalidInput");
     }
 }
 
 function optionalValidateLength(input, lengthRequired) {
     if ((input.val().length >= lengthRequired) && !input.hasClass("validInput")) {
         input.addClass("validInput");
-        console.log("validInput");
     } else if ((input.val().length <= 0) && !input.hasClass("validInput")) {
         input.addClass("validInput");
-        console.log("validInput");
     } else if ((input.val().length > 0) && (input.val().length < lengthRequired) && input.hasClass("validInput")) {
         input.removeClass("validInput");
-        console.log("invalidInput");
     } else {
         console.log(input.hasClass("validInput"));
     }
 }
-
+/*
 function validateMonth(input) {
     var month = parseInt(input.val());
     if ((month > 0) && (month <= 12)) {
         validateLength(input, 2);
     } else {
         input.removeClass("validInput");
-        console.log("invalidInput");
     }
 }
-
+*/
 function validatePhone(input, lengthRequired) {
     var digits = parseInt(input.val());
     if ((digits >= 0) && (digits <= Math.pow(10,lengthRequired)-1)) {
         validateLength(input, lengthRequired);
     } else {
         input.removeClass("validInput");
-        console.log("invalidInput");
     }
 }
-
+/*
 function validateYear(input) {
     if ((parseInt(input.val()) >= 0) && (parseInt(input.val()) <= 99)) {
         validateLength(input, 2);
     } else {
         input.removeClass("validInput");
-        console.log("invalidInput");
     }
 }
+*/

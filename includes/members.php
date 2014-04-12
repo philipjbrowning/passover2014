@@ -62,10 +62,10 @@ class Members {
         }
         if ($search_group == "registered") {
             if ($whereUsed == false) {
-                $sql .= "WHERE `register_time` != '0000-00-00 00:00:00' AND `local_zion` = 'T' ";
+                $sql .= "WHERE `register_time` != '0000-00-00 00:00:00' ";
                 $whereUsed = true;
             } else {
-                $sql .= "AND `register_time` != '0000-00-00 00:00:00' AND `local_zion` = 'T' ";
+                $sql .= "AND `register_time` != '0000-00-00 00:00:00' ";
             }
             if ($user_id > 0) {
                 $sql .= "AND `registerer_id` = ".$user_id." ";
