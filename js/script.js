@@ -130,8 +130,6 @@ function loadNewsFeed() {
     }).done(function( htmlData ) {
         if (htmlData != 'false') {
             $('.news-feed').html(htmlData);
-            registerCount = $(".news-feed li").length;
-            console.log(registerCount);
         } else {
             console.log("Failed to retrieve updates.");
         }
@@ -162,6 +160,8 @@ function updateCounter() {
     }).done(function( htmlData ) {
         if (htmlData != 'false') {
             $("#your-count-wrap").html( htmlData );
+            registerCount = parseInt($("#count-registered span.your-number").html());
+            console.log(registerCount);
         } else {
             $("#your-count").html( "<li>Updates will come shortly.</li>" );
         }
@@ -264,9 +264,9 @@ function registerMember(member_id, user_id, page_name) {
                     }, 350);
                 } else if (page_name == 'edit') {
                     // Handle buttons
-                    $('.register-member-btn').prop( "disabled", "disabled");
-                    $('.un-register-member-btn').prop( "disabled", null );
-                    $('.confirm-member-btn').prop( "disabled", null );
+                    // $('.register-member-btn').prop( "disabled", "disabled");
+                    // $('.un-register-member-btn').prop( "disabled", null );
+                    // $('.confirm-member-btn').prop( "disabled", null );
 
                     // News Feed Message
                     var full_name = toTitleCase($('#first_name').val());
@@ -274,7 +274,12 @@ function registerMember(member_id, user_id, page_name) {
                         full_name += " " + toTitleCase($('#middle_name').val());
                     }
                     full_name += " " + toTitleCase($('#last_name').val());
-                    updateNewsFeed(full_name+' registered');
+                    registerCount++;
+                    console.log('registerCount = '+registerCount);
+                    updateNewsFeed(registerCount+". "+full_name+' registered');
+
+                    // Go to register page
+                    loadPageTemplate('register-member');
                 } else if (page_name == 'confirm') {
                     console.log('registerMember() page_name = confirm');
                 } else {
@@ -384,7 +389,7 @@ function unRegisterMember(member_id, user_id, page_name) {
     }
 }
 
-function updateMember(member_id, user_id) {
+function updateMember(member_id, user_id, callback) {
     if(confirm('Are you sure you want to UPDATE this member?')) {
         $("#validationText").html("Processing...")
         console.log("user #"+user_id+" is updating member #"+member_id);
@@ -421,6 +426,9 @@ function updateMember(member_id, user_id) {
                 console.log("Update Success");
                 $("#validationText").html("SUCCESS");
                 // CHANGE TITLE BACKGROUND TO GREEN FOR 3 SECONDS
+                if (callback == 'register') {
+                    registerMember(member_id, user_id, 'edit');
+                }
             } else {
                 $("#validationText").html("ERROR: Could not update user");
                 console.log("Update Result Failure");
@@ -433,4 +441,20 @@ function updateMember(member_id, user_id) {
     }
 }
 
-// Add 3 php pages with functions
+// define our function with the callback argument
+function some_function(arg1, arg2, callback) {
+// this generates a random number between
+// arg1 and arg2
+    var my_number = Math.ceil(Math.random() * (arg1 - arg2) + arg2);
+    // then we're done, so we'll call the callback and
+    // pass our result
+    callback(my_number);
+}
+
+// call the function
+some_function(5, 15, function(num) {
+// this anonymous function will run when the
+// callback is called
+    console.log("callback called! " + num);
+});
+

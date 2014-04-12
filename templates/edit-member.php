@@ -17,7 +17,10 @@ list ($phone_1, $phone_2, $phone_3) = explode('-', $theMember->cell_phone);
 $birth_year = substr($birth_year, 2, 2);
 ?>
                         <div id="add-register-member-page" class="loaded-section">
-                            <h2>Edit Member<span id="validationText"></span></h2>
+                            <h2>Edit Member</h2>
+                            <div id="validation-wrap">
+                                <p><span id="validationText" class="greenText">Ready</span></p>
+                            </div>
                             <form id="add-member-form" name="add-member-form" action="" method="post">
                                 <fieldset class="noborder">
                                     <div id="card" name="card">
@@ -98,7 +101,7 @@ $birth_year = substr($birth_year, 2, 2);
                             </form>
                             <div id="actions-" class="action-buttons">
                                 <p><b><span id="member-not-registered"<?php if($theMember->is_registered()) { echo ' class="hidden"'; } ?>>NOT </span>REGISTERED<span id="member-confirmed"<?php if(!$theMember->is_confirmed()) { echo ' class="hidden"'; } ?>> AND CONFIRMED</span>!</b></p>
-                                <p><button id="register-member-<?php echo $theMember->id; ?>" class="register-member-btn" name="register-member-<?php echo $theMember->id; ?>" value="Register" onclick="registerMember(<?php echo $theMember->id; ?>, <?php echo $session->user_id; ?>, 'edit')"<?php if($theMember->is_registered()) { echo ' disabled="disabled"'; } ?>><span class="btn-text">Register</span></button>
+                                <p><button id="register-member-<?php echo $theMember->id; ?>" class="register-member-btn" name="register-member-<?php echo $theMember->id; ?>" value="Register" onclick="updateMember(<?php echo $theMember->id; ?>, <?php echo $session->user_id; ?>, 'register')"<?php if($theMember->is_registered()) { echo ' disabled="disabled"'; } ?>><span class="btn-text">Register</span></button>
                                 <button id="un-register-member-<?php echo $theMember->id; ?>" class="un-register-member-btn" name="un-register-member-<?php echo $theMember->id; ?>" value="un-register-<?php echo $theMember->id; ?>" onclick="unRegisterMember(<?php echo $theMember->id; ?>, <?php echo $session->user_id; ?>, 'edit')"<?php if(!$theMember->is_registered() || $theMember->is_confirmed()) { echo ' disabled="disabled"'; } ?>>Un-Register</button>
                                 <button id="confirm-member-<?php echo $theMember->id; ?>" class="confirm-member-btn" name="confirm-member-<?php echo $theMember->id; ?>" value="confirm-<?php echo $theMember->id; ?>" onclick="confirmMember(<?php echo $theMember->id; ?>, <?php echo $session->user_id; ?>, 'edit')"<?php if(!$theMember->is_registered() || $theMember->is_confirmed()) { echo ' disabled="disabled"'; } ?>>Confirm</button>
                                 <button id="un-confirm-member-<?php echo $theMember->id; ?>" class="un-confirm-member-btn" name="un-confirm-member-<?php echo $theMember->id; ?>" value="un-confirm-<?php echo $theMember->id; ?>" onclick="unConfirmMember(<?php echo $theMember->id; ?>, <?php echo $session->user_id; ?>, 'edit')"<?php if(!$theMember->is_registered() || !$theMember->is_confirmed()) { echo ' disabled="disabled"'; } ?>>Un-Confirm</button>
