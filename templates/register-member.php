@@ -1,6 +1,6 @@
                     	<div class="loaded-section">
                             <h2>Register Member<span id="validationText"></span></h2>
-                            <form id="search-form" action="">
+                            <form id="search-form" action="" class="alignLeft">
                             	
                             <fieldset>
                             	<input id="search-member" type="text" value="" name="search-member" class="text" placeholder="Search by birthday first" />

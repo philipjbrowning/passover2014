@@ -191,67 +191,101 @@ $(".zion").change(function () {
 });
 
 function addOrRegisterMember(task) {
-	console.log(task);
-    console.log('late_registration = '+$('#late_registration').is(':checked'));
-    var late_registration = "false";
-    if ($('#late_registration').is(':checked')) {
-        late_registration = "true";
-    }
-	var response = $.ajax({
-		type: "POST",
-		data: {
-			"BIRmm"             : BIRmm.value,
-			"BIRdd"             : BIRdd.value,
-			"BIRyy"             : BIRyy.value,
-            "branch1"           : branch1.value,
-            "branch2"           : branch2.value,
-            "comments"          : comment.value,
-            "first_name"        : firstName.value,
-            "gender"            : $('.gender:checked').val(),
-            "middle_name"       : middleName.value,
-            "last_name"         : lastName.value,
-            "late_registration" : late_registration,
-            "life_no_1"         : life_no_1.value,
-            "life_no_2"         : life_no_2.value,
-            "life_no_3"         : life_no_3.value,
-            "phone1"            : phone1.value,
-            "phone2"            : phone2.value,
-            "phone3"            : phone3.value,
-			"task"              : task,
-            "registerer_id"     : $('#registerer_id').val(),
-			"zion_id"           : $('.zion:checked').val(),
-            "zion_name"         : church.value
-		},
-		url: "includes/add-register-member.php"
-	})
-	.done(function(data) {
-        console.log(data);
-        if (data != 'false') {
-            updateNewsFeed(toTitleCase(firstName.value)+' '+toTitleCase(lastName.value)+' added');
-            updateCounter();
-            if (task == 'add-register-member') {
-                updateNewsFeed(toTitleCase(firstName.value)+' '+toTitleCase(lastName.value)+' registered');
-                loadPageTemplate('register-member');
-            }
-            if (task == 'add-member') {
-                $('#validationText').html('SUCCESS!');
-                document.getElementById("add-member-form").reset();
-                $('#zion-1').focus();
-            }
-        } else {
-            $('#validationText').addClass("redText").removeClass("greenText").html('FAILED: Try again!');
-            console.log('addOrRegisterMember('+task+') - FAILED');
+    if (!duplicateMemberExists()) {
+        console.log(task);
+        console.log('late_registration = '+$('#late_registration').is(':checked'));
+        var late_registration = "false";
+        if ($('#late_registration').is(':checked')) {
+            late_registration = "true";
         }
-	})
-	.fail(function() {
-        $('#validationText').addClass("redText").removeClass("greenText").html('AJAX Failure');
-		console.log("addOrRegisterMember('+task+') - AJAX FAILURE");
-        console.log(data['result']);
-	});
+        var response = $.ajax({
+            type: "POST",
+            data: {
+                "BIRmm"             : BIRmm.value,
+                "BIRdd"             : BIRdd.value,
+                "BIRyy"             : BIRyy.value,
+                "branch1"           : branch1.value,
+                "branch2"           : branch2.value,
+                "comments"          : comment.value,
+                "first_name"        : firstName.value,
+                "gender"            : $('.gender:checked').val(),
+                "middle_name"       : middleName.value,
+                "last_name"         : lastName.value,
+                "late_registration" : late_registration,
+                "life_no_1"         : life_no_1.value,
+                "life_no_2"         : life_no_2.value,
+                "life_no_3"         : life_no_3.value,
+                "phone1"            : phone1.value,
+                "phone2"            : phone2.value,
+                "phone3"            : phone3.value,
+                "task"              : task,
+                "registerer_id"     : $('#registerer_id').val(),
+                "zion_id"           : $('.zion:checked').val(),
+                "zion_name"         : church.value
+            },
+            url: "includes/add-register-member.php"
+        }).done(function(data) {
+                console.log(data);
+                if (data != 'false') {
+                    updateNewsFeed(toTitleCase(firstName.value)+' '+toTitleCase(lastName.value)+' added');
+                    updateCounter();
+                    if (task == 'add-register-member') {
+                        updateNewsFeed(toTitleCase(firstName.value)+' '+toTitleCase(lastName.value)+' registered');
+                        loadPageTemplate('register-member');
+                    }
+                    if (task == 'add-member') {
+                        $('#validationText').html('SUCCESS!');
+                        document.getElementById("add-member-form").reset();
+                        $('#zion-1').focus();
+                    }
+                } else {
+                    $('#validationText').addClass("redText").removeClass("greenText").html('FAILED: Try again!');
+                    console.log('addOrRegisterMember('+task+') - FAILED to add in MySQL');
+                }
+        }).fail(function() {
+                $('#validationText').addClass("redText").removeClass("greenText").html('AJAX Failure');
+                console.log("addOrRegisterMember('+task+') - AJAX FAILURE");
+                console.log(data['result']);
+        });
+    } else {
+        $('#validationText').addClass("redText").removeClass("greenText").html('FAILED: This member exists');
+        console.log('addOrRegisterMember('+task+') - FAILED. Duplicate member.');
+    }
+
 }
 
 
 // INDIVIDUAL FIELD VALIDATION -----------------------------------------------------------------------------------------
+
+function duplicateMemberExists() {
+    /*
+    var response = $.ajax({
+        type: "POST",
+        data: {
+            "BIRmm"             : BIRmm.value,
+            "BIRdd"             : BIRdd.value,
+            "BIRyy"             : BIRyy.value,
+            "first_name"        : firstName.value,
+            "middle_name"       : middleName.value,
+            "last_name"         : lastName.value,
+            "life_no_1"         : life_no_1.value,
+            "life_no_2"         : life_no_2.value,
+            "life_no_3"         : life_no_3.value
+        },
+        url: "includes/duplicate-member-check.php"
+    }).done(function(data) {
+        if (result == 'true') {
+            return true;
+        } else {
+            return false;
+        }
+    }).fail(function() {
+        console.log("duplicateMemberExists() - AJAX FAILURE");
+        return false;
+    });
+    */
+    return false;
+}
 
 function formIsValid() {
     validationText.removeClass("redText").addClass("greenText");

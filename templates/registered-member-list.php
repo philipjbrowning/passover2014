@@ -1,6 +1,6 @@
                         <div class="loaded-section">
                             <h2>View and Edit Register Members<span id="validationText"></span></h2>
-                            <form id="search-form" action="">
+                            <form id="search-form" action="" class="alignLeft">
 
                                 <fieldset>
                                     <input id="search-member-list" type="text" value="" name="search-member" class="text" placeholder="Search by birthday first" />
@@ -62,7 +62,7 @@ $result_set = array();
                                         $count--;
                                     }
                                     if ($results->num_rows == 0) { ?>
-                                        <li>No members found</li>
+                                        <li>You have not registered any members.</li>
                                     <?php } ?>
                                 </ol> <!-- End of #search-results -->
                             </div> <!-- End of #member-list -->

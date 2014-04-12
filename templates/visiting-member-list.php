@@ -1,6 +1,6 @@
                         <div class="loaded-section">
                             <h2>View and Edit Visiting Members<span id="validationText"></span></h2>
-                            <form id="search-form" action="">
+                            <form id="search-form" action="" class="alignLeft">
 
                                 <fieldset>
                                     <input id="search-member-list" type="text" value="" name="search-member" class="text" placeholder="Search by birthday first" />

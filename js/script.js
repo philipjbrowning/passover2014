@@ -11,6 +11,7 @@ var currentSort = 'ASC';
 var currentPageTemplate;
 var pageNumber = 0;
 var registerOrderBy = 'first_name';
+var registerCount = 0;
 var registerSort = 'ASC';
 var resultsPerPage = 10;
 var visitingOrderBy = 'first_name';
@@ -129,6 +130,7 @@ function loadNewsFeed() {
     }).done(function( htmlData ) {
         if (htmlData != 'false') {
             $('.news-feed').html(htmlData);
+            registerCount = $(".news-feed li").length;
         } else {
             console.log("Failed to retrieve updates.");
         }
@@ -139,10 +141,10 @@ function loadNewsFeed() {
 }
 
 function updateNewsFeed(message) {
-    $("<li>"+message+"</li>").hide().css('opacity', 0.0).prependTo('.news-feed').slideDown('slow').animate({opacity: 1.0});
-    // $('#news-feed').prepend("<li>"+message+"</li>").slideDown('slow');
+    $("<li>"+message+"</li>").hide().css('opacity', 0.0).prependTo('.news-feed').slideDown('fast').animate({opacity: 1.0});
+    // $('#news-feed').prepend("<li>"+message+"</li>").slideDown('fast');
     if ($('.news-feed li').size() > 15) {
-        $('.news-feed').last().slideUp('slow').animate({opacity: 0.0}).hide();
+        $('.news-feed').last().slideUp('fast').animate({opacity: 0.0}).hide();
     }
 }
 
@@ -190,7 +192,7 @@ function confirmMember(member_id, user_id, page_name) {
                 if (page_name == 'search') {
                     $('#full-name-'+member_id).addClass("search-confirmed");
                     $('#full-name-'+member_id).removeClass("search-registered");
-                    $('#confirm-result-'+member_id+' p').slideUp('slow');
+                    $('#confirm-result-'+member_id+' p').slideUp('fast');
                     updateNewsFeed(toTitleCase($('#full-name-'+member_id).html())+' confirmed');
                 } else if (page_name == 'edit') {
                     console.log('confirmMember() page_name = edit');
@@ -240,22 +242,25 @@ function registerMember(member_id, user_id, page_name) {
                 if (page_name == 'search') {
                     var new_registered_member = $('#full-name-'+member_id);
                     new_registered_member.addClass("search-registered");
-                    $('#register-result-'+member_id+' p').slideUp('slow');
-                    console.log("#register-un-register-'+member_id).removeClass('hidden').slideDown('slow')");
+                    $('#register-result-'+member_id+' p').slideUp('fast');
+                    console.log("#register-un-register-'+member_id).removeClass('hidden').slideDown('fast')");
                     $('#register-un-register-'+member_id).removeClass("hidden");
-                    updateNewsFeed(toTitleCase(new_registered_member.html())+' registered');
+
+                    registerCount++;
+                    console.log('registerCount = '+registerCount);
+                    updateNewsFeed(toTitleCase(registerCount+". "+new_registered_member.html())+' registered');
 
                     // Move mouse back to search field
                     console.log("Success Register");
                     clearSearch = setTimeout(function() {
                         console.log("setTimeout");
-                        $('html, body').animate({scrollTop:0}, 'slow', function() {
+                        $('html, body').animate({scrollTop:0}, 'fast', function() {
                             $("#search-member").focus().val('');
                             console.log("focus");
                             $('#search-results').html('<li>No members found</li>');
                             console.log("clear search");
                         });
-                    }, 1000);
+                    }, 350);
                 } else if (page_name == 'edit') {
                     // Handle buttons
                     $('.register-member-btn').prop( "disabled", "disabled");
@@ -342,10 +347,12 @@ function unRegisterMember(member_id, user_id, page_name) {
                 if (page_name == 'search') {
                     var new_registered_member = $('#full-name-'+member_id);
                     new_registered_member.removeClass("search-registered");
-                    $('#register-result-'+member_id+' p').slideDown('slow');
-                    // console.log("#register-un-register-'+member_id).removeClass('hidden').slideDown('slow')");
+                    $('#register-result-'+member_id+' p').slideDown('fast');
+                    // console.log("#register-un-register-'+member_id).removeClass('hidden').slideDown('fast')");
                     $('#register-un-register-'+member_id).addClass("hidden");
                     // console.log("Un-Register Success");
+
+                    registerCount--;
                     updateNewsFeed(toTitleCase(new_registered_member.html())+' un-registered');
                 } else if (page_name == 'edit') {
                     // Handle buttons

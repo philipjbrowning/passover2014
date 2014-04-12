@@ -89,7 +89,7 @@ $count = 1;
         ?>
         <li>
             <b><?php echo $full_name; ?></b> (<i><?php if (strlen($row->life_number) > 0) { echo $row->life_number; } else { echo "NO LIFE NUMBER"; } ?></i>)<?php if ($row->register_time != '0000-00-00 00:00:00' ) { ?> - <span class="greenText">REGISTERED</span><?php } ?><br />
-            <span class="smallSize"><b>Gender:</b> <?php if($row->gender == 'F') { echo "Female"; } else { echo "Male"; } ?> | <b>Zion:</b> <?php echo $row->zion_name; ?> | <b>Phone:</b> <?php echo $row->cell_phone; ?> | <b>Birthday:</b> <?php echo $row->birth_date; ?> | <b>Baptism:</b> <?php echo $row->baptism_date; ?> | <?php echo $branches ?></span>
+            <span class="smallSize"><b>Gender:</b> <?php if($row->gender == 'F') { echo "Female"; } else if($row->gender == 'M') { echo "Male"; } else { echo "Unknown"; } ?> | <b>Zion:</b> <?php echo $row->zion_name; ?> | <b>Phone:</b> <?php echo $row->cell_phone; ?> | <b>Birthday:</b> <?php if($row->birth_date == '0000-00-00') { echo "Unknown"; } else { echo $row->birth_date; } ?> | <b>Baptism:</b> <?php if($row->baptism_date == '0000-00-00') { echo "Unknown"; } else { echo $row->baptism_date; } ?> | <?php echo $branches ?></span>
         </li>
     <?php } ?>
 </ol> <!-- End of #belleville-members -->
