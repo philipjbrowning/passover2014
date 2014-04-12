@@ -29,25 +29,47 @@ var validationText = $('#validationText');
 // EVENT LISTENERS -----------------------------------------------------------------------------------------------------
 
 BIRmm.addEventListener('keyup', function() {
-    validateMonth($(this));
-    validateDay($('#BIRdd'));
+    validateLength($(this), 2);
     if (this.value.length == this.maxLength) {
         $(this).next('#card input').focus();
     }
+    /*
+    validateMonth($(this));
+    validateDay(this);
+    console.log("validateMonth - "+$(this));
+    if (this.value.length == this.maxLength) {
+        $(this).next('#card input').focus();
+    }
+    */
 });
 BIRdd.addEventListener('keyup', function() {
-    validateDay($(this));
+    validateLength($(this), 2);
     if (this.value.length == this.maxLength) {
         $(this).next('#card input').focus();
     }
+    /*
+    validateDay($(this));
+    console.log("validateDay - "+$(this));
+    console.log("validateDay - "+$('#BIRdd').val());
+    if (this.value.length == this.maxLength) {
+        $(this).next('#card input').focus();
+    }
+    */
 });
 BIRyy.addEventListener('keyup', function() {
+    validateLength($(this), 2);
+    if (this.value.length == this.maxLength) {
+        $(this).next('#card input').focus();
+    }
+    /*
     validateYear($(this));
+    console.log("validateYear - "+$(this));
     console.log("here");
     if (this.value.length == this.maxLength) {
         console.log("really here");
         $('#female-gender').focus();
     }
+    */
 });
 branch1.addEventListener('keyup', function() {
 	validateLength($(this), 1);
@@ -171,6 +193,10 @@ $(".zion").change(function () {
 function addOrRegisterMember(task) {
 	console.log(task);
     console.log('late_registration = '+$('#late_registration').is(':checked'));
+    var late_registration = "false";
+    if ($('#late_registration').is(':checked')) {
+        late_registration = "true";
+    }
 	var response = $.ajax({
 		type: "POST",
 		data: {
@@ -184,7 +210,7 @@ function addOrRegisterMember(task) {
             "gender"            : $('.gender:checked').val(),
             "middle_name"       : middleName.value,
             "last_name"         : lastName.value,
-            "late_registration" : $('#late_registration').is(':checked'),
+            "late_registration" : late_registration,
             "life_no_1"         : life_no_1.value,
             "life_no_2"         : life_no_2.value,
             "life_no_3"         : life_no_3.value,
@@ -261,7 +287,7 @@ function formIsValid() {
 function validateDay(input) {
     var month = parseInt(BIRmm.value);
     console.log("month = "+month);
-    console.log("daysInMonth = "+daysInMonth[month-1])
+    console.log("daysInMonth = "+daysInMonth[month-1]);
     if ((month > 0) && (month <= 12)) {
         var day = parseInt(input.val());
         if ((day > 0) && (day <= parseInt(daysInMonth[month-1]))) {

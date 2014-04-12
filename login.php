@@ -65,7 +65,7 @@ if (isset($_POST['submit'])) { // Form has been submitted.
         <!-- end scripts-->
     </head>
 
-<body>
+<body class="body-login">
 <div id="page">
         <div id="container-wide">
         	<h1>Passover 2014 Login</h1>

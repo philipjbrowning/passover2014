@@ -16,10 +16,10 @@ $newMember->gender = $_POST['gender'];
 $newMember->cell_phone = $_POST['phone1'].'-'.$_POST['phone2'].'-'.$_POST['phone3']; // Previously home_phone
 $newMember->first_name = $_POST['first_name'];
 $newMember->last_name = $_POST['last_name'];
-if ($_POST['late_registration']) {
-    $newMember->late_registration = 'T';
-} else {
+if ($_POST['late_registration'] == 'false') {
     $newMember->late_registration = 'F';
+} else {
+    $newMember->late_registration = 'T';
 }
 $newMember->life_number = $_POST['life_no_1'].'-'.$_POST['life_no_2'].'-'.$_POST['life_no_3'];
 if ($newMember->life_number == '--') {

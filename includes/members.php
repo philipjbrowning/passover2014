@@ -35,9 +35,10 @@ class Members {
             $sql .= "WHERE (`first_name` like '%{$search_string}%' ";
             $sql .= "OR `middle_name` like '%{$search_string}%' ";
             $sql .= "OR `last_name` like '%{$search_string}%' ";
-            $sql .= "OR CONCAT(first_name, middle_name, last_name) like '%{$search_string}%' ";
-            $sql .= "OR CONCAT(first_name, middle_name) like '%{$search_string}%' ";
-            $sql .= "OR CONCAT(first_name, last_name) like '%{$search_string}%' ";
+            $sql .= "OR CONCAT(first_name,' ',middle_name,' ',last_name) like '%{$search_string}%' ";
+            $sql .= "OR CONCAT(first_name,' ',middle_name) like '%{$search_string}%' ";
+            $sql .= "OR CONCAT(first_name,' ',last_name) like '%{$search_string}%' ";
+            $sql .= "OR CONCAT(middle_name,' ',last_name) like '%{$search_string}%' ";
             $sql .= "OR life_number like '%{$search_string}%' ";
             // Determines if a date has been input in format 00-00-0000 or 0-0-00
             if(preg_match("/^[0-9]{1,2}-[0-9]{1,2}-[0-9]{2,4}$/", $search_string, $datebit)) {
@@ -115,7 +116,7 @@ class Members {
         $sql .= "OR CONCAT(first_name,' ',middle_name,' ',last_name) like '%{$search_string}%' ";
         $sql .= "OR CONCAT(first_name,' ',middle_name) like '%{$search_string}%' ";
         $sql .= "OR CONCAT(first_name,' ',last_name) like '%{$search_string}%' ";
-        $sql .= "OR CONCAT(last_name) like '%{$search_string}%' ";
+        $sql .= "OR CONCAT(middle_name,' ',last_name) like '%{$search_string}%' ";
         $sql .= "OR life_number like '%{$search_string}%' ";
         // Determines if a date has been input in format 00-00-0000 or 0-0-00
         if(preg_match("/^[0-9]{1,2}-[0-9]{1,2}-[0-9]{2,4}$/", $search_string, $datebit)) {
@@ -131,12 +132,12 @@ class Members {
         $sql .= "OR `birth_date` like '%{$search_string}%' ";
         $sql .= "OR `baptism_date` like '%{$search_string}%' ";
         $sql .= "OR `home_phone` like '%{$search_string}%' ";
-        $sql .= "OR `cell_phone` like '%{$search_string}%' ";
-        $sql .= "OR `branch1` like '%{$search_string}%' ";
-        $sql .= "OR `branch2` like '%{$search_string}%' ";
-        $sql .= "OR `branch3` like '%{$search_string}%') ";
+        $sql .= "OR `cell_phone` like '%{$search_string}%') ";
+        // $sql .= "OR `branch1` like '%{$search_string}%' ";
+        // $sql .= "OR `branch2` like '%{$search_string}%' ";
+        // $sql .= "OR `branch3` like '%{$search_string}%') ";
         $sql .= "ORDER BY `".$order_by."` ".$asc_desc." ";
-        $sql .= "LIMIT 0, 10";
+        $sql .= "LIMIT 0, 25";
 
         $result_set = $database->query($sql);
         $database->close_connection();

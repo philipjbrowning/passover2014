@@ -18,8 +18,10 @@ if ($_GET['update_news_feed'] == 'true') {
     global $database;
     $database->open_connection();
     if ($result_set = $database->query($sql)) {
+        $count = $result_set->num_rows;
         while ($row = mysqli_fetch_object($result_set)) {
-            echo "<li>".ucwords(strtolower($row->first_name))." ".ucwords(strtolower($row->last_name))." registered</li>\n";
+            echo "<li>".$count.". ".ucwords(strtolower($row->first_name))." ".ucwords(strtolower($row->last_name))." registered</li>\n";
+            $count--;
         }
     } else {
         echo '<li>Loading information soon</li>';

@@ -213,7 +213,6 @@ class Member {
                      `zip_code` = "'.$this->zip_code.'",
                      `branch1` = "'.$this->branch1.'",
                      `branch2` = "'.$this->branch2.'",
-                     `register_time` = "'.$this->register_time.'",
                      `late_registration` = "'.$this->late_registration.'",
                      `confirmed` = "'.$this->confirmed.'",
                      `comments` = "'.$this->comments.'"

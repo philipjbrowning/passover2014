@@ -92,6 +92,7 @@ $birth_year = substr($birth_year, 2, 2);
                                         </table>
                                         <p>* These fields are required.</p>
                                     </div> <!-- End of #card -->
+                                    <input type="hidden" id="member_id" name="member_id" value="<?php echo $theMember->id; ?>" />
                                 </fieldset>
                                 <input type="hidden" id="registerer_id" name="registerer_id" value="<?php echo $_SESSION['user_id']; ?>" />
                             </form>

@@ -246,10 +246,14 @@ function registerMember(member_id, user_id, page_name) {
                     updateNewsFeed(toTitleCase(new_registered_member.html())+' registered');
 
                     // Move mouse back to search field
+                    console.log("Success Register");
                     clearSearch = setTimeout(function() {
+                        console.log("setTimeout");
                         $('html, body').animate({scrollTop:0}, 'slow', function() {
                             $("#search-member").focus().val('');
+                            console.log("focus");
                             $('#search-results').html('<li>No members found</li>');
+                            console.log("clear search");
                         });
                     }, 1000);
                 } else if (page_name == 'edit') {
@@ -374,6 +378,7 @@ function unRegisterMember(member_id, user_id, page_name) {
 
 function updateMember(member_id, user_id) {
     if(confirm('Are you sure you want to UPDATE this member?')) {
+        $("#validationText").html("Processing...")
         console.log("user #"+user_id+" is updating member #"+member_id);
         $.ajax({
             type : "POST",
@@ -398,7 +403,7 @@ function updateMember(member_id, user_id) {
                 "phone2"            : $('#phone_2').val(),
                 "phone3"            : $('#phone_3').val(),
                 "registerer_id"     : $('#registerer_id').val(),
-                "user_id"           : user_id,
+                "user_id"           : $('#member_id').val(),
                 "zion_id"           : $('.zion:checked').val(),
                 "zion_name"         : $('#church').val()
             }
@@ -406,12 +411,15 @@ function updateMember(member_id, user_id) {
             console.log(result);
             if (result == 'true') {
                 console.log("Update Success");
+                $("#validationText").html("SUCCESS");
                 // CHANGE TITLE BACKGROUND TO GREEN FOR 3 SECONDS
             } else {
+                $("#validationText").html("ERROR: Could not update user");
                 console.log("Update Result Failure");
                 console.log(result);
             }
         }).fail(function() {
+            $("#validationText").html("ERROR: AJAX Failure");
             console.log("AJAX Update Failure");
         });
     }
