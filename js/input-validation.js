@@ -177,9 +177,9 @@ $(".zion").change(function () {
 });
 
 function addOrRegisterMember(task) {
-    var late_registration = "false";
+    var late_registration = "F";
     if ($('#late_registration').is(':checked')) {
-        late_registration = "true";
+        late_registration = "T";
     }
     var response = $.ajax({
         type: "POST",

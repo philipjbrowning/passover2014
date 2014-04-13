@@ -49,7 +49,7 @@ $result_set = array();
                                         $time = date("g:i a", strtotime($row->register_time)); // Get time format 7:00pm from register_time
                                         ?>
                                         <li id="<?php echo $_POST['task']; ?>-result-<?php echo $row->id; ?>" class="<?php echo $_POST['task']; ?>-result search-result">
-                                            <h3><?php echo $count; ?>. <span id="full-name-<?php echo $row->id; ?>" class="<?php if (($row->register_time != "0000-00-00 00:00:00") && ($row->confirmed == 'F')) { echo "search-registered "; } ?><?php if ($row->confirmed == 'T') { echo "search-confirmed "; } ?>"><?php echo $full_name; ?></span> (<?php echo $row->life_number; ?>) - Registered at <?php echo $time; ?></h3>
+                                            <h3><?php echo $count; ?>. <span id="full-name-<?php echo $row->id; ?>" class="<?php if (($row->register_time != "0000-00-00 00:00:00") && ($row->confirmed == 'F')) { echo "search-registered "; } ?><?php if ($row->confirmed == 'T') { echo "search-confirmed "; } ?>"><?php echo $full_name; ?></span> (<?php echo $row->life_number; ?>) - <span class="greenText"><?php echo $time; ?></span></h3>
                                             <ul>
                                                 <li><b>Gender:</b> <?php if($row->gender == 'F') { echo "Female"; } else if($row->gender == 'M') { echo "Male"; } else { echo "Unknown"; } ?> | <b>Birthday:</b> <?php if($row->birth_date == '0000-00-00') { echo "Unknown"; } else { echo $row->birth_date; } ?> | <b>Baptism:</b> <?php if($row->baptism_date == '0000-00-00') { echo "Unknown"; } else { echo $row->baptism_date; } ?></li>
                                                 <li><b>Zion:</b> <?php echo $row->zion_name; ?> | <b>Phone:</b> <?php echo $row->cell_phone; // Previously home_phone ?> | <b>Branch:</b> <?php echo $row->branch1; ?></li>
@@ -60,6 +60,11 @@ $result_set = array();
                                         </li>
                                     <?php
                                         $count--;
+                                        if ($count > 0) {
+                                        ?>
+                                            <li class="search-result-divider"></li>
+                                        <?php
+                                        }
                                     }
                                     if ($results->num_rows == 0) { ?>
                                         <li>You have not registered any members.</li>

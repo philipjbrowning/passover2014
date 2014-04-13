@@ -37,7 +37,6 @@ function handleSearchListTimer(inputKeyCode) {
         if (runSearch) {
             clearListTimer();
         }
-        console.log("EXECUTE - searchMember("+searchInput.val()+")");
         listMembers(searchListInput.val());
     } else {
         if (runSearch) {
@@ -50,9 +49,7 @@ function handleSearchListTimer(inputKeyCode) {
 }
 
 function startListTimer(searchText) {
-    console.log("WAIT - searchMember("+searchText+")");
     runSearch = setTimeout(function() {
-        console.log("EXECUTE - searchMember("+searchText+")");
         listMembers(searchText);
     }, 300); // 300 millisecond wait until user stops typing
 }
@@ -61,7 +58,6 @@ function startListTimer(searchText) {
 
 function listMembers( searchText ) {
     if (searchText.length > 0) {
-        console.log('listMembers()');
         runSearch = null;
         var ascDescSort = null,
             searchGroup = null;
@@ -74,7 +70,6 @@ function listMembers( searchText ) {
         } else {
             searchGroup = 'All';
         }
-        console.log('searchGroup = '+searchGroup);
         $.ajax({
             type : "POST",
             url  : "includes/list-members.php",

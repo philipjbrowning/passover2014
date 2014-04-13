@@ -262,6 +262,7 @@ ol, ul { margin: 0; padding: 0; }
 #news-feed-wrap { margin-bottom: 20px; min-height: 340px; }
 #page { height: 100%; width: 1280px; }
 #register-member-section h2 { margin-bottom: 5px; }
+#registered-list-section h2 { margin-bottom: 5px; }
 #search-form { width: 585px; }
 #search-member, #search-member-list { padding: 5px; width: 572px; }
 #search-results li { display: inline-block; }

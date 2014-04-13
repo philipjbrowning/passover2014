@@ -148,8 +148,6 @@ function updateNewsFeed(message) {
 }
 
 function updateCounter() {
-    console.log($('.user-name').attr('id'));
-    console.log($('.user-name').attr('id').split('user-name-')[1]);
     $.ajax({
         type: "GET",
         url: "includes/update-count.php",
@@ -161,12 +159,11 @@ function updateCounter() {
         if (htmlData != 'false') {
             $("#your-count-wrap").html( htmlData );
             registerCount = parseInt($("#count-registered span.your-number").html());
-            console.log(registerCount);
         } else {
             $("#your-count").html( "<li>Updates will come shortly.</li>" );
         }
     }).fail(function() {
-        console.log('fail');
+        console.log('updateCounter() - fail');
         $("#your-count").html(
             "<li>Updates will come shortly.</li>"
         );
@@ -177,7 +174,6 @@ function updateCounter() {
 
 function confirmMember(member_id, user_id, page_name) {
     if(confirm('Are you sure you want to CONFIRM this member?')) {
-        console.log("user #"+user_id+" is confirming member #"+member_id);
         $.ajax({
             type : "POST",
             url  : "includes/confirm-member.php",
@@ -186,7 +182,6 @@ function confirmMember(member_id, user_id, page_name) {
                 'confirmed_id'  : user_id
             }
         }).done(function( result ) {
-            console.log('AJAX done');
             ajax_result = result;
             if (result == 'true') {
                 updateCounter();
@@ -196,16 +191,12 @@ function confirmMember(member_id, user_id, page_name) {
                     $('#confirm-result-'+member_id+' p').slideUp('fast');
                     updateNewsFeed(toTitleCase($('#full-name-'+member_id).html())+' confirmed');
                 } else if (page_name == 'edit') {
-                    console.log('confirmMember() page_name = edit');
                     // Handle buttons
                     $('.un-register-member-btn').prop( "disabled", "disabled");
                     $('.confirm-member-btn').prop( "disabled", "disabled" );
                     $('.un-confirm-member-btn').prop( "disabled", null );
 
                     // News Feed Message
-                    console.log($('#first_name').val());
-                    console.log($('#middle_name').val());
-                    console.log($('#last_name').val());
                     var full_name = toTitleCase($('#last_name').val());
                     if ($("#middle_name").val().length > 0) {
                         full_name += " " + toTitleCase($('#middle_name').val());
@@ -227,72 +218,70 @@ function confirmMember(member_id, user_id, page_name) {
 }
 
 function registerMember(member_id, user_id, page_name) {
-    if(confirm('Are you sure you want to REGISTER this member?')) {
-        console.log("user #"+user_id+" is registering member #"+member_id);
-        console.log($('#full-name-'+member_id).val());
-        $.ajax({
-            type : "POST",
-            url  : "includes/register-member.php",
-            data: {
-                'member_id'     : member_id,
-                'registerer_id' : user_id
-            }
-        }).done(function( result ) {
-            if (result == 'true') {
-                updateCounter();
-                if (page_name == 'search') {
-                    var new_registered_member = $('#full-name-'+member_id);
-                    new_registered_member.addClass("search-registered");
-                    $('#register-result-'+member_id+' p').slideUp('fast');
-                    console.log("#register-un-register-'+member_id).removeClass('hidden').slideDown('fast')");
-                    $('#register-un-register-'+member_id).removeClass("hidden");
+    console.log("user #"+user_id+" is registering member #"+member_id);
+    console.log($('#full-name-'+member_id).val());
+    $.ajax({
+        type : "POST",
+        url  : "includes/register-member.php",
+        data: {
+            'member_id'     : member_id,
+            'registerer_id' : user_id
+        }
+    }).done(function( result ) {
+        if (result == 'true') {
+            updateCounter();
+            if (page_name == 'search') {
+                var new_registered_member = $('#full-name-'+member_id);
+                new_registered_member.addClass("search-registered");
+                $('#register-result-'+member_id+' p').slideUp('fast');
+                console.log("#register-un-register-'+member_id).removeClass('hidden').slideDown('fast')");
+                $('#register-un-register-'+member_id).removeClass("hidden");
 
-                    registerCount++;
-                    console.log('registerCount = '+registerCount);
-                    updateNewsFeed(registerCount+". "+toTitleCase(new_registered_member.html())+' registered');
+                registerCount++;
+                console.log('registerCount = '+registerCount);
+                updateNewsFeed(registerCount+". "+toTitleCase(new_registered_member.html())+' registered');
 
-                    // Move mouse back to search field
-                    console.log("Success Register");
-                    clearSearch = setTimeout(function() {
-                        console.log("setTimeout");
-                        $('html, body').animate({scrollTop:0}, 'fast', function() {
-                            $("#search-member").focus().val('');
-                            console.log("focus");
-                            $('#search-results').html('<li>No members found</li>');
-                            console.log("clear search");
-                        });
-                    }, 350);
-                } else if (page_name == 'edit') {
-                    // Handle buttons
-                    // $('.register-member-btn').prop( "disabled", "disabled");
-                    // $('.un-register-member-btn').prop( "disabled", null );
-                    // $('.confirm-member-btn').prop( "disabled", null );
+                // Move mouse back to search field
+                console.log("Success Register");
+                clearSearch = setTimeout(function() {
+                    console.log("setTimeout");
+                    $('html, body').animate({scrollTop:0}, 'fast', function() {
+                        $("#search-member").focus().val('');
+                        console.log("focus");
+                        $('#search-results').html('<li>No members found</li>');
+                        console.log("clear search");
+                    });
+                }, 350);
+            } else if (page_name == 'edit') {
+                // Handle buttons
+                // $('.register-member-btn').prop( "disabled", "disabled");
+                // $('.un-register-member-btn').prop( "disabled", null );
+                // $('.confirm-member-btn').prop( "disabled", null );
 
-                    // News Feed Message
-                    var full_name = toTitleCase($('#first_name').val());
-                    if ($("#middle_name").val().length > 0) {
-                        full_name += " " + toTitleCase($('#middle_name').val());
-                    }
-                    full_name += " " + toTitleCase($('#last_name').val());
-                    registerCount++;
-                    console.log('registerCount = '+registerCount);
-                    updateNewsFeed(registerCount+". "+full_name+' registered');
-
-                    // Go to register page
-                    loadPageTemplate('register-member');
-                } else if (page_name == 'confirm') {
-                    console.log('registerMember() page_name = confirm');
-                } else {
-                    console.log('registerMember() page_name out of scope');
+                // News Feed Message
+                var full_name = toTitleCase($('#first_name').val());
+                if ($("#middle_name").val().length > 0) {
+                    full_name += " " + toTitleCase($('#middle_name').val());
                 }
+                full_name += " " + toTitleCase($('#last_name').val());
+                registerCount++;
+                console.log('registerCount = '+registerCount);
+                updateNewsFeed(registerCount+". "+full_name+' registered');
+
+                // Go to register page
+                loadPageTemplate('register-member');
+            } else if (page_name == 'confirm') {
+                console.log('registerMember() page_name = confirm');
             } else {
-                console.log("Register Result Failure");
-                console.log(result);
+                console.log('registerMember() page_name out of scope');
             }
-        }).fail(function() {
-            console.log("AJAX Register Failure");
-        });
-    }
+        } else {
+            console.log("Register Result Failure");
+            console.log(result);
+        }
+    }).fail(function() {
+        console.log("AJAX Register Failure");
+    });
 }
 
 function unConfirmMember(member_id, user_id, page_name) {
@@ -390,9 +379,19 @@ function unRegisterMember(member_id, user_id, page_name) {
 }
 
 function updateMember(member_id, user_id, callback) {
-    if(confirm('Are you sure you want to UPDATE this member?')) {
+    var confirmationAnswer = false;
+    if (callback == 'register') {
+        confirmationAnswer = confirm('Are you sure you want to REGISTER this member?')
+    } else if (callback == 'edit') {
+        confirmationAnswer = confirm('Are you sure you want to UPDATE this member?')
+    }
+    if(confirmationAnswer) {
         $("#validationText").html("Processing...")
         console.log("user #"+user_id+" is updating member #"+member_id);
+        var late_registration = 'F';
+        if ($('#late_registration').is(':checked')) {
+            late_registration = 'T';
+        }
         $.ajax({
             type : "POST",
             url  : "includes/update-member.php",
@@ -408,7 +407,7 @@ function updateMember(member_id, user_id, callback) {
                 "id"                : member_id,
                 "middle_name"       : $('#middle_name').val(),
                 "last_name"         : $('#last_name').val(),
-                "late_registration" : $('#late_registration').is(':checked'),
+                "late_registration" : late_registration,
                 "life_no_1"         : $('#life_no_1').val(),
                 "life_no_2"         : $('#life_no_2').val(),
                 "life_no_3"         : $('#life_no_3').val(),
@@ -440,21 +439,3 @@ function updateMember(member_id, user_id, callback) {
         });
     }
 }
-
-// define our function with the callback argument
-function some_function(arg1, arg2, callback) {
-// this generates a random number between
-// arg1 and arg2
-    var my_number = Math.ceil(Math.random() * (arg1 - arg2) + arg2);
-    // then we're done, so we'll call the callback and
-    // pass our result
-    callback(my_number);
-}
-
-// call the function
-some_function(5, 15, function(num) {
-// this anonymous function will run when the
-// callback is called
-    console.log("callback called! " + num);
-});
-
